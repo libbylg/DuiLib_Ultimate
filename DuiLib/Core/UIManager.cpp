@@ -1,5 +1,14 @@
 #include "StdAfx.h"
-#include <zmouse.h>
+#include "Core/UIManager.h"
+#include "Core/UIDefine.h"
+#include "Core/UIControl.h"
+#include "Core/UIRender.h"
+#include "Core/UIBase.h"
+#include "Core/UIResourceManager.h"
+
+#include "Utils/unzip.h"
+
+#include "UIlib.h"
 
 namespace DuiLib {
 
@@ -36,7 +45,8 @@ namespace DuiLib {
 		return uState;
 	}
 
-	typedef struct tagFINDTABINFO
+    class CControlUI;
+	typedef struct FINDTABINFO
 	{
 		CControlUI* pFocus;
 		CControlUI* pLast;
@@ -44,13 +54,13 @@ namespace DuiLib {
 		bool bNextIsIt;
 	} FINDTABINFO;
 
-	typedef struct tagFINDSHORTCUT
+	typedef struct FINDSHORTCUT
 	{
 		TCHAR ch;
 		bool bPickNext;
 	} FINDSHORTCUT;
 
-	typedef struct tagTIMERINFO
+	typedef struct TIMERINFO
 	{
 		CControlUI* pSender;
 		UINT nLocalID;
@@ -60,12 +70,12 @@ namespace DuiLib {
 	} TIMERINFO;
 
 
-	tagTDrawInfo::tagTDrawInfo()
+	TDrawInfo::TDrawInfo()
 	{
 		Clear();
 	}
 
-	void tagTDrawInfo::Parse(LPCTSTR pStrImage, LPCTSTR pStrModify,CPaintManagerUI *pManager)
+	void TDrawInfo::Parse(LPCTSTR pStrImage, LPCTSTR pStrModify,CPaintManagerUI *pManager)
 	{
 		// 1、aaa.jpg
 		// 2、file='aaa.jpg' res='' restype='0' dest='0,0,0,0' source='0,0,0,0' corner='0,0,0,0' 
@@ -167,7 +177,7 @@ namespace DuiLib {
 			sImageName.Replace(_T("."), sScale);
 		}
 	}
-	void tagTDrawInfo::Clear()
+	void TDrawInfo::Clear()
 	{
 		sDrawString.Empty();
 		sDrawModify.Empty();
@@ -834,6 +844,7 @@ namespace DuiLib {
 		return m_trh;
 	}
 
+    class CRichEditUI;
 	bool CPaintManagerUI::PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& /*lRes*/)
 	{
 		for( int i = 0; i < m_aPreMessageFilters.GetSize(); i++ ) 
@@ -850,7 +861,9 @@ namespace DuiLib {
 				// Tabbing between controls
 				if( wParam == VK_TAB ) {
 					if( m_pFocus && m_pFocus->IsVisible() && m_pFocus->IsEnabled() && _tcsstr(m_pFocus->GetClass(), _T("RichEditUI")) != NULL ) {
-						if( static_cast<CRichEditUI*>(m_pFocus)->IsWantTab() ) return false;
+                       /* if (static_cast<CRichEditUI*>(m_pFocus)->IsWantTab()) { 
+                            return false;
+                        }*/
 					}
 					if( m_pFocus && m_pFocus->IsVisible() && m_pFocus->IsEnabled() && _tcsstr(m_pFocus->GetClass(), _T("WkeWebkitUI")) != NULL ) {
 						return false;
@@ -2034,7 +2047,7 @@ namespace DuiLib {
 	{
 		// 销毁资源管理器
 		CResourceManager::GetInstance()->Release();
-		CControlFactory::GetInstance()->Release();
+		//CControlFactory::GetInstance()->Release();
 		//CMenuWnd::DestroyMenu();
 
 		// 清理共享资源
@@ -2156,8 +2169,8 @@ namespace DuiLib {
 		CStdPtrArray *richEditList = FindSubControlsByClass(GetRoot(), _T("RichEditUI"));
 		for (int i = 0; i < richEditList->GetSize(); i++)
 		{
-			CRichEditUI* pT = static_cast<CRichEditUI*>((*richEditList)[i]);
-			pT->SetFont(pT->GetFont());
+			//CRichEditUI* pT = static_cast<CRichEditUI*>((*richEditList)[i]);
+			//pT->SetFont(pT->GetFont());
 
 		}
 	}

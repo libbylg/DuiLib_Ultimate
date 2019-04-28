@@ -1,8 +1,8 @@
 #ifndef __UIBASE_H__
 #define __UIBASE_H__
 
-
-#pragma once
+#include "Core/UIDefine.h"
+#include "Utils/Utils.h"
 
 namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -22,11 +22,7 @@ namespace DuiLib {
 #define UI_CLASSSTYLE_DIALOG     (CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS | CS_SAVEBITS)
 
 
-	/////////////////////////////////////////////////////////////////////////////////////
-	//
-#ifndef ASSERT
-#define ASSERT(expr)  _ASSERTE(expr)
-#endif
+
 
 #ifdef _DEBUG
 #ifndef DUITRACE

@@ -1,7 +1,13 @@
 #ifndef __UIMANAGER_H__
 #define __UIMANAGER_H__
 
-#pragma once
+#include "Utils/Utils.h"
+#include "Utils/DragDropImpl.h"
+#include "Utils/UIShadow.h"
+#include "Utils/DPI.h"
+
+#include "Core/UIDefine.h"
+
 namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -9,6 +15,10 @@ namespace DuiLib {
 	class CControlUI;
 	class CRichEditUI;
 	class CIDropTarget;
+    class CShadowUI;
+    class CPaintManagerUI;
+    class CDPI;
+
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -97,7 +107,7 @@ namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	typedef struct UILIB_API tagTFontInfo
+	struct UILIB_API TFontInfo
 	{
 		HFONT hFont;
 		CDuiString sFontName;
@@ -106,9 +116,9 @@ namespace DuiLib {
 		bool bUnderline;
 		bool bItalic;
 		TEXTMETRIC tm;
-	} TFontInfo;
+	};
 
-	typedef struct UILIB_API tagTImageInfo
+	struct UILIB_API TImageInfo
 	{
 		HBITMAP hBitmap;
 		LPBYTE pBits;
@@ -120,11 +130,11 @@ namespace DuiLib {
 		CDuiString sResType;
 		DWORD dwMask;
 
-	} TImageInfo;
+	} ;
 
-	typedef struct UILIB_API tagTDrawInfo
+    typedef struct UILIB_API TDrawInfo
 	{
-		tagTDrawInfo();
+        TDrawInfo();
 		void Parse(LPCTSTR pStrImage, LPCTSTR pStrModify, CPaintManagerUI *pManager);
 		void Clear();
 
@@ -145,7 +155,7 @@ namespace DuiLib {
 		CDuiString sIconAlign;
 	} TDrawInfo;
 
-	typedef struct UILIB_API tagTPercentInfo
+	typedef struct UILIB_API TPercentInfo
 	{
 		double left;
 		double top;
@@ -153,7 +163,7 @@ namespace DuiLib {
 		double bottom;
 	} TPercentInfo;
 
-	typedef struct UILIB_API tagTResInfo
+    struct UILIB_API TResInfo
 	{
 		DWORD m_dwDefaultDisabledColor;
 		DWORD m_dwDefaultFontColor;
@@ -166,11 +176,11 @@ namespace DuiLib {
 		CStdStringPtrMap m_AttrHash;
 		CStdStringPtrMap m_StyleHash;
 		CStdStringPtrMap m_DrawInfoHash;
-	} TResInfo;
+	} ;
 
 	// Structure for notifications from the system
 	// to the control implementation.
-	typedef struct UILIB_API tagTEventUI
+	typedef struct UILIB_API TEventUI
 	{
 		int Type;
 		CControlUI* pSender;
@@ -185,10 +195,10 @@ namespace DuiLib {
 	// Drag&Drop control
 	const TCHAR* const CF_MOVECONTROL = _T("CF_MOVECONTROL");
 
-	typedef struct UILIB_API tagTCFMoveUI
+	struct UILIB_API TCFMoveUI
 	{
 		CControlUI* pControl;
-	} TCFMoveUI;
+	} ;
 
 	// Listener interface
 	class INotifyUI

@@ -20,7 +20,7 @@ namespace DuiLib
 		LPVOID	GetInterface(LPCTSTR pstrName);
 		void	DoInit();
 		bool	DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
-		void	DoEvent(TEventUI& event);
+		void	DoEvent(struct TEventUI& event);
 		void	SetVisible(bool bVisible = true );
 		void	SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		void	SetBkImage(LPCTSTR pStrImage);

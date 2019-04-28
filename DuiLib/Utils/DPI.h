@@ -1,6 +1,5 @@
 #ifndef __DPI_H__
 #define __DPI_H__
-#pragma once
 
 #ifndef DPI_ENUMS_DECLARED
 

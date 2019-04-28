@@ -1,7 +1,8 @@
 #ifndef __UICONTAINER_H__
 #define __UICONTAINER_H__
 
-#pragma once
+#include "Core/UIDefine.h"
+#include "Core/UIControl.h"
 
 namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////

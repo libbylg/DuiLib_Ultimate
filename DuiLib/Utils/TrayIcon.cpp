@@ -1,5 +1,7 @@
 #include "StdAfx.h"
-#include "TrayIcon.h"
+#include "Utils/TrayIcon.h"
+
+#include "Core/UIManager.h"
 
 namespace DuiLib
 {

@@ -17,7 +17,7 @@ namespace DuiLib {
 		LPVOID GetInterface(LPCTSTR pstrName);
 		void SetNormalImage(LPCTSTR pStrImage);
 
-		void DoEvent(TEventUI& event);
+		void DoEvent(struct TEventUI& event);
 		void OnTimer( int nTimerID );
 		void PaintStatusImage(HDC hDC);
 

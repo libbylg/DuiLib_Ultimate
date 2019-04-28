@@ -1,4 +1,7 @@
 #include "StdAfx.h"
+#include "Core/UIMarkup.h"
+#include "Core/UIManager.h"
+#include "Utils/unzip.h"
 
 #ifndef TRACE
 #define TRACE

@@ -1,8 +1,8 @@
 #ifndef __UISHADOW_H__
 #define __UISHADOW_H__
 
-#pragma once
-#include <map>
+#include "UIlib.h"
+#include "Utils/Utils.h"
 
 namespace DuiLib
 {

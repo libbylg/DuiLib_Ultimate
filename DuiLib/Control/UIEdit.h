@@ -61,7 +61,7 @@ namespace DuiLib
 		void SetVisible(bool bVisible = true);
 		void SetInternVisible(bool bVisible = true);
 		SIZE EstimateSize(SIZE szAvailable);
-		void DoEvent(TEventUI& event);
+		void DoEvent(struct TEventUI& event);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
 		void PaintStatusImage(HDC hDC);

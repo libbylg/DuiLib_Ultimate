@@ -25,7 +25,7 @@ namespace DuiLib
 
 		void UpdateText();
 
-		void DoEvent(TEventUI& event);
+		void DoEvent(struct TEventUI& event);
 
 	protected:
 		SYSTEMTIME m_sysTime;

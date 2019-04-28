@@ -1,5 +1,8 @@
 #include "StdAfx.h"
-#include "UIResourceManager.h"
+#include "Core/UIResourceManager.h"
+#include "Core/UIManager.h"
+#include "Utils/Utils.h"
+#include "Utils/Utils.h"
 
 namespace DuiLib {
 	

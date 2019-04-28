@@ -195,7 +195,7 @@ namespace DuiLib {
 				PostMessage(WM_KILLFOCUS);
 				break;
 			default:
-				TEventUI event;
+                struct TEventUI event;
 				event.Type = UIEVENT_KEYDOWN;
 				event.chKey = (TCHAR)wParam;
 				m_pOwner->DoEvent(event);
@@ -205,7 +205,7 @@ namespace DuiLib {
 		}
 		else if( uMsg == WM_MOUSEWHEEL ) {
 			int zDelta = (int) (short) HIWORD(wParam);
-			TEventUI event = { 0 };
+            struct TEventUI event = { 0 };
 			event.Type = UIEVENT_SCROLLWHEEL;
 			event.wParam = MAKELPARAM(zDelta < 0 ? SB_LINEDOWN : SB_LINEUP, 0);
 			event.lParam = lParam;
@@ -479,7 +479,7 @@ namespace DuiLib {
 		CContainerUI::RemoveAll();
 	}
 
-	void CComboUI::DoEvent(TEventUI& event)
+	void CComboUI::DoEvent(struct TEventUI& event)
 	{
 		if( !IsMouseEnabled() && event.Type > UIEVENT__MOUSEBEGIN && event.Type < UIEVENT__MOUSEEND ) {
 			if( m_pParent != NULL ) m_pParent->DoEvent(event);

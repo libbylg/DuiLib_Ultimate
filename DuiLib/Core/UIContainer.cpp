@@ -1,4 +1,11 @@
 #include "StdAfx.h"
+#include "Core/UIContainer.h"
+#include "Core/UIDefine.h"
+#include "Core/UIBase.h"
+#include "Core/UIManager.h"
+#include "Core/UIRender.h"
+
+#include "Control/UIScrollBar.h"
 
 namespace DuiLib
 {
@@ -262,7 +269,7 @@ namespace DuiLib
 	{
 		if( m_pVerticalScrollBar != NULL ) m_pVerticalScrollBar->SetMouseEnabled(bEnabled);
 		if( m_pHorizontalScrollBar != NULL ) m_pHorizontalScrollBar->SetMouseEnabled(bEnabled);
-		CControlUI::SetMouseEnabled(bEnabled);
+		this->SetMouseEnabled(bEnabled);
 	}
 
 	void CContainerUI::DoEvent(TEventUI& event)

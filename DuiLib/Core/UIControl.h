@@ -1,14 +1,19 @@
 #ifndef __UICONTROL_H__
 #define __UICONTROL_H__
 
-#pragma once
+#include "Utils/UIDelegate.h"
+
+#include "Core/UIDefine.h"
+#include "Core/UIManager.h"
 
 namespace DuiLib {
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	typedef CControlUI* (CALLBACK* FINDCONTROLPROC)(CControlUI*, LPVOID);
+    class CPaintManagerUI;
+
+    typedef CControlUI* (CALLBACK* FINDCONTROLPROC)(CControlUI*, LPVOID);
 
 	class UILIB_API CControlUI
 	{

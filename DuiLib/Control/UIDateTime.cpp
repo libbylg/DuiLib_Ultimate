@@ -216,7 +216,7 @@ namespace DuiLib
 		}
 	}
 
-	void CDateTimeUI::DoEvent(TEventUI& event)
+	void CDateTimeUI::DoEvent(struct TEventUI& event)
 	{
 		if( !IsMouseEnabled() && event.Type > UIEVENT__MOUSEBEGIN && event.Type < UIEVENT__MOUSEEND ) {
 			if( m_pParent != NULL ) m_pParent->DoEvent(event);

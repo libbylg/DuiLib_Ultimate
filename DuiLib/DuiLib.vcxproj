@@ -74,82 +74,82 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SRelease|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SRelease|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SReleaseA|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SReleaseA|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseA|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseA|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SDebug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SDebug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SDebugA|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SDebugA|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugA|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugA|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -382,6 +382,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -933,22 +934,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Control\UIIPAddressEx.cpp" />
-    <ClCompile Include="Control\UIRollText.cpp" />
-    <ClCompile Include="Control\UIAnimation.cpp" />
-    <ClCompile Include="Control\UIColorPalette.cpp" />
-    <ClCompile Include="Control\UIFadeButton.cpp" />
-    <ClCompile Include="Control\UIGifAnim.cpp" />
-    <ClCompile Include="Control\UIGifAnimEx.cpp" />
-    <ClCompile Include="Control\UIGroupBox.cpp" />
-    <ClCompile Include="Control\UIHotKey.cpp" />
-    <ClCompile Include="Control\UIIPAddress.cpp" />
-    <ClCompile Include="Control\UIListEx.cpp" />
-    <ClCompile Include="Control\UIMenu.cpp" />
-    <ClCompile Include="Control\UIRing.cpp" />
-    <ClCompile Include="Core\ControlFactory.cpp" />
+    <ClCompile Include="Control\UIScrollBar.cpp" />
     <ClCompile Include="Core\UIResourceManager.cpp" />
-    <ClCompile Include="Layout\UIAnimationTabLayout.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -989,50 +976,13 @@
     <ClCompile Include="Core\UIBase.cpp" />
     <ClCompile Include="Core\UIContainer.cpp" />
     <ClCompile Include="Core\UIControl.cpp" />
-    <ClCompile Include="Core\UIDlgBuilder.cpp" />
     <ClCompile Include="Core\UIManager.cpp" />
     <ClCompile Include="Core\UIMarkup.cpp" />
     <ClCompile Include="Core\UIRender.cpp" />
-    <ClCompile Include="Layout\UIChildLayout.cpp" />
-    <ClCompile Include="Layout\UIHorizontalLayout.cpp" />
-    <ClCompile Include="Layout\UITabLayout.cpp" />
-    <ClCompile Include="Layout\UITileLayout.cpp" />
-    <ClCompile Include="Layout\UIVerticalLayout.cpp" />
-    <ClCompile Include="Control\UIActiveX.cpp" />
-    <ClCompile Include="Control\UIButton.cpp" />
-    <ClCompile Include="Control\UICombo.cpp" />
-    <ClCompile Include="Control\UIComboBox.cpp" />
-    <ClCompile Include="Control\UIDateTime.cpp" />
-    <ClCompile Include="Control\UIEdit.cpp" />
-    <ClCompile Include="Control\UIFlash.cpp" />
-    <ClCompile Include="Control\UILabel.cpp" />
-    <ClCompile Include="Control\UIList.cpp" />
-    <ClCompile Include="Control\UIOption.cpp" />
-    <ClCompile Include="Control\UIProgress.cpp" />
-    <ClCompile Include="Control\UIRichEdit.cpp" />
-    <ClCompile Include="Control\UIScrollBar.cpp" />
-    <ClCompile Include="Control\UISlider.cpp" />
-    <ClCompile Include="Control\UIText.cpp" />
-    <ClCompile Include="Control\UITreeView.cpp" />
-    <ClCompile Include="Control\UIWebBrowser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Control\UIIPAddressEx.h" />
-    <ClInclude Include="Control\UIRollText.h" />
-    <ClInclude Include="Control\UIAnimation.h" />
-    <ClInclude Include="Control\UIColorPalette.h" />
-    <ClInclude Include="Control\UIFadeButton.h" />
-    <ClInclude Include="Control\UIGifAnim.h" />
-    <ClInclude Include="Control\UIGifAnimEx.h" />
-    <ClInclude Include="Control\UIGroupBox.h" />
-    <ClInclude Include="Control\UIHotKey.h" />
-    <ClInclude Include="Control\UIIPAddress.h" />
-    <ClInclude Include="Control\UIListEx.h" />
-    <ClInclude Include="Control\UIMenu.h" />
-    <ClInclude Include="Control\UIRing.h" />
-    <ClInclude Include="Core\ControlFactory.h" />
+    <ClInclude Include="Control\UIScrollBar.h" />
     <ClInclude Include="Core\UIResourceManager.h" />
-    <ClInclude Include="Layout\UIAnimationTabLayout.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="UIlib.h" />
     <ClInclude Include="Utils\downloadmgr.h" />
@@ -1053,32 +1003,9 @@
     <ClInclude Include="Core\UIContainer.h" />
     <ClInclude Include="Core\UIControl.h" />
     <ClInclude Include="Core\UIDefine.h" />
-    <ClInclude Include="Core\UIDlgBuilder.h" />
     <ClInclude Include="Core\UIManager.h" />
     <ClInclude Include="Core\UIMarkup.h" />
     <ClInclude Include="Core\UIRender.h" />
-    <ClInclude Include="Layout\UIChildLayout.h" />
-    <ClInclude Include="Layout\UIHorizontalLayout.h" />
-    <ClInclude Include="Layout\UITabLayout.h" />
-    <ClInclude Include="Layout\UITileLayout.h" />
-    <ClInclude Include="Layout\UIVerticalLayout.h" />
-    <ClInclude Include="Control\UIActiveX.h" />
-    <ClInclude Include="Control\UIButton.h" />
-    <ClInclude Include="Control\UICombo.h" />
-    <ClInclude Include="Control\UIComboBox.h" />
-    <ClInclude Include="Control\UIDateTime.h" />
-    <ClInclude Include="Control\UIEdit.h" />
-    <ClInclude Include="Control\UIFlash.h" />
-    <ClInclude Include="Control\UILabel.h" />
-    <ClInclude Include="Control\UIList.h" />
-    <ClInclude Include="Control\UIOption.h" />
-    <ClInclude Include="Control\UIProgress.h" />
-    <ClInclude Include="Control\UIRichEdit.h" />
-    <ClInclude Include="Control\UIScrollBar.h" />
-    <ClInclude Include="Control\UISlider.h" />
-    <ClInclude Include="Control\UIText.h" />
-    <ClInclude Include="Control\UITreeView.h" />
-    <ClInclude Include="Control\UIWebBrowser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

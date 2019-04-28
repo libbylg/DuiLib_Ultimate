@@ -1,7 +1,10 @@
 #ifndef __UIRENDER_H__
 #define __UIRENDER_H__
 
-#pragma once
+#include "UIlib.h"
+#include "Core/UIDefine.h"
+#include "Core/UIManager.h"
+#include "Utils/Utils.h"
 
 #ifdef USE_XIMAGE_EFFECT
 class CxImage;
@@ -9,6 +12,9 @@ class CxImage;
 namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
+
+    class CPaintManagerUI;
+    struct TImageInfo;
 
 	class UILIB_API CRenderClip
 	{
@@ -38,7 +44,7 @@ namespace DuiLib {
 #ifdef USE_XIMAGE_EFFECT
 		static CxImage *LoadGifImageX(STRINGorID bitmap, LPCTSTR type = NULL, DWORD mask = 0);
 #endif
-		static void FreeImage(TImageInfo* bitmap, bool bDelete = true);
+		static void FreeImage(TImageInfo* bitmap, BOOL bDelete = TRUE);
 		static TImageInfo* LoadImage(LPCTSTR pStrImage, LPCTSTR type = NULL, DWORD mask = 0, HINSTANCE instance = NULL);
 		static TImageInfo* LoadImage(UINT nID, LPCTSTR type = NULL, DWORD mask = 0, HINSTANCE instance = NULL);
 

@@ -1,7 +1,8 @@
 #include "StdAfx.h"
-#include "UIShadow.h"
-#include "math.h"
-#include "crtdbg.h"
+#include "Utils/UIShadow.h"
+#include "Core/UIManager.h"
+#include "Core/UIRender.h"
+
 
 namespace DuiLib
 {

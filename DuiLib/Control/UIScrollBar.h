@@ -1,7 +1,10 @@
 #ifndef __UISCROLLBAR_H__
 #define __UISCROLLBAR_H__
 
-#pragma once
+#include "UIlib.h"
+#include "Utils/Utils.h"
+#include "Core/UIContainer.h"
+#include "Core/UIDefine.h"
 
 namespace DuiLib
 {

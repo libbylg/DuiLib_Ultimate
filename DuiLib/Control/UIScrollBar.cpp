@@ -1,5 +1,7 @@
 #include "StdAfx.h"
-#include "UIScrollBar.h"
+#include "Control/UIScrollBar.h"
+#include "Core/UIDefine.h"
+#include "Core/UIRender.h"
 
 namespace DuiLib
 {

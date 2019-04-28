@@ -1,9 +1,11 @@
 #include "StdAfx.h"
+#include "Core/UIBase.h"
+#include "Core/UIDefine.h"
+#include "Core/UIManager.h"
+#include "Core/UIControl.h"
 
-#ifdef _DEBUG
-#include <shlwapi.h>
-#pragma comment(lib, "shlwapi.lib")
-#endif
+#include "Utils/Utils.h"
+
 
 namespace DuiLib {
 
@@ -98,7 +100,7 @@ LPCTSTR DUI__TraceMsg(UINT uMsg)
 DUI_BASE_BEGIN_MESSAGE_MAP(CNotifyPump)
 DUI_END_MESSAGE_MAP()
 
-static const DUI_MSGMAP_ENTRY* DuiFindMessageEntry(const DUI_MSGMAP_ENTRY* lpEntry,TNotifyUI& msg )
+static const DUI_MSGMAP_ENTRY* DuiFindMessageEntry(const DUI_MSGMAP_ENTRY* lpEntry, TNotifyUI& msg )
 {
 	CDuiString sMsgType = msg.sType;
 	CDuiString sCtrlName = msg.pSender->GetName();

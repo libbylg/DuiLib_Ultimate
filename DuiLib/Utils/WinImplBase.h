@@ -1,5 +1,10 @@
 #include "StdAfx.h"
 
+#include "Core/UIDefine.h"
+#include "Core/UIBase.h"
+#include "Core/UIManager.h"
+#include "Core/UIResourceManager.h"
+
 #ifndef WIN_IMPL_BASE_HPP
 #define WIN_IMPL_BASE_HPP
 
@@ -10,7 +15,7 @@ namespace DuiLib
 		, public CNotifyPump
 		, public INotifyUI
 		, public IMessageFilterUI
-		, public IDialogBuilderCallback
+		//, public IDialogBuilderCallback
 		, public IQueryControlText
 	{
 	public:

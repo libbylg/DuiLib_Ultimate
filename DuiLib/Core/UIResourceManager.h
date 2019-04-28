@@ -1,6 +1,8 @@
 #ifndef __UIRESOURCEMANAGER_H__
 #define __UIRESOURCEMANAGER_H__
-#pragma once
+
+#include "Utils/Utils.h"
+#include "Core/UIMarkup.h"
 
 namespace DuiLib {
 	// 控件文字查询接口

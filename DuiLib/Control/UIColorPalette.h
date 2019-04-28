@@ -33,7 +33,7 @@ namespace DuiLib {
 
 		virtual void SetPos(RECT rc, bool bNeedInvalidate = true);
 		virtual void DoInit();
-		virtual void DoEvent(TEventUI& event);
+		virtual void DoEvent(struct TEventUI& event);
 		virtual void PaintBkColor(HDC hDC);
 		virtual void PaintPallet(HDC hDC);
 

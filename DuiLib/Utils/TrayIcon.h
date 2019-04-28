@@ -1,8 +1,9 @@
 #ifndef __UITRAICON_H__
 #define __UITRAICON_H__
 
-#pragma once
-#include <ShellAPI.h>
+#include "UIlib.h"
+#include "Utils/Utils.h"
+
 
 namespace DuiLib
 {

@@ -31,7 +31,7 @@ namespace DuiLib {
 		m_sLastImage = m_sNormalImage;
 	}
 
-	void CFadeButtonUI::DoEvent(TEventUI& event)
+	void CFadeButtonUI::DoEvent(struct TEventUI& event)
 	{
 		if( event.Type == UIEVENT_MOUSEENTER && !IsAnimationRunning( FADE_IN_ID ) )
 		{

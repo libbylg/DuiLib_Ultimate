@@ -45,7 +45,7 @@ namespace DuiLib
 			}
 		}
 
-		void DoEvent(TEventUI& event)
+		void DoEvent(struct TEventUI& event)
 		{
 			if( event.Type == UIEVENT_BUTTONUP )
 			{

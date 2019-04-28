@@ -1,7 +1,8 @@
 #ifndef __UIDELEGATE_H__
 #define __UIDELEGATE_H__
 
-#pragma once
+#include "UIlib.h"
+#include "Utils/Utils.h"
 
 namespace DuiLib {
 

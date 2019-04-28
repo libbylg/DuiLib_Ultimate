@@ -9,7 +9,7 @@ public:
 	~CGameItemUI(void);
 
 public:
-	void DoEvent(DuiLib::TEventUI& event);
+	void DoEvent(struct DuiLib::TEventUI& event);
 	virtual void PaintStatusImage(HDC hDC);
 
 public:

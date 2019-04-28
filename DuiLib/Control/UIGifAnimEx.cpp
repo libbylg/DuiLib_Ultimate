@@ -172,7 +172,7 @@ namespace DuiLib
 
 		return true;
 	}
-	void CGifAnimExUI::DoEvent( TEventUI& event )
+	void CGifAnimExUI::DoEvent(struct TEventUI& event )
 	{
 		this;
 		WPARAM nID = event.wParam;

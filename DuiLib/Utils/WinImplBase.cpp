@@ -1,5 +1,11 @@
 #include "StdAfx.h"
-#include <algorithm>
+#include "Utils/WinImplBase.h"
+#include "Core/UIDefine.h"
+#include "Core/UIControl.h"
+#include "Core/UIBase.h"
+#include "UIlib.h"
+
+
 namespace DuiLib
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -249,7 +255,7 @@ namespace DuiLib
 		if (wParam == SC_CLOSE)
 		{
 			bHandled = TRUE;
-			SendMessage(WM_CLOSE);
+            CWindowWnd::SendMessage(WM_CLOSE);
 			return 0;
 		}
 #if defined(WIN32) && !defined(UNDER_CE)
@@ -289,14 +295,14 @@ namespace DuiLib
 
 		// 创建主窗口
 		CControlUI* pRoot=NULL;
-		CDialogBuilder builder;
+		//CDialogBuilder builder;
 		CDuiString sSkinType = GetSkinType();
 		if (!sSkinType.IsEmpty()) {
 			STRINGorID xml(_ttoi(GetSkinFile().GetData()));
-			pRoot = builder.Create(xml, sSkinType, this, &m_pm);
+            pRoot = NULL;//DialogBuilder不应该放在Core，避免引起大量不合理依赖 //builder.Create(xml, sSkinType, this, &m_pm);
 		}
 		else {
-			pRoot = builder.Create(GetSkinFile().GetData(), (UINT)0, this, &m_pm);
+            pRoot = NULL;///DialogBuilder不应该放在Core，避免引起大量不合理依赖// builder.Create(GetSkinFile().GetData(), (UINT)0, this, &m_pm);
 		}
 
 		if (pRoot == NULL) {
@@ -407,19 +413,19 @@ namespace DuiLib
 	{
 		CDuiString sCtrlName = msg.pSender->GetName();
 		if( sCtrlName == _T("closebtn") ) {
-			Close();
+            CWindowWnd::Close();
 			return; 
 		}
 		else if( sCtrlName == _T("minbtn")) { 
-			SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0); 
+            CWindowWnd::SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 			return; 
 		}
 		else if( sCtrlName == _T("maxbtn")) { 
-			SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); 
+            CWindowWnd::SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0);
 			return; 
 		}
 		else if( sCtrlName == _T("restorebtn")) { 
-			SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0); 
+            CWindowWnd::SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0);
 			return; 
 		}
 		return;

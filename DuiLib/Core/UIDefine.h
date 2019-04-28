@@ -1,4 +1,7 @@
-#pragma once
+#ifndef _UIDEFINE_H_
+#define _UIDEFINE_H_
+
+#include "Utils/Utils.h"
 
 namespace DuiLib
 {
@@ -42,7 +45,7 @@ namespace DuiLib
 	class CControlUI;
 
 	// Structure for notifications to the outside world
-	typedef struct tagTNotifyUI
+	typedef struct TNotifyUI
 	{
 		CDuiString sType;
 		CDuiString sVirtualWnd;
@@ -51,7 +54,7 @@ namespace DuiLib
 		POINT ptMouse;
 		WPARAM wParam;
 		LPARAM lParam;
-	} TNotifyUI;
+	};
 
 	class CNotifyPump;
 	typedef void (CNotifyPump::*DUI_PMSG)(TNotifyUI& msg);  //指针类型
@@ -208,6 +211,9 @@ protected:                                                                \
 
 #endif
 
+#define DECLARE_DUICONTROL(class_name)\
+public:\
+	static CControlUI* CreateControl();
 
 	//声明结束
 #define DUI_END_MESSAGE_MAP()                                             \
@@ -251,7 +257,9 @@ protected:                                                                \
 #define DUI_ON_TIMER()                                                    \
 	{ DUI_MSGTYPE_TIMER, _T(""), DuiSig_vn,(DUI_PMSG)&OnTimer },          \
 
-
+#define IMPLEMENT_DUICONTROL(class_name)\
+	CControlUI* class_name::CreateControl()\
+	{ return new class_name; }
 	///
 	//////////////END消息映射宏定义////////////////////////////////////////////////////
 
@@ -316,4 +324,7 @@ protected:                                                                \
 	//////////////END控件名称宏定义//////////////////////////////////////////////////
 
 	}// namespace DuiLib
+
+
+#endif//_UIDEFINE_H_
 

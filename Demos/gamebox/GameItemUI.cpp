@@ -12,7 +12,7 @@ CGameItemUI::~CGameItemUI(void)
 		::DestroyIcon(m_hIcon);
 }
 
-void CGameItemUI::DoEvent(DuiLib::TEventUI& event)
+void CGameItemUI::DoEvent(struct DuiLib::TEventUI& event)
 {
 	if(event.Type == DuiLib::UIEVENT_DBLCLICK)
 	{

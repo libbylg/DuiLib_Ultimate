@@ -53,7 +53,7 @@ namespace DuiLib
 		return true;
 	}
 
-	void CGifAnimUI::DoEvent( TEventUI& event )
+	void CGifAnimUI::DoEvent(struct TEventUI& event )
 	{
 		if( event.Type == UIEVENT_TIMER )
 			OnTimer( (UINT_PTR)event.wParam );

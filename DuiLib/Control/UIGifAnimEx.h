@@ -26,7 +26,7 @@ namespace DuiLib
 		virtual void SetVisible(bool bVisible = true);
 		virtual void SetInternVisible(bool bVisible = true);
 		virtual bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
-		virtual void DoEvent(TEventUI& event);
+		virtual void DoEvent(struct TEventUI& event);
 	public:
 		void StartAnim();
 		void StopAnim();

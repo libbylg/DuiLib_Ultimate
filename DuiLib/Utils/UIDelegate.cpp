@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "Utils/UIDelegate.h"
 
 namespace DuiLib {
 

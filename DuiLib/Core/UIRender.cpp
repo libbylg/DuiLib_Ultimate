@@ -1,4 +1,12 @@
 #include "StdAfx.h"
+#include "Core/UIRender.h"
+#include "Core/UIDefine.h"
+#include "Core/UIManager.h"
+#include "Core/UIResourceManager.h"
+#include "Core/UIControl.h"
+#include "Utils/unzip.h"
+
+
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "..\Utils\stb_image.h"
@@ -598,7 +606,7 @@ namespace DuiLib {
 
 	Gdiplus::Image* CRenderEngine::GdiplusLoadImage(LPCTSTR pstrPath1)
 	{
-		tagTDrawInfo drawInfo;
+		TDrawInfo drawInfo;
 		drawInfo.Parse(pstrPath1, NULL, NULL);
 		CDuiString sImageName = drawInfo.sImageName;
 
@@ -708,7 +716,7 @@ namespace DuiLib {
 		return pImg;
 	}
 
-	void CRenderEngine::FreeImage(TImageInfo* bitmap, bool bDelete)
+	void CRenderEngine::FreeImage(TImageInfo* bitmap, BOOL bDelete)
 	{
 		if (bitmap == NULL) return;
 		if (bitmap->hBitmap) {

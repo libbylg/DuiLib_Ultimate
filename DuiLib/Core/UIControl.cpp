@@ -1,4 +1,9 @@
 #include "StdAfx.h"
+#include "Core/UIControl.h"
+#include "Core/UIDefine.h"
+#include "Core/UIResourceManager.h"
+#include "Core/UIBase.h"
+#include "Core/UIRender.h"
 
 namespace DuiLib {
 	IMPLEMENT_DUICONTROL(CControlUI)
