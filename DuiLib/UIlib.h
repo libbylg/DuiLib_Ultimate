@@ -50,6 +50,11 @@
 #include <crtdbg.h>
 #include <map>
 #include <algorithm>
+#include <shlobj.h>
+#include <vector>
+#include <OAIdl.h>
+#include <vector>
+#include <atlbase.h>
 
 #ifdef _DEBUG
 #include <shlwapi.h>

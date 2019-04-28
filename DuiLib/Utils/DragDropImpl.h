@@ -8,9 +8,7 @@ Author: Leon Finker  1/2001
 **************************************************************************/
 #ifndef __DRAGDROPIMPL_H__
 #define __DRAGDROPIMPL_H__
-#include <shlobj.h>
-#include <vector>
-
+#include "UIlib.h"
 namespace DuiLib {
 	typedef std::vector<FORMATETC> FormatEtcArray;
 	typedef std::vector<FORMATETC*> PFormatEtcArray;

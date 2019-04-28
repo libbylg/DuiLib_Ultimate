@@ -958,7 +958,7 @@
     <ClCompile Include="Utils\DPI.cpp" />
     <ClCompile Include="Utils\DragDropImpl.cpp" />
     <ClCompile Include="Utils\TrayIcon.cpp" />
-    <ClCompile Include="Utils\UIShadow.cpp" />
+    <ClCompile Include="Core\UIShadow.cpp" />
     <ClCompile Include="Utils\unzip.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugA|Win32'">NotUsing</PrecompiledHeader>
@@ -970,7 +970,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utils\WinImplBase.cpp" />
+    <ClCompile Include="Core\UIWinImplBase.cpp" />
     <ClCompile Include="Utils\UIDelegate.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
     <ClCompile Include="Core\UIBase.cpp" />
@@ -993,12 +993,12 @@
     <ClInclude Include="Utils\stb_image.h" />
     <ClInclude Include="Utils\TrayIcon.h" />
     <ClInclude Include="Utils\UIDelegate.h" />
-    <ClInclude Include="Utils\UIShadow.h" />
+    <ClInclude Include="Core\UIShadow.h" />
     <ClInclude Include="Utils\unzip.h" />
     <ClInclude Include="Utils\Utils.h" />
     <ClInclude Include="Utils\VersionHelpers.h" />
     <ClInclude Include="Utils\WebBrowserEventHandler.h" />
-    <ClInclude Include="Utils\WinImplBase.h" />
+    <ClInclude Include="Core\UIWinImplBase.h" />
     <ClInclude Include="Core\UIBase.h" />
     <ClInclude Include="Core\UIContainer.h" />
     <ClInclude Include="Core\UIControl.h" />

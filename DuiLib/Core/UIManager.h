@@ -3,10 +3,10 @@
 
 #include "Utils/Utils.h"
 #include "Utils/DragDropImpl.h"
-#include "Utils/UIShadow.h"
 #include "Utils/DPI.h"
 
 #include "Core/UIDefine.h"
+#include "Core/UIShadow.h"
 
 namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ namespace DuiLib {
 		UIEVENT_SETCURSOR,
 		UIEVENT_TIMER,
 		UIEVENT__LAST,
-	};
+	}EVENTTYPE_UI;
 
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ namespace DuiLib {
 		UIMSG_SET_DPI,				 // DPI
 		WM_MENUCLICK,				 // 菜单消息
 		UIMSG_USER = WM_USER + 100,	 // 程序自定义消息
-	};
+	}MSGTYPE_UI;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//

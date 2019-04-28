@@ -1,9 +1,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#pragma once
-#include "OAIdl.h"
-#include <vector>
+#include "UIlib.h"
 
 namespace DuiLib
 {

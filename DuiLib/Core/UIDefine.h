@@ -54,7 +54,7 @@ namespace DuiLib
 		POINT ptMouse;
 		WPARAM wParam;
 		LPARAM lParam;
-	};
+	}TNotifyUI;
 
 	class CNotifyPump;
 	typedef void (CNotifyPump::*DUI_PMSG)(TNotifyUI& msg);  //÷∏’Î¿‡–Õ

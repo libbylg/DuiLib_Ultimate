@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 /**************************************************************************
 THIS CODE AND INFORMATION IS PROVIDED 'AS IS' WITHOUT WARRANTY OF
 ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
@@ -9,8 +8,10 @@ Author: Leon Finker  1/2001
 // IDataObjectImpl.cpp: implementation of the CIDataObjectImpl class.
 //////////////////////////////////////////////////////////////////////
 
-#include <atlbase.h>
-#include "DragDropImpl.h"
+#include "StdAfx.h"
+#include "Utils/DragDropImpl.h"
+#include "UIlib.h"
+
 
 namespace DuiLib {
 	//////////////////////////////////////////////////////////////////////
@@ -25,12 +26,12 @@ namespace DuiLib {
 
 	CIDataObject::~CIDataObject()
 	{
-		for(int i = 0; i < m_StgMedium.size(); ++i)
+		for(size_t i = 0; i < m_StgMedium.size(); ++i)
 		{
 			ReleaseStgMedium(m_StgMedium[i]);
 			delete m_StgMedium[i];
 		}
-		for(int j = 0; j < m_ArrFormatEtc.size(); ++j)
+		for(size_t j = 0; j < m_ArrFormatEtc.size(); ++j)
 			delete m_ArrFormatEtc[j];
 	}
 
@@ -76,7 +77,7 @@ namespace DuiLib {
 		pmedium->hGlobal = NULL;
 
 		ATLASSERT(m_StgMedium.size() == m_ArrFormatEtc.size());
-		for(int i=0; i < m_ArrFormatEtc.size(); ++i)
+		for(int i=0; i < (int)m_ArrFormatEtc.size(); ++i)
 		{
 			if(pformatetcIn->tymed & m_ArrFormatEtc[i]->tymed &&
 				pformatetcIn->dwAspect == m_ArrFormatEtc[i]->dwAspect &&
@@ -109,7 +110,7 @@ namespace DuiLib {
 		if (!(DVASPECT_CONTENT & pformatetc->dwAspect))
 			return (DV_E_DVASPECT);
 		HRESULT  hr = DV_E_TYMED;
-		for(int i = 0; i < m_ArrFormatEtc.size(); ++i)
+		for(int i = 0; i < (int)m_ArrFormatEtc.size(); ++i)
 		{
 			if(pformatetc->tymed & m_ArrFormatEtc[i]->tymed)
 			{
@@ -324,14 +325,14 @@ namespace DuiLib {
 	m_cRefCount(0),m_iCur(0)
 	{
 		ATLTRACE("CEnumFormatEtc::CEnumFormatEtc()\n");
-		for(int i = 0; i < ArrFE.size(); ++i)
+		for(int i = 0; i < (int)ArrFE.size(); ++i)
 			m_pFmtEtc.push_back(ArrFE[i]);
 	}
 
 	CEnumFormatEtc::CEnumFormatEtc(const PFormatEtcArray& ArrFE):
 	m_cRefCount(0),m_iCur(0)
 	{
-		for(int i = 0; i < ArrFE.size(); ++i)
+		for(int i = 0; i < (int)ArrFE.size(); ++i)
 			m_pFmtEtc.push_back(*ArrFE[i]);
 	}
 
@@ -375,13 +376,13 @@ namespace DuiLib {
 
 		ULONG cReturn = celt;
 
-		if(celt <= 0 || lpFormatEtc == NULL || m_iCur >= m_pFmtEtc.size())
+		if(celt <= 0 || lpFormatEtc == NULL || m_iCur >= (int)m_pFmtEtc.size())
 			return S_FALSE;
 
 		if(pceltFetched == NULL && celt != 1) // pceltFetched can be NULL only for 1 item request
 			return S_FALSE;
 
-		while (m_iCur < m_pFmtEtc.size() && cReturn > 0)
+		while (m_iCur < (int)m_pFmtEtc.size() && cReturn > 0)
 		{
 			*lpFormatEtc++ = m_pFmtEtc[m_iCur++];
 			--cReturn;
@@ -395,7 +396,7 @@ namespace DuiLib {
 	STDMETHODIMP CEnumFormatEtc::Skip(ULONG celt)
 	{
 		ATLTRACE("CEnumFormatEtc::Skip()\n");
-		if((m_iCur + int(celt)) >= m_pFmtEtc.size())
+		if((m_iCur + int(celt)) >= (int)m_pFmtEtc.size())
 			return S_FALSE;
 		m_iCur += celt;
 		return S_OK;
@@ -532,7 +533,7 @@ namespace DuiLib {
 		//pEnum->Next(1,&ftm,0);
 		//pEnum->Release();
 		m_pSupportedFrmt = NULL;
-		for(int i =0; i<m_formatetc.size(); ++i)
+		for(int i =0; i< (int)m_formatetc.size(); ++i)
 		{
 			m_bAllowDrop = (pDataObj->QueryGetData(&m_formatetc[i]) == S_OK)?true:false;
 			if(m_bAllowDrop)
