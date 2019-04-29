@@ -1502,7 +1502,16 @@ namespace DuiLib {
 		::SelectObject(hDC, hOldPen);
 		::DeleteObject(hPen);
 #else
-		DrawRoundRectange(hDC, rc.left, rc.top, rc.right - rc.left - 1, rc.bottom - rc.top - 1, width, Gdiplus::Color(dwPenColor), nSize, false, Gdiplus::Color(dwPenColor));
+		DrawRoundRectange(hDC, 
+            (float)(rc.left), 
+            (float)(rc.top), 
+            (float)(rc.right - rc.left - 1), 
+            (float)(rc.bottom - rc.top - 1), 
+            (float)(width), 
+            Gdiplus::Color(dwPenColor), 
+            float(nSize), 
+            false, 
+            Gdiplus::Color(dwPenColor));
 #endif
 	}
 
@@ -1853,9 +1862,9 @@ namespace DuiLib {
 							pstrText++;
 							while( *pstrText > _T('\0') && *pstrText <= _T(' ') ) pstrText = ::CharNext(pstrText);
 							LPCTSTR pstrTemp = pstrText;
-							int iFont = (int) _tcstol(pstrText, const_cast<LPTSTR*>(&pstrText), 10);
+							int iFontId = (int) _tcstol(pstrText, const_cast<LPTSTR*>(&pstrText), 10);
 							if( pstrTemp != pstrText ) {
-								TFontInfo* pFontInfo = pManager->GetFontInfo(iFont);
+								TFontInfo* pFontInfo = pManager->GetFontInfo(iFontId);
 								aFontArray.Add(pFontInfo);
 								pTm = &pFontInfo->tm;
 								::SelectObject(hDC, pFontInfo->hFont);

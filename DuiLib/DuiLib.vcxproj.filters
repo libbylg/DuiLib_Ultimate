@@ -86,9 +86,6 @@
     <ClCompile Include="Core\UIShadow.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Core\UIWinImplBase.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -161,9 +158,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\UIShadow.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\UIWinImplBase.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>

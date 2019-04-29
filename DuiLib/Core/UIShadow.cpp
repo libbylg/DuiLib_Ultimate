@@ -123,128 +123,112 @@ LRESULT CALLBACK CShadowUI::ParentProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPAR
 		return ((WNDPROC)pThis->m_OriParentProc)(hwnd, uMsg, wParam, lParam);
 #pragma warning(default: 4312)
 	}
-	switch(uMsg)
-	{
+	switch(uMsg) {
 	case WM_ACTIVATEAPP:
-	case WM_NCACTIVATE:
-		{
-			::SetWindowPos(pThis->m_hWnd, hwnd, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOREDRAW);
-			break;
-		}
-	case WM_WINDOWPOSCHANGED:
-		RECT WndRect;
-		LPWINDOWPOS pWndPos;
-		pWndPos = (LPWINDOWPOS)lParam;
-		GetWindowRect(hwnd, &WndRect);
-		if (pThis->m_bIsImageMode) {
-			SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left - pThis->m_nSize, WndRect.top - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
-		}
-		else {
-			SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left + pThis->m_nxOffset - pThis->m_nSize, WndRect.top + pThis->m_nyOffset - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
-		}
+    case WM_NCACTIVATE: {
+        ::SetWindowPos(pThis->m_hWnd, hwnd, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOREDRAW);
+        break;
+    }
+	case WM_WINDOWPOSCHANGED: {
+        RECT WndRect;
+        LPWINDOWPOS pWndPos;
+        pWndPos = (LPWINDOWPOS)lParam;
+        GetWindowRect(hwnd, &WndRect);
+        if (pThis->m_bIsImageMode) {
+            SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left - pThis->m_nSize, WndRect.top - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+        } else {
+            SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left + pThis->m_nxOffset - pThis->m_nSize, WndRect.top + pThis->m_nyOffset - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+        }
 
-		if (pWndPos->flags & SWP_SHOWWINDOW) {
-			if (pThis->m_Status & SS_ENABLED && !(pThis->m_Status & SS_PARENTVISIBLE))
-			{
-				pThis->m_bUpdate = true;
-				::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
-				pThis->m_Status |= SS_VISABLE | SS_PARENTVISIBLE;
-			}
-		}
-		else if (pWndPos->flags & SWP_HIDEWINDOW) {
-			if (pThis->m_Status & SS_ENABLED)
-			{
-				::ShowWindow(pThis->m_hWnd, SW_HIDE);
-				pThis->m_Status &= ~(SS_VISABLE | SS_PARENTVISIBLE);
-			}
-		}
-		break;
-	case WM_MOVE:
-		if(pThis->m_Status & SS_VISABLE) {
-			RECT WndRect;
-			GetWindowRect(hwnd, &WndRect);
-			if (pThis->m_bIsImageMode) {
-				SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left - pThis->m_nSize, WndRect.top - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
-			}
-			else {
-				SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left + pThis->m_nxOffset - pThis->m_nSize, WndRect.top + pThis->m_nyOffset - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
-			}
-		}
-		break;
-
-	case WM_SIZE:
-		if(pThis->m_Status & SS_ENABLED)
-		{
-			if(SIZE_MAXIMIZED == wParam || SIZE_MINIMIZED == wParam)
-			{
-				::ShowWindow(pThis->m_hWnd, SW_HIDE);
-				pThis->m_Status &= ~SS_VISABLE;
-			}
-			else if(pThis->m_Status & SS_PARENTVISIBLE)	// Parent maybe resized even if invisible
-			{
-				// Awful! It seems that if the window size was not decreased
-				// the window region would never be updated until WM_PAINT was sent.
-				// So do not Update() until next WM_PAINT is received in this case
-				if(LOWORD(lParam) > LOWORD(pThis->m_WndSize) || HIWORD(lParam) > HIWORD(pThis->m_WndSize))
-					pThis->m_bUpdate = true;
-				else
-					pThis->Update(hwnd);
-				if(!(pThis->m_Status & SS_VISABLE))
-				{
-					::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
-					pThis->m_Status |= SS_VISABLE;
-				}
-			}
-			pThis->m_WndSize = lParam;
-		}
-		break;
-
-	case WM_PAINT:
-		{
-			if(pThis->m_bUpdate)
-			{
-				pThis->Update(hwnd);
-				pThis->m_bUpdate = false;
-			}
-			//return hr;
-			break;
-		}
+        if (pWndPos->flags & SWP_SHOWWINDOW) {
+            if (pThis->m_Status & SS_ENABLED && !(pThis->m_Status & SS_PARENTVISIBLE)) {
+                pThis->m_bUpdate = true;
+                ::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
+                pThis->m_Status |= SS_VISABLE | SS_PARENTVISIBLE;
+            }
+        } else if (pWndPos->flags & SWP_HIDEWINDOW) {
+            if (pThis->m_Status & SS_ENABLED) {
+                ::ShowWindow(pThis->m_hWnd, SW_HIDE);
+                pThis->m_Status &= ~(SS_VISABLE | SS_PARENTVISIBLE);
+            }
+        }
+        break;
+    }
+    case WM_MOVE: {
+        if (pThis->m_Status & SS_VISABLE) {
+            RECT WndRect;
+            GetWindowRect(hwnd, &WndRect);
+            if (pThis->m_bIsImageMode) {
+                SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left - pThis->m_nSize, WndRect.top - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+            } else {
+                SetWindowPos(pThis->m_hWnd, hwnd, WndRect.left + pThis->m_nxOffset - pThis->m_nSize, WndRect.top + pThis->m_nyOffset - pThis->m_nSize, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
+            }
+        }
+        break;
+    }
+    case WM_SIZE: {
+        if (pThis->m_Status & SS_ENABLED) {
+            if (SIZE_MAXIMIZED == wParam || SIZE_MINIMIZED == wParam) {
+                ::ShowWindow(pThis->m_hWnd, SW_HIDE);
+                pThis->m_Status &= ~SS_VISABLE;
+            } else if (pThis->m_Status & SS_PARENTVISIBLE)	// Parent maybe resized even if invisible
+            {
+                // Awful! It seems that if the window size was not decreased
+                // the window region would never be updated until WM_PAINT was sent.
+                // So do not Update() until next WM_PAINT is received in this case
+                if (LOWORD(lParam) > LOWORD(pThis->m_WndSize) || HIWORD(lParam) > HIWORD(pThis->m_WndSize))
+                    pThis->m_bUpdate = true;
+                else
+                    pThis->Update(hwnd);
+                if (!(pThis->m_Status & SS_VISABLE)) {
+                    ::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
+                    pThis->m_Status |= SS_VISABLE;
+                }
+            }
+            pThis->m_WndSize = lParam;
+        }
+        break;
+    }
+    case WM_PAINT: {
+        if (pThis->m_bUpdate) {
+            pThis->Update(hwnd);
+            pThis->m_bUpdate = false;
+        }
+        //return hr;
+        break;
+    }
 
 		// In some cases of sizing, the up-right corner of the parent window region would not be properly updated
 		// Update() again when sizing is finished
-	case WM_EXITSIZEMOVE:
-		if(pThis->m_Status & SS_VISABLE)
-		{
-			pThis->Update(hwnd);
-		}
-		break;
-
-	case WM_SHOWWINDOW:
-		if(pThis->m_Status & SS_ENABLED)
-		{
-			if(!wParam)	// the window is being hidden
-			{
-				::ShowWindow(pThis->m_hWnd, SW_HIDE);
-				pThis->m_Status &= ~(SS_VISABLE | SS_PARENTVISIBLE);
-			}
-			else if(!(pThis->m_Status & SS_PARENTVISIBLE))
-			{
-				//pThis->Update(hwnd);
-				pThis->m_bUpdate = true;
-				::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
-				pThis->m_Status |= SS_VISABLE | SS_PARENTVISIBLE;
-			}
-		}
-		break;
-
-	case WM_DESTROY:
-		DestroyWindow(pThis->m_hWnd);	// Destroy the shadow
-		break;
-		
-	case WM_NCDESTROY:
-		GetShadowMap().erase(hwnd);	// Remove this window and shadow from the map
-		break;
-
+    case WM_EXITSIZEMOVE: {
+        if (pThis->m_Status & SS_VISABLE) {
+            pThis->Update(hwnd);
+        }
+        break;
+    }
+    case WM_SHOWWINDOW: {
+        if (pThis->m_Status & SS_ENABLED) {
+            if (!wParam)	// the window is being hidden
+            {
+                ::ShowWindow(pThis->m_hWnd, SW_HIDE);
+                pThis->m_Status &= ~(SS_VISABLE | SS_PARENTVISIBLE);
+            } else if (!(pThis->m_Status & SS_PARENTVISIBLE)) {
+                //pThis->Update(hwnd);
+                pThis->m_bUpdate = true;
+                ::ShowWindow(pThis->m_hWnd, SW_SHOWNOACTIVATE);
+                pThis->m_Status |= SS_VISABLE | SS_PARENTVISIBLE;
+            }
+        }
+        break;
+    }
+    case WM_DESTROY: {
+        DestroyWindow(pThis->m_hWnd);	// Destroy the shadow
+        break;
+    }
+    case WM_NCDESTROY: {
+        GetShadowMap().erase(hwnd);	// Remove this window and shadow from the map
+        break;
+    }
 	}
 
 
@@ -470,10 +454,11 @@ void CShadowUI::MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent)
 			else if(dLength <= nKernelSize)
 			{
 				UINT32 nFactor = ((UINT32)((1 - (dLength - nCenterSize) / (m_nSharpness + 1)) * m_nDarkness));
-				*pKernelIter = nFactor << 24 | PreMultiply(m_Color, nFactor);
+				*pKernelIter = ((nFactor << 24) | PreMultiply(m_Color, (UCHAR)nFactor));
 			}
-			else
-				*pKernelIter = 0;
+            else {
+                *pKernelIter = 0;
+            }
 			//TRACE("%d ", *pKernelIter >> 24);
 			pKernelIter ++;
 		}

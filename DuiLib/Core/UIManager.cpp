@@ -34,9 +34,9 @@ namespace DuiLib {
 		rcChildWnd.bottom = pt.y;
 	}
 
-	static UINT MapKeyState()
+	static WORD MapKeyState()
 	{
-		UINT uState = 0;
+        WORD uState = 0;
 		if( ::GetKeyState(VK_CONTROL) < 0 ) uState |= MK_CONTROL;
 		if( ::GetKeyState(VK_LBUTTON) < 0 ) uState |= MK_LBUTTON;
 		if( ::GetKeyState(VK_RBUTTON) < 0 ) uState |= MK_RBUTTON;
@@ -877,7 +877,7 @@ namespace DuiLib {
 			{
 				// Handle ALT-shortcut key-combinations
 				FINDSHORTCUT fs = { 0 };
-				fs.ch = toupper((int)wParam);
+				fs.ch = (TCHAR)toupper((int)wParam);
 				CControlUI* pControl = m_pRoot->FindControl(__FindControlFromShortcut, &fs, UIFIND_ENABLED | UIFIND_ME_FIRST | UIFIND_TOP_FIRST);
 				if( pControl != NULL ) {
 					pControl->SetFocus();
@@ -893,7 +893,7 @@ namespace DuiLib {
 					event.Type = UIEVENT_SYSKEY;
 					event.chKey = (TCHAR)wParam;
 					event.ptMouse = m_ptLastMousePos;
-					event.wKeyState = MapKeyState();
+					event.wKeyState = (WORD)(MapKeyState());
 					event.dwTimestamp = ::GetTickCount();
 					m_pFocus->Event(event);
 				}
@@ -961,7 +961,7 @@ namespace DuiLib {
 				m_bAsyncNotifyPosted = false;
 
 				TNotifyUI* pMsg = NULL;
-				while( pMsg = static_cast<TNotifyUI*>(m_aAsyncNotify.GetAt(0)) ) {
+				while( NULL != (pMsg = static_cast<TNotifyUI*>(m_aAsyncNotify.GetAt(0)) )) {
 					m_aAsyncNotify.Remove(0);
 					if( pMsg->pSender != NULL ) {
 						if( pMsg->pSender->OnNotify ) pMsg->pSender->OnNotify(pMsg);
@@ -978,7 +978,7 @@ namespace DuiLib {
 				// Make sure all matching "closing" events are sent
 				TEventUI event = { 0 };
 				event.ptMouse = m_ptLastMousePos;
-				event.wKeyState = MapKeyState();
+				event.wKeyState = (WORD)(MapKeyState());
 				event.dwTimestamp = ::GetTickCount();
 				if( m_pEventHover != NULL ) {
 					event.Type = UIEVENT_MOUSELEAVE;
@@ -1253,7 +1253,7 @@ namespace DuiLib {
 
 						BLENDFUNCTION bf = { AC_SRC_OVER, 0, m_nOpacity, AC_SRC_ALPHA };
 						POINT ptPos   = { rcWnd.left, rcWnd.top };
-						SIZE sizeWnd  = { dwWidth, dwHeight };
+						SIZE sizeWnd  = { (LONG)dwWidth, (LONG)dwHeight };
 						POINT ptSrc   = { 0, 0 };
 						g_fUpdateLayeredWindow(m_hWndPaint, m_hDcPaint, &ptPos, &sizeWnd, m_hDcOffscreen, &ptSrc, 0, &bf, ULW_ALPHA);
 					}
@@ -3383,52 +3383,50 @@ namespace DuiLib {
 			m_bAsyncNotifyPosted = true;
 		}
 	}
-	void CPaintManagerUI::ReloadSharedImages()
-	{
-		TImageInfo* data;
-		TImageInfo* pNewData;
-		for( int i = 0; i< m_SharedResInfo.m_ImageHash.GetSize(); i++ ) {
-			if(LPCTSTR bitmap = m_SharedResInfo.m_ImageHash.GetAt(i)) {
-				data = static_cast<TImageInfo*>(m_SharedResInfo.m_ImageHash.Find(bitmap));
-				if( data != NULL ) {
-					if( !data->sResType.IsEmpty() ) {
-						if( isdigit(*bitmap) ) {
-							LPTSTR pstr = NULL;
-							int iIndex = _tcstol(bitmap, &pstr, 10);
-							pNewData = CRenderEngine::LoadImage(iIndex, data->sResType.GetData(), data->dwMask);
-						}
-					}
-					else {
-						pNewData = CRenderEngine::LoadImage(bitmap, NULL, data->dwMask);
-					}
-					if( pNewData == NULL ) continue;
+    void CPaintManagerUI::ReloadSharedImages()
+    {
+        TImageInfo* data = NULL;
+        TImageInfo* pNewData = NULL;
+        for (int i = 0; i < m_SharedResInfo.m_ImageHash.GetSize(); i++) {
+            if (LPCTSTR bitmap = m_SharedResInfo.m_ImageHash.GetAt(i)) {
+                data = static_cast<TImageInfo*>(m_SharedResInfo.m_ImageHash.Find(bitmap));
+                if (data != NULL) {
+                    if (!data->sResType.IsEmpty()) {
+                        if (isdigit(*bitmap)) {
+                            LPTSTR pstr = NULL;
+                            int iIndex = _tcstol(bitmap, &pstr, 10);
+                            pNewData = CRenderEngine::LoadImage(iIndex, data->sResType.GetData(), data->dwMask);
+                        }
+                    } else {
+                        pNewData = CRenderEngine::LoadImage(bitmap, NULL, data->dwMask);
+                    }
+                    if (pNewData == NULL) continue;
 
-					CRenderEngine::FreeImage(data, false);
-					data->hBitmap = pNewData->hBitmap;
-					data->pBits = pNewData->pBits;
-					data->nX = pNewData->nX;
-					data->nY = pNewData->nY;
-					data->bAlpha = pNewData->bAlpha;
-					data->pSrcBits = NULL;
-					if( data->bUseHSL ) {
-						data->pSrcBits = new BYTE[data->nX * data->nY * 4];
-						::CopyMemory(data->pSrcBits, data->pBits, data->nX * data->nY * 4);
-					}
-					else data->pSrcBits = NULL;
-					if( m_bUseHSL ) CRenderEngine::AdjustImage(true, data, m_H, m_S, m_L);
+                    CRenderEngine::FreeImage(data, false);
+                    data->hBitmap = pNewData->hBitmap;
+                    data->pBits = pNewData->pBits;
+                    data->nX = pNewData->nX;
+                    data->nY = pNewData->nY;
+                    data->bAlpha = pNewData->bAlpha;
+                    data->pSrcBits = NULL;
+                    if (data->bUseHSL) {
+                        data->pSrcBits = new BYTE[data->nX * data->nY * 4];
+                        ::CopyMemory(data->pSrcBits, data->pBits, data->nX * data->nY * 4);
+                    } else data->pSrcBits = NULL;
+                    if (m_bUseHSL) CRenderEngine::AdjustImage(true, data, m_H, m_S, m_L);
 
-					delete pNewData;
-				}
-			}
-		}
-	}
+                    delete pNewData;
+                }
+            }
+        }
+    }
 
 	void CPaintManagerUI::ReloadImages()
 	{
 		RemoveAllDrawInfos();
 
-		TImageInfo* data;
-		TImageInfo* pNewData;
+		TImageInfo* data = NULL;
+		TImageInfo* pNewData = NULL;
 		for( int i = 0; i< m_ResInfo.m_ImageHash.GetSize(); i++ ) {
 			if(LPCTSTR bitmap = m_ResInfo.m_ImageHash.GetAt(i)) {
 				data = static_cast<TImageInfo*>(m_ResInfo.m_ImageHash.Find(bitmap));
@@ -4082,7 +4080,7 @@ namespace DuiLib {
 				LPBITMAPINFOHEADER  lpbi = (BITMAPINFOHEADER*)GlobalLock(medium.hGlobal);
 				if(lpbi != NULL)
 				{
-					HBITMAP hbm;
+					HBITMAP hbm = NULL;
 					HDC hdc = GetDC(NULL);
 					if(hdc != NULL)
 					{

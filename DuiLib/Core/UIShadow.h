@@ -57,7 +57,7 @@ protected:
 	void MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent);
 
 	// º∆À„alpha‘§≥À÷µ
-	inline DWORD PreMultiply(COLORREF cl, unsigned char nAlpha)
+	inline DWORD PreMultiply(COLORREF cl, UCHAR nAlpha)
 	{
 		return (GetRValue(cl) * (DWORD)nAlpha / 255) |
 			(GetGValue(cl) * (DWORD)nAlpha / 255) << 8 |

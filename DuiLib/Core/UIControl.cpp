@@ -387,12 +387,12 @@ namespace DuiLib {
 			CControlUI* pParent = this;
 			RECT rcTemp;
 			RECT rcParent;
-			while( pParent = pParent->GetParent() ) {
-				if( !pParent->IsVisible() ) return;
-				rcTemp = invalidateRc;
-				rcParent = pParent->GetPos();
-				if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) ) return;
-			}
+            while (NULL != (pParent = pParent->GetParent())) {
+                if (!pParent->IsVisible()) return;
+                rcTemp = invalidateRc;
+                rcParent = pParent->GetPos();
+                if (!::IntersectRect(&invalidateRc, &rcTemp, &rcParent)) return;
+            }
 			m_pManager->Invalidate(invalidateRc);
 		}
 	}
@@ -740,27 +740,27 @@ namespace DuiLib {
 		return Proc(this, pData);
 	}
 
-	void CControlUI::Invalidate()
-	{
-		if( !IsVisible() ) return;
+    void CControlUI::Invalidate()
+    {
+        if (!IsVisible()) return;
 
-		RECT invalidateRc = m_rcItem;
+        RECT invalidateRc = m_rcItem;
 
-		CControlUI* pParent = this;
-		RECT rcTemp;
-		RECT rcParent;
-		while( pParent = pParent->GetParent() )
-		{
-			rcTemp = invalidateRc;
-			rcParent = pParent->GetPos();
-			if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) ) 
-			{
-				return;
-			}
-		}
+        CControlUI* pParent = this;
+        RECT rcTemp;
+        RECT rcParent;
+        while (NULL != (pParent = pParent->GetParent())) {
+            rcTemp = invalidateRc;
+            rcParent = pParent->GetPos();
+            if (!::IntersectRect(&invalidateRc, &rcTemp, &rcParent)) {
+                return;
+            }
+        }
 
-		if( m_pManager != NULL ) m_pManager->Invalidate(invalidateRc);
-	}
+        if (m_pManager != NULL) {
+            m_pManager->Invalidate(invalidateRc);
+        }
+    }
 
 	bool CControlUI::IsUpdateNeeded() const
 	{
