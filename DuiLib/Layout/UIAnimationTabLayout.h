@@ -12,7 +12,7 @@ namespace DuiLib
 		LPCTSTR GetClass() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 
-		bool SelectItem( int iIndex );
+		BOOL SelectItem( int iIndex );
 		void AnimationSwitch();
 		void DoEvent(TEventUI& event);
 		void OnTimer( int nTimerID );
@@ -24,12 +24,12 @@ namespace DuiLib
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
 	protected:
-		bool m_bIsVerticalDirection;
+		BOOL m_bIsVerticalDirection;
 		int m_nPositiveDirection;
 		RECT m_rcCurPos;
 		RECT m_rcItemOld;
 		CControlUI* m_pCurrentControl;
-		bool m_bControlVisibleFlag;
+		BOOL m_bControlVisibleFlag;
 		enum
 		{
 			TAB_ANIMATION_ID = 1,

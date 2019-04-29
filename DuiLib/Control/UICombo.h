@@ -23,7 +23,7 @@ namespace DuiLib {
 		UINT GetControlFlags() const;
 
 		CDuiString GetText() const;
-		void SetEnabled(bool bEnable = true);
+		void SetEnabled(BOOL bEnable = true);
 
 		void SetTextStyle(UINT uStyle);
 		UINT GetTextStyle() const;
@@ -35,10 +35,10 @@ namespace DuiLib {
 		int GetFont() const;
 		RECT GetTextPadding() const;
 		void SetTextPadding(RECT rc);
-		bool IsShowHtml();
-		void SetShowHtml(bool bShowHtml = true);
-		bool IsShowShadow();
-		void SetShowShadow(bool bShow = true);
+		BOOL IsShowHtml();
+		void SetShowHtml(BOOL bShowHtml = true);
+		BOOL IsShowShadow();
+		void SetShowShadow(BOOL bShow = true);
 
 		CDuiString GetDropBoxAttributeList();
 		void SetDropBoxAttributeList(LPCTSTR pstrList);
@@ -50,18 +50,18 @@ namespace DuiLib {
 		UINT GetListType();
 		TListInfoUI* GetListInfo();
 		int GetCurSel() const;  
-		bool SelectItem(int iIndex, bool bTakeFocus = false);
-		bool SelectMultiItem(int iIndex, bool bTakeFocus = false);
-		bool UnSelectItem(int iIndex, bool bOthers = false);
-		bool SetItemIndex(CControlUI* pControl, int iIndex);
+		BOOL SelectItem(int iIndex, BOOL bTakeFocus = FALSE);
+		BOOL SelectMultiItem(int iIndex, BOOL bTakeFocus = FALSE);
+		BOOL UnSelectItem(int iIndex, BOOL bOthers = FALSE);
+		BOOL SetItemIndex(CControlUI* pControl, int iIndex);
 
-		bool Add(CControlUI* pControl);
-		bool AddAt(CControlUI* pControl, int iIndex);
-		bool Remove(CControlUI* pControl);
-		bool RemoveAt(int iIndex);
+		BOOL Add(CControlUI* pControl);
+		BOOL AddAt(CControlUI* pControl, int iIndex);
+		BOOL Remove(CControlUI* pControl);
+		BOOL RemoveAt(int iIndex);
 		void RemoveAll();
 
-		bool Activate();
+		BOOL Activate();
 
 		LPCTSTR GetNormalImage() const;
 		void SetNormalImage(LPCTSTR pStrImage);
@@ -74,8 +74,8 @@ namespace DuiLib {
 		LPCTSTR GetDisabledImage() const;
 		void SetDisabledImage(LPCTSTR pStrImage);
 
-		bool GetScrollSelect();
-		void SetScrollSelect(bool bScrollSelect);
+		BOOL GetScrollSelect();
+		void SetScrollSelect(BOOL bScrollSelect);
 		
 		void SetItemFont(int index);
 		void SetItemTextStyle(UINT uStyle);
@@ -87,8 +87,8 @@ namespace DuiLib {
 		void SetItemBkColor(DWORD dwBkColor);
 		LPCTSTR GetItemBkImage() const;
 		void SetItemBkImage(LPCTSTR pStrImage);
-		bool IsAlternateBk() const;
-		void SetAlternateBk(bool bAlternateBk);
+		BOOL IsAlternateBk() const;
+		void SetAlternateBk(BOOL bAlternateBk);
 		DWORD GetSelectedItemTextColor() const;
 		void SetSelectedItemTextColor(DWORD dwTextColor);
 		DWORD GetSelectedItemBkColor() const;
@@ -109,16 +109,16 @@ namespace DuiLib {
 		void SetDisabledItemImage(LPCTSTR pStrImage);
 		DWORD GetItemLineColor() const;
 		void SetItemLineColor(DWORD dwLineColor);
-		bool IsItemShowHtml();
-		void SetItemShowHtml(bool bShowHtml = true);
+		BOOL IsItemShowHtml();
+		void SetItemShowHtml(BOOL bShowHtml = true);
 
 		SIZE EstimateSize(SIZE szAvailable);
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
-		void Move(SIZE szOffset, bool bNeedInvalidate = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
+		void Move(SIZE szOffset, BOOL bNeedInvalidate = true);
 		void DoEvent(struct TEventUI& event);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
-		bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
+		BOOL DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 		void PaintText(HDC hDC);
 		void PaintStatusImage(HDC hDC);
 
@@ -131,8 +131,8 @@ namespace DuiLib {
 		int		m_iFont;
 		UINT	m_uTextStyle;
 		RECT	m_rcTextPadding;
-		bool	m_bShowHtml;
-		bool	m_bShowShadow;
+		BOOL	m_bShowHtml;
+		BOOL	m_bShowShadow;
 		CDuiString m_sDropBoxAttributes;
 		SIZE m_szDropBox;
 		RECT m_rcDropBox;
@@ -144,7 +144,7 @@ namespace DuiLib {
 		CDuiString m_sFocusedImage;
 		CDuiString m_sDisabledImage;
 
-		bool m_bScrollSelect;
+		BOOL m_bScrollSelect;
 		TListInfoUI m_ListInfo;
 	};
 

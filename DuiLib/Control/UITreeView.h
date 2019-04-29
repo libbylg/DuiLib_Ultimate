@@ -25,33 +25,33 @@ namespace DuiLib
 		LPVOID GetInterface(LPCTSTR pstrName);
 		void DoEvent(TEventUI& event);
 		void Invalidate();
-		bool Select(bool bSelect = true);
-		bool SelectMulti(bool bSelect = true);
+		BOOL Select(BOOL bSelect = true);
+		BOOL SelectMulti(BOOL bSelect = true);
 
-		bool Add(CControlUI* _pTreeNodeUI);
-		bool AddAt(CControlUI* pControl, int iIndex);
-		bool Remove(CControlUI* pControl);
+		BOOL Add(CControlUI* _pTreeNodeUI);
+		BOOL AddAt(CControlUI* pControl, int iIndex);
+		BOOL Remove(CControlUI* pControl);
 
-		void SetVisibleTag(bool _IsVisible);
-		bool GetVisibleTag();
+		void SetVisibleTag(BOOL _IsVisible);
+		BOOL GetVisibleTag();
 		void SetItemText(LPCTSTR pstrValue);
 		CDuiString GetItemText();
-		void CheckBoxSelected(bool _Selected);
-		bool IsCheckBoxSelected() const;
-		bool IsHasChild() const;
+		void CheckBoxSelected(BOOL _Selected);
+		BOOL IsCheckBoxSelected() const;
+		BOOL IsHasChild() const;
 		long GetTreeLevel() const;
-		bool AddChildNode(CTreeNodeUI* _pTreeNodeUI);
-		bool RemoveAt(CTreeNodeUI* _pTreeNodeUI);
+		BOOL AddChildNode(CTreeNodeUI* _pTreeNodeUI);
+		BOOL RemoveAt(CTreeNodeUI* _pTreeNodeUI);
 		void SetParentNode(CTreeNodeUI* _pParentTreeNode);
 		CTreeNodeUI* GetParentNode();
 		long GetCountChild();
 		void SetTreeView(CTreeViewUI* _CTreeViewUI);
 		CTreeViewUI* GetTreeView();
 		CTreeNodeUI* GetChildNode(int _nIndex);
-		void SetVisibleFolderBtn(bool _IsVisibled);
-		bool GetVisibleFolderBtn();
-		void SetVisibleCheckBtn(bool _IsVisibled);
-		bool GetVisibleCheckBtn();
+		void SetVisibleFolderBtn(BOOL _IsVisibled);
+		BOOL GetVisibleFolderBtn();
+		void SetVisibleCheckBtn(BOOL _IsVisibled);
+		BOOL GetVisibleCheckBtn();
 		void SetItemTextColor(DWORD _dwItemTextColor);
 		DWORD GetItemTextColor() const;
 		void SetItemHotTextColor(DWORD _dwItemHotTextColor);
@@ -79,8 +79,8 @@ namespace DuiLib
 
 	private:
 		long	m_iTreeLavel;
-		bool	m_bIsVisable;
-		bool	m_bIsCheckBox;
+		BOOL	m_bIsVisable;
+		BOOL	m_bIsCheckBox;
 		DWORD	m_dwItemTextColor;
 		DWORD	m_dwItemHotTextColor;
 		DWORD	m_dwSelItemTextColor;
@@ -108,22 +108,22 @@ namespace DuiLib
 		virtual LPVOID	GetInterface(LPCTSTR pstrName);
 
 		virtual UINT GetListType();
-		virtual bool Add(CTreeNodeUI* pControl );
+		virtual BOOL Add(CTreeNodeUI* pControl );
 		virtual long AddAt(CTreeNodeUI* pControl, int iIndex );
-		virtual bool AddAt(CTreeNodeUI* pControl,CTreeNodeUI* _IndexNode);
-		virtual bool Remove(CTreeNodeUI* pControl);
-		virtual bool RemoveAt(int iIndex);
+		virtual BOOL AddAt(CTreeNodeUI* pControl,CTreeNodeUI* _IndexNode);
+		virtual BOOL Remove(CTreeNodeUI* pControl);
+		virtual BOOL RemoveAt(int iIndex);
 		virtual void RemoveAll();
-		virtual bool OnCheckBoxChanged(void* param);
-		virtual bool OnFolderChanged(void* param);
-		virtual bool OnDBClickItem(void* param);
-		virtual bool SetItemCheckBox(bool _Selected,CTreeNodeUI* _TreeNode = NULL);
-		virtual void SetItemExpand(bool _Expanded,CTreeNodeUI* _TreeNode = NULL);
+		virtual BOOL OnCheckBoxChanged(void* param);
+		virtual BOOL OnFolderChanged(void* param);
+		virtual BOOL OnDBClickItem(void* param);
+		virtual BOOL SetItemCheckBox(BOOL _Selected,CTreeNodeUI* _TreeNode = NULL);
+		virtual void SetItemExpand(BOOL _Expanded,CTreeNodeUI* _TreeNode = NULL);
 		virtual void Notify(TNotifyUI& msg);
-		virtual void SetVisibleFolderBtn(bool _IsVisibled);
-		virtual bool GetVisibleFolderBtn();
-		virtual void SetVisibleCheckBtn(bool _IsVisibled);
-		virtual bool GetVisibleCheckBtn();
+		virtual void SetVisibleFolderBtn(BOOL _IsVisibled);
+		virtual BOOL GetVisibleFolderBtn();
+		virtual void SetVisibleCheckBtn(BOOL _IsVisibled);
+		virtual BOOL GetVisibleCheckBtn();
 		virtual void SetItemMinWidth(UINT _ItemMinWidth);
 		virtual UINT GetItemMinWidth();
 		virtual void SetItemTextColor(DWORD _dwItemTextColor);
@@ -134,8 +134,8 @@ namespace DuiLib
 		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 	private:
 		UINT m_uItemMinWidth;
-		bool m_bVisibleFolderBtn;
-		bool m_bVisibleCheckBtn;
+		BOOL m_bVisibleFolderBtn;
+		BOOL m_bVisibleCheckBtn;
 	};
 }
 

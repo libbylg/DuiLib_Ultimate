@@ -115,8 +115,8 @@ namespace DuiLib {
 
 	CColorPaletteUI::CColorPaletteUI()
 		: m_uButtonState(0)
-		, m_bIsInBar(false)
-		, m_bIsInPallet(false)
+		, m_bIsInBar(FALSE)
+		, m_bIsInPallet(FALSE)
 		, m_nCurH(180)
 		, m_nCurS(200)
 		, m_nCurB(100)
@@ -222,7 +222,7 @@ namespace DuiLib {
 		::GetBitmapBits(m_hMemBitmap, dwSize, m_pBits);
 	}
 
-	void CColorPaletteUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CColorPaletteUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 
@@ -258,7 +258,7 @@ namespace DuiLib {
 
 				m_uButtonState |= UISTATE_PUSHED;
 				m_bIsInPallet = true;
-				m_bIsInBar = false;
+				m_bIsInBar = FALSE;
 
 				UpdateBarData();
 			}
@@ -269,7 +269,7 @@ namespace DuiLib {
 				m_nCurS = (event.ptMouse.x - m_rcItem.left) * 200 / (m_rcItem.right - m_rcItem.left);
 				m_uButtonState |= UISTATE_PUSHED;
 				m_bIsInBar = true;
-				m_bIsInPallet = false;
+				m_bIsInPallet = FALSE;
 				UpdatePalletData();
 			}
 
@@ -286,8 +286,8 @@ namespace DuiLib {
 			}
 
 			m_uButtonState &= ~UISTATE_PUSHED;
-			m_bIsInPallet = false;
-			m_bIsInBar = false;
+			m_bIsInPallet = FALSE;
+			m_bIsInBar = FALSE;
 
 			Invalidate();
 			return;
@@ -296,8 +296,8 @@ namespace DuiLib {
 		{
 			if (!(m_uButtonState &UISTATE_PUSHED))
 			{
-				m_bIsInBar = false;
-				m_bIsInPallet = false;
+				m_bIsInBar = FALSE;
+				m_bIsInPallet = FALSE;
 			}
 			if (m_bIsInPallet == true)
 			{

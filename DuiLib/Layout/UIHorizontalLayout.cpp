@@ -4,7 +4,7 @@
 namespace DuiLib
 {
 	IMPLEMENT_DUICONTROL(CHorizontalLayoutUI)
-	CHorizontalLayoutUI::CHorizontalLayoutUI() : m_iSepWidth(0), m_uButtonState(0), m_bImmMode(false)
+	CHorizontalLayoutUI::CHorizontalLayoutUI() : m_iSepWidth(0), m_uButtonState(0), m_bImmMode(FALSE)
 	{
 		ptLastMouse.x = ptLastMouse.y = 0;
 		::ZeroMemory(&m_rcNewPos, sizeof(m_rcNewPos));
@@ -27,7 +27,7 @@ namespace DuiLib
 		else return 0;
 	}
 
-	void CHorizontalLayoutUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CHorizontalLayoutUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 		rc = m_rcItem;
@@ -158,7 +158,7 @@ namespace DuiLib
 					iPosY -= m_pVerticalScrollBar->GetScrollPos();
 				}
 				RECT rcCtrl = { iPosX + rcPadding.left, iPosY - sz.cy/2, iPosX + sz.cx + rcPadding.left, iPosY + sz.cy - sz.cy/2 };
-				pControl->SetPos(rcCtrl, false);
+				pControl->SetPos(rcCtrl, FALSE);
 			}
 			else if (iChildAlign == DT_BOTTOM) {
 				int iPosY = rc.bottom;
@@ -167,7 +167,7 @@ namespace DuiLib
 					iPosY -= m_pVerticalScrollBar->GetScrollPos();
 				}
 				RECT rcCtrl = { iPosX + rcPadding.left, iPosY - rcPadding.bottom - sz.cy, iPosX + sz.cx + rcPadding.left, iPosY - rcPadding.bottom };
-				pControl->SetPos(rcCtrl, false);
+				pControl->SetPos(rcCtrl, FALSE);
 			}
 			else {
 				int iPosY = rc.top;
@@ -175,7 +175,7 @@ namespace DuiLib
 					iPosY -= m_pVerticalScrollBar->GetScrollPos();
 				}
 				RECT rcCtrl = { iPosX + rcPadding.left, iPosY + rcPadding.top, iPosX + sz.cx + rcPadding.left, iPosY + sz.cy + rcPadding.top };
-				pControl->SetPos(rcCtrl, false);
+				pControl->SetPos(rcCtrl, FALSE);
 			}
 
 			iPosX += sz.cx + m_iChildPadding + rcPadding.left + rcPadding.right;
@@ -206,7 +206,7 @@ namespace DuiLib
 		return m_iSepWidth;
 	}
 
-	void CHorizontalLayoutUI::SetSepImmMode(bool bImmediately)
+	void CHorizontalLayoutUI::SetSepImmMode(BOOL bImmediately)
 	{
 		if( m_bImmMode == bImmediately ) return;
 		if( (m_uButtonState & UISTATE_CAPTURED) != 0 && !m_bImmMode && m_pManager != NULL ) {
@@ -216,7 +216,7 @@ namespace DuiLib
 		m_bImmMode = bImmediately;
 	}
 
-	bool CHorizontalLayoutUI::IsSepImmMode() const
+	BOOL CHorizontalLayoutUI::IsSepImmMode() const
 	{
 		return m_bImmMode;
 	}
@@ -233,7 +233,7 @@ namespace DuiLib
 		if( m_iSepWidth != 0 ) {
 			if( event.Type == UIEVENT_BUTTONDOWN && IsEnabled() )
 			{
-				RECT rcSeparator = GetThumbRect(false);
+				RECT rcSeparator = GetThumbRect(FALSE);
 				if( ::PtInRect(&rcSeparator, event.ptMouse) ) {
 					m_uButtonState |= UISTATE_CAPTURED;
 					ptLastMouse = event.ptMouse;
@@ -295,7 +295,7 @@ namespace DuiLib
 					}
 					else {
 						rcInvalidate.Join(GetThumbRect(true));
-						rcInvalidate.Join(GetThumbRect(false));
+						rcInvalidate.Join(GetThumbRect(FALSE));
 						if( m_pManager ) m_pManager->Invalidate(rcInvalidate);
 					}
 					return;
@@ -303,7 +303,7 @@ namespace DuiLib
 			}
 			if( event.Type == UIEVENT_SETCURSOR )
 			{
-				RECT rcSeparator = GetThumbRect(false);
+				RECT rcSeparator = GetThumbRect(FALSE);
 				if( IsEnabled() && ::PtInRect(&rcSeparator, event.ptMouse) ) {
 					::SetCursor(::LoadCursor(NULL, MAKEINTRESOURCE(IDC_SIZEWE)));
 					return;
@@ -313,7 +313,7 @@ namespace DuiLib
 		CContainerUI::DoEvent(event);
 	}
 
-	RECT CHorizontalLayoutUI::GetThumbRect(bool bUseNew) const
+	RECT CHorizontalLayoutUI::GetThumbRect(BOOL bUseNew) const
 	{
 		if( (m_uButtonState & UISTATE_CAPTURED) != 0 && bUseNew) {
 			if( m_iSepWidth >= 0 ) return CDuiRect(m_rcNewPos.right - m_iSepWidth, m_rcNewPos.top, m_rcNewPos.right, m_rcNewPos.bottom);

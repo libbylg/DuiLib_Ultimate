@@ -13,10 +13,10 @@ namespace DuiLib {
 	//
 	//
 
-	class CActiveXWnd : public CWindowWnd
+	class CActiveXWnd : public CWindowUI
 	{
 	public:
-		CActiveXWnd() : m_iLayeredTick(0), m_bDrawCaret(false) {}
+		CActiveXWnd() : m_iLayeredTick(0), m_bDrawCaret(FALSE) {}
 		HWND Init(CActiveXCtrl* pOwner, HWND hWndParent);
 
 		LPCTSTR GetWindowClassName() const;
@@ -43,7 +43,7 @@ namespace DuiLib {
 
 		CActiveXCtrl* m_pOwner;
 		int m_iLayeredTick;
-		bool m_bDrawCaret;
+		BOOL m_bDrawCaret;
 	};
 
 
@@ -303,12 +303,12 @@ namespace DuiLib {
 		IUnknown* m_pUnkSite;
 		IViewObject* m_pViewObject;
 		IOleInPlaceObjectWindowless* m_pInPlaceObject;
-		bool m_bLocked;
-		bool m_bFocused;
-		bool m_bCaptured;
-		bool m_bUIActivated;
-		bool m_bInPlaceActive;
-		bool m_bWindowless;
+		BOOL m_bLocked;
+		BOOL m_bFocused;
+		BOOL m_bCaptured;
+		BOOL m_bUIActivated;
+		BOOL m_bInPlaceActive;
+		BOOL m_bWindowless;
 	};
 
 	CActiveXCtrl::CActiveXCtrl() : 
@@ -318,12 +318,12 @@ namespace DuiLib {
 		m_pUnkSite(NULL), 
 		m_pViewObject(NULL),
 		m_pInPlaceObject(NULL),
-		m_bLocked(false), 
-		m_bFocused(false),
-		m_bCaptured(false),
+		m_bLocked(FALSE), 
+		m_bFocused(FALSE),
+		m_bCaptured(FALSE),
 		m_bWindowless(true),
-		m_bUIActivated(false),
-		m_bInPlaceActive(false)
+		m_bUIActivated(FALSE),
+		m_bInPlaceActive(FALSE)
 	{
 	}
 
@@ -548,7 +548,7 @@ namespace DuiLib {
 			m_pOwner->GetManager()->AddMessageFilter(m_pOwner);
 		}
 		if( FAILED(Hr) ) {
-			m_bWindowless = false;
+			m_bWindowless = FALSE;
 			Hr = CreateActiveXWnd();
 			if( FAILED(Hr) ) return Hr;
 			Hr = m_pOwner->m_pUnk->QueryInterface(IID_IOleInPlaceObject, (LPVOID*) &m_pInPlaceObject);
@@ -565,7 +565,7 @@ namespace DuiLib {
 	STDMETHODIMP CActiveXCtrl::OnInPlaceDeactivateEx(BOOL fNoRedraw)       
 	{
 		DUITRACE(_T("AX: CActiveXCtrl::OnInPlaceDeactivateEx"));
-		m_bInPlaceActive = false;
+		m_bInPlaceActive = FALSE;
 		if( m_pInPlaceObject != NULL ) {
 			m_pInPlaceObject->Release();
 			m_pInPlaceObject = NULL;
@@ -637,7 +637,7 @@ namespace DuiLib {
 	STDMETHODIMP CActiveXCtrl::OnUIDeactivate(BOOL fUndoable)
 	{
 		DUITRACE(_T("AX: CActiveXCtrl::OnUIDeactivate"));
-		m_bUIActivated = false;
+		m_bUIActivated = FALSE;
 		return S_OK;
 	}
 
@@ -814,7 +814,7 @@ namespace DuiLib {
 		default:
 			bHandled = FALSE;
 		}
-		if( !bHandled ) return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+		if( !bHandled ) return CWindowUI::HandleMessage(uMsg, wParam, lParam);
 		return lRes;
 	}
 
@@ -874,7 +874,7 @@ namespace DuiLib {
 	LRESULT CActiveXWnd::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 	{
 		bHandled = FALSE;
-		m_pOwner->m_bFocused = false;
+		m_pOwner->m_bFocused = FALSE;
 		return 0;
 	}
 
@@ -920,7 +920,7 @@ namespace DuiLib {
 	//
 	IMPLEMENT_DUICONTROL(CActiveXUI)
 
-	CActiveXUI::CActiveXUI() : m_pUnk(NULL), m_pControl(NULL), m_hwndHost(NULL), m_bCreated(false), m_bDelayCreate(true), m_bMFC(false)
+	CActiveXUI::CActiveXUI() : m_pUnk(NULL), m_pControl(NULL), m_hwndHost(NULL), m_bCreated(FALSE), m_bDelayCreate(true), m_bMFC(FALSE)
 	{
 		m_clsid = IID_NULL;
 	}
@@ -961,21 +961,21 @@ namespace DuiLib {
 		lpSizeInHiMetric->cy = MAP_PIX_TO_LOGHIM(lpSizeInPix->cy, nPixelsPerInchY);
 	}
 
-	void CActiveXUI::SetVisible(bool bVisible)
+	void CActiveXUI::SetVisible(BOOL bVisible)
 	{
 		CControlUI::SetVisible(bVisible);
 		if( m_hwndHost != NULL && !m_pControl->m_bWindowless ) 
 			::ShowWindow(m_hwndHost, IsVisible() ? SW_SHOW : SW_HIDE);
 	}
 
-	void CActiveXUI::SetInternVisible(bool bVisible)
+	void CActiveXUI::SetInternVisible(BOOL bVisible)
 	{
 		CControlUI::SetInternVisible(bVisible);
 		if( m_hwndHost != NULL && !m_pControl->m_bWindowless ) 
 			::ShowWindow(m_hwndHost, IsVisible() ? SW_SHOW : SW_HIDE);
 	}
 
-	void CActiveXUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CActiveXUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 
@@ -1004,7 +1004,7 @@ namespace DuiLib {
 		}
 	}
 
-	void CActiveXUI::Move(SIZE szOffset, bool bNeedInvalidate)
+	void CActiveXUI::Move(SIZE szOffset, BOOL bNeedInvalidate)
 	{
 		CControlUI::Move(szOffset, bNeedInvalidate);
 		if( !m_pControl->m_bWindowless ) {
@@ -1013,7 +1013,7 @@ namespace DuiLib {
 		}
 	}
 
-	bool CActiveXUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CActiveXUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		if( m_pControl != NULL && m_pControl->m_bWindowless && m_pControl->m_pViewObject != NULL )
 		{
@@ -1030,14 +1030,14 @@ namespace DuiLib {
 		else CControlUI::SetAttribute(pstrName, pstrValue);
 	}
 
-	LRESULT CActiveXUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled)
+	LRESULT CActiveXUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 	{
 		if( m_pControl == NULL ) return 0;
 		ASSERT(m_pControl->m_bWindowless);
 		if( !m_pControl->m_bInPlaceActive ) return 0;
 		if( m_pControl->m_pInPlaceObject == NULL ) return 0;
 		if( !IsMouseEnabled() && uMsg >= WM_MOUSEFIRST && uMsg <= WM_MOUSELAST ) return 0;
-		bool bWasHandled = true;
+		BOOL bWasHandled = true;
 		if( (uMsg >= WM_MOUSEFIRST && uMsg <= WM_MOUSELAST) || uMsg == WM_SETCURSOR ) {
 			// Mouse message only go when captured or inside rect
 			DWORD dwHitResult = m_pControl->m_bCaptured ? HITRESULT_HIT : HITRESULT_OUTSIDE;
@@ -1051,7 +1051,7 @@ namespace DuiLib {
 				}
 			}
 			if( dwHitResult != HITRESULT_HIT ) return 0;
-			if( uMsg == WM_SETCURSOR ) bWasHandled = false;
+			if( uMsg == WM_SETCURSOR ) bWasHandled = FALSE;
 		}
 		else if( uMsg >= WM_KEYFIRST && uMsg <= WM_KEYLAST ) {
 			// Keyboard messages just go when we have focus
@@ -1061,7 +1061,7 @@ namespace DuiLib {
 			switch( uMsg ) {
 			case WM_HELP:
 			case WM_CONTEXTMENU:
-				bWasHandled = false;
+				bWasHandled = FALSE;
 				break;
 			default:
 				return 0;
@@ -1073,32 +1073,32 @@ namespace DuiLib {
 		return lResult;
 	}
 
-	bool CActiveXUI::IsDelayCreate() const
+	BOOL CActiveXUI::IsDelayCreate() const
 	{
 		return m_bDelayCreate;
 	}
 
-	void CActiveXUI::SetDelayCreate(bool bDelayCreate)
+	void CActiveXUI::SetDelayCreate(BOOL bDelayCreate)
 	{
 		if( m_bDelayCreate == bDelayCreate ) return;
-		if( bDelayCreate == false ) {
-			if( m_bCreated == false && m_clsid != IID_NULL ) DoCreateControl();
+		if( bDelayCreate == FALSE ) {
+			if( m_bCreated == FALSE && m_clsid != IID_NULL ) DoCreateControl();
 		}
 		m_bDelayCreate = bDelayCreate;
 	}
 	
-	bool CActiveXUI::IsMFC() const
+	BOOL CActiveXUI::IsMFC() const
 	{
 		return m_bMFC;
 	}
 
-	void CActiveXUI::SetMFC(bool bMFC/* = false*/)
+	void CActiveXUI::SetMFC(BOOL bMFC/* = FALSE*/)
 	{
 		if( m_bMFC == bMFC ) return;
 		m_bMFC = bMFC;
 	}
 
-	bool CActiveXUI::CreateControl(LPCTSTR pstrCLSID)
+	BOOL CActiveXUI::CreateControl(LPCTSTR pstrCLSID)
 	{
 		CLSID clsid = { 0 };
 		OLECHAR szCLSID[100] = { 0 };
@@ -1112,11 +1112,11 @@ namespace DuiLib {
 		return CreateControl(clsid);
 	}
 
-	bool CActiveXUI::CreateControl(const CLSID clsid)
+	BOOL CActiveXUI::CreateControl(const CLSID clsid)
 	{
 		ASSERT(clsid!=IID_NULL);
-		if( clsid == IID_NULL ) return false;
-		m_bCreated = false;
+		if( clsid == IID_NULL ) return FALSE;
+		m_bCreated = FALSE;
 		m_clsid = clsid;
 		if( !m_bDelayCreate ) DoCreateControl();
 		return true;
@@ -1153,7 +1153,7 @@ namespace DuiLib {
 
 	typedef HRESULT (__stdcall *DllGetClassObjectFunc)(REFCLSID rclsid, REFIID riid, LPVOID* ppv); 
 
-	bool CActiveXUI::DoCreateControl()
+	BOOL CActiveXUI::DoCreateControl()
 	{
 		ReleaseControl();
 		// At this point we'll create the ActiveX control
@@ -1177,10 +1177,10 @@ namespace DuiLib {
 			Hr = ::CoCreateInstance(m_clsid, NULL, CLSCTX_ALL, IID_IOleControl, (LPVOID*)&pOleControl);
 		}
 		ASSERT(SUCCEEDED(Hr));
-		if( FAILED(Hr) ) return false;
+		if( FAILED(Hr) ) return FALSE;
 		pOleControl->QueryInterface(IID_IOleObject, (LPVOID*) &m_pUnk);
 		pOleControl->Release();
-		if( m_pUnk == NULL ) return false;
+		if( m_pUnk == NULL ) return FALSE;
 		// Create the host too
 		m_pControl = new CActiveXCtrl();
 		m_pControl->m_pOwner = this;
@@ -1198,7 +1198,7 @@ namespace DuiLib {
 			Hr = pPersistStreamInit->InitNew();
 			pPersistStreamInit->Release();
 		}
-		if( FAILED(Hr) ) return false;
+		if( FAILED(Hr) ) return FALSE;
 		if( (dwMiscStatus & OLEMISC_SETCLIENTSITEFIRST) == 0 ) m_pUnk->SetClientSite(pOleClientSite);
 		// Grab the view...
 		Hr = m_pUnk->QueryInterface(IID_IViewObjectEx, (LPVOID*) &m_pControl->m_pViewObject);
@@ -1206,7 +1206,7 @@ namespace DuiLib {
 		if( FAILED(Hr) ) Hr = m_pUnk->QueryInterface(IID_IViewObject, (LPVOID*) &m_pControl->m_pViewObject);
 		// Activate and done...
 		m_pUnk->SetHostNames(OLESTR("UIActiveX"), NULL);
-		if( m_pManager != NULL ) m_pManager->SendNotify((CControlUI*)this, DUI_MSGTYPE_SHOWACTIVEX, 0, 0, false);
+		if( m_pManager != NULL ) m_pManager->SendNotify((CControlUI*)this, DUI_MSGTYPE_SHOWACTIVEX, 0, 0, FALSE);
 		if( (dwMiscStatus & OLEMISC_INVISIBLEATRUNTIME) == 0 ) {
 			try
 			{

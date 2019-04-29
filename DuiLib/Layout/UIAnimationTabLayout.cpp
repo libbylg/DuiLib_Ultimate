@@ -6,10 +6,10 @@ namespace DuiLib {
 
 	CAnimationTabLayoutUI::CAnimationTabLayoutUI() : 
 		CUIAnimation( this ), 
-		m_bIsVerticalDirection( false ), 
+		m_bIsVerticalDirection( FALSE ), 
 		m_nPositiveDirection( 1 ),
 		m_pCurrentControl( NULL ),
-		m_bControlVisibleFlag( false )
+		m_bControlVisibleFlag( FALSE )
 	{
 	}
 
@@ -25,9 +25,9 @@ namespace DuiLib {
 		return CTabLayoutUI::GetInterface(pstrName);
 	}
 
-	bool CAnimationTabLayoutUI::SelectItem( int iIndex )
+	BOOL CAnimationTabLayoutUI::SelectItem( int iIndex )
 	{
-		if( iIndex < 0 || iIndex >= m_items.GetSize() ) return false;
+		if( iIndex < 0 || iIndex >= m_items.GetSize() ) return FALSE;
 		if( iIndex == m_iCurSel ) return true;
 		if( iIndex > m_iCurSel ) m_nPositiveDirection = -1;
 		if( iIndex < m_iCurSel ) m_nPositiveDirection = 1;
@@ -38,15 +38,15 @@ namespace DuiLib {
 			if( it == iIndex ) {
 				GetItemAt(it)->SetVisible(true);
 				GetItemAt(it)->SetFocus();
-				m_bControlVisibleFlag = false;
+				m_bControlVisibleFlag = FALSE;
 				m_pCurrentControl = static_cast<CControlUI*>(m_items[it]);
 				
 			}
-			else GetItemAt(it)->SetVisible(false);
+			else GetItemAt(it)->SetVisible(FALSE);
 		}
 
 		NeedParentUpdate();
-		if( NULL != m_pCurrentControl ) m_pCurrentControl->SetVisible( false );
+		if( NULL != m_pCurrentControl ) m_pCurrentControl->SetVisible( FALSE );
 		AnimationSwitch();
 
 		if( m_pManager != NULL ) {

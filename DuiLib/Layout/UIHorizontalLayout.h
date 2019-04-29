@@ -17,22 +17,22 @@ namespace DuiLib
 
 		void SetSepWidth(int iWidth);
 		int GetSepWidth() const;
-		void SetSepImmMode(bool bImmediately);
-		bool IsSepImmMode() const;
+		void SetSepImmMode(BOOL bImmediately);
+		BOOL IsSepImmMode() const;
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		void DoEvent(TEventUI& event);
 
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
 		void DoPostPaint(HDC hDC, const RECT& rcPaint);
 
-		RECT GetThumbRect(bool bUseNew = false) const;
+		RECT GetThumbRect(BOOL bUseNew = FALSE) const;
 
 	protected:
 		int m_iSepWidth;
 		UINT m_uButtonState;
 		POINT ptLastMouse;
 		RECT m_rcNewPos;
-		bool m_bImmMode;
+		BOOL m_bImmMode;
 	};
 }
 #endif // __UIHORIZONTALLAYOUT_H__

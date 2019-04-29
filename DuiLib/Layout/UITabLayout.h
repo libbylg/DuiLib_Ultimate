@@ -14,15 +14,15 @@ namespace DuiLib
 		LPCTSTR GetClass() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 
-		bool Add(CControlUI* pControl);
-		bool AddAt(CControlUI* pControl, int iIndex);
-		bool Remove(CControlUI* pControl);
+		BOOL Add(CControlUI* pControl);
+		BOOL AddAt(CControlUI* pControl, int iIndex);
+		BOOL Remove(CControlUI* pControl);
 		void RemoveAll();
 		int GetCurSel() const;
-		virtual bool SelectItem(int iIndex);
-		virtual bool SelectItem(CControlUI* pControl);
+		virtual BOOL SelectItem(int iIndex);
+		virtual BOOL SelectItem(CControlUI* pControl);
 
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
 
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 

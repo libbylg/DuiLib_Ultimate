@@ -6,22 +6,22 @@
 
 namespace DuiLib {
 	// 控件文字查询接口
-	class UILIB_API IQueryControlText
+	class DUILIB_API IQueryControlTextUI
 	{
 	public:
 		virtual LPCTSTR QueryControlText(LPCTSTR lpstrId, LPCTSTR lpstrType) = 0;
 	};
 
-	class UILIB_API CResourceManager
+	class DUILIB_API CResourceManagerUI
 	{
 	private:
-		CResourceManager(void);
-		~CResourceManager(void);
+		CResourceManagerUI(void);
+		~CResourceManagerUI(void);
 
 	public:
-		static CResourceManager* GetInstance()
+		static CResourceManagerUI* GetInstance()
 		{
-			static CResourceManager * p = new CResourceManager;
+			static CResourceManagerUI * p = new CResourceManagerUI;
 			return p;
 		};	
 		void Release(void) { delete this; }
@@ -39,14 +39,14 @@ namespace DuiLib {
 		BOOL LoadLanguage(LPCTSTR pstrXml);
 		
 	public:
-		void SetTextQueryInterface(IQueryControlText* pInterface) { m_pQuerypInterface = pInterface; }
+		void SetTextQueryInterface(IQueryControlTextUI* pInterface) { m_pQuerypInterface = pInterface; }
 		CDuiString GetText(LPCTSTR lpstrId, LPCTSTR lpstrType = NULL);
 		void ReloadText();
 		void ResetTextMap();
 
 	private:
 		CStdStringPtrMap m_mTextResourceHashMap;
-		IQueryControlText*	m_pQuerypInterface;
+		IQueryControlTextUI*	m_pQuerypInterface;
 		CStdStringPtrMap m_mImageHashMap;
 		CStdStringPtrMap m_mXmlHashMap;
 		CMarkup m_xml;

@@ -107,32 +107,32 @@ namespace DuiLib {
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	struct UILIB_API TFontInfo
+	struct DUILIB_API TFontInfo
 	{
 		HFONT hFont;
 		CDuiString sFontName;
 		int iSize;
-		bool bBold;
-		bool bUnderline;
-		bool bItalic;
+		BOOL bBold;
+		BOOL bUnderline;
+		BOOL bItalic;
 		TEXTMETRIC tm;
 	};
 
-	struct UILIB_API TImageInfo
+	struct DUILIB_API TImageInfo
 	{
 		HBITMAP hBitmap;
 		LPBYTE pBits;
 		LPBYTE pSrcBits;
 		int nX;
 		int nY;
-		bool bAlpha;
-		bool bUseHSL;
+		BOOL bAlpha;
+		BOOL bUseHSL;
 		CDuiString sResType;
 		DWORD dwMask;
 
 	} ;
 
-    typedef struct UILIB_API TDrawInfo
+    typedef struct DUILIB_API TDrawInfo
 	{
         TDrawInfo();
 		void Parse(LPCTSTR pStrImage, LPCTSTR pStrModify, CPaintManagerUI *pManager);
@@ -147,15 +147,15 @@ namespace DuiLib {
 		RECT rcCorner;
 		DWORD dwMask;
 		BYTE uFade;
-		bool bHole;
-		bool bTiledX;
-		bool bTiledY;
-		bool bHSL;
+		BOOL bHole;
+		BOOL bTiledX;
+		BOOL bTiledY;
+		BOOL bHSL;
 		SIZE szIcon;
 		CDuiString sIconAlign;
 	} TDrawInfo;
 
-	typedef struct UILIB_API TPercentInfo
+	typedef struct DUILIB_API TPercentInfo
 	{
 		double left;
 		double top;
@@ -163,7 +163,7 @@ namespace DuiLib {
 		double bottom;
 	} TPercentInfo;
 
-    struct UILIB_API TResInfo
+    struct DUILIB_API TResInfo
 	{
 		DWORD m_dwDefaultDisabledColor;
 		DWORD m_dwDefaultFontColor;
@@ -180,7 +180,7 @@ namespace DuiLib {
 
 	// Structure for notifications from the system
 	// to the control implementation.
-	typedef struct UILIB_API TEventUI
+	typedef struct DUILIB_API TEventUI
 	{
 		int Type;
 		CControlUI* pSender;
@@ -195,7 +195,7 @@ namespace DuiLib {
 	// Drag&Drop control
 	const TCHAR* const CF_MOVECONTROL = _T("CF_MOVECONTROL");
 
-	struct UILIB_API TCFMoveUI
+	struct DUILIB_API TCFMoveUI
 	{
 		CControlUI* pControl;
 	} ;
@@ -211,7 +211,7 @@ namespace DuiLib {
 	class IMessageFilterUI
 	{
 	public:
-		virtual LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled) = 0;
+		virtual LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) = 0;
 	};
 
 	class ITranslateAccelerator
@@ -225,7 +225,7 @@ namespace DuiLib {
 	//
 	typedef CControlUI* (*LPCREATECONTROL)(LPCTSTR pstrType);
 
-	class UILIB_API CPaintManagerUI : public CIDropTarget
+	class DUILIB_API CPaintManagerUI : public CIDropTarget
 	{
 	public:
 		CPaintManagerUI();
@@ -233,7 +233,7 @@ namespace DuiLib {
 
 	public:
 		void Init(HWND hWnd, LPCTSTR pstrName = NULL);
-		bool IsUpdateNeeded() const;
+		BOOL IsUpdateNeeded() const;
 		void NeedUpdate();
 		void Invalidate();
 		void Invalidate(RECT& rcItem);
@@ -259,16 +259,16 @@ namespace DuiLib {
 		void SetMinInfo(int cx, int cy);
 		SIZE GetMaxInfo() const;
 		void SetMaxInfo(int cx, int cy);
-		bool IsShowUpdateRect() const;
-		void SetShowUpdateRect(bool show);
-		bool IsNoActivate();
-		void SetNoActivate(bool bNoActivate);
+		BOOL IsShowUpdateRect() const;
+		void SetShowUpdateRect(BOOL show);
+		BOOL IsNoActivate();
+		void SetNoActivate(BOOL bNoActivate);
 
 		BYTE GetOpacity() const;
 		void SetOpacity(BYTE nOpacity);
 
-		bool IsLayered();
-		void SetLayered(bool bLayered);
+		BOOL IsLayered();
+		void SetLayered(BOOL bLayered);
 		RECT& GetLayeredInset();
 		void SetLayeredInset(RECT& rcLayeredInset);
 		BYTE GetLayeredOpacity();
@@ -278,8 +278,8 @@ namespace DuiLib {
 
 		CShadowUI* GetShadow();
 
-		void SetUseGdiplusText(bool bUse);
-		bool IsUseGdiplusText() const;
+		void SetUseGdiplusText(BOOL bUse);
+		BOOL IsUseGdiplusText() const;
 		void SetGdiplusTextRenderingHint(int trh);
 		int GetGdiplusTextRenderingHint() const;
 
@@ -290,60 +290,60 @@ namespace DuiLib {
 		static const CDuiString& GetResourcePath();
 		static const CDuiString& GetResourceZip();
 		static const CDuiString& GetResourceZipPwd();
-		static bool IsCachedResourceZip();
+		static BOOL IsCachedResourceZip();
 		static HANDLE GetResourceZipHandle();
 		static void SetInstance(HINSTANCE hInst);
 		static void SetCurrentPath(LPCTSTR pStrPath);
 		static void SetResourceDll(HINSTANCE hInst);
 		static void SetResourcePath(LPCTSTR pStrPath);
 		static void SetResourceZip(LPVOID pVoid, unsigned int len, LPCTSTR password = NULL);
-		static void SetResourceZip(LPCTSTR pstrZip, bool bCachedResourceZip = false, LPCTSTR password = NULL);
+		static void SetResourceZip(LPCTSTR pstrZip, BOOL bCachedResourceZip = false, LPCTSTR password = NULL);
 		static void SetResourceType(int nType);
 		static int GetResourceType();
-		static bool GetHSL(short* H, short* S, short* L);
-		static void SetHSL(bool bUseHSL, short H, short S, short L); // H:0~360, S:0~200, L:0~200 
+		static BOOL GetHSL(short* H, short* S, short* L);
+		static void SetHSL(BOOL bUseHSL, short H, short S, short L); // H:0~360, S:0~200, L:0~200 
 		static void ReloadSkin();
 		static CPaintManagerUI* GetPaintManager(LPCTSTR pstrName);
 		static CStdPtrArray* GetPaintManagers();
-		static bool LoadPlugin(LPCTSTR pstrModuleName);
+		static BOOL LoadPlugin(LPCTSTR pstrModuleName);
 		static CStdPtrArray* GetPlugins();
 
-		bool IsForceUseSharedRes() const;
-		void SetForceUseSharedRes(bool bForce);
+		BOOL IsForceUseSharedRes() const;
+		void SetForceUseSharedRes(BOOL bForce);
 		// 注意：只支持简单类型指针，因为只释放内存，不会调用类对象的析构函数
 		void DeletePtr(void* ptr);
 
 		DWORD GetDefaultDisabledColor() const;
-		void SetDefaultDisabledColor(DWORD dwColor, bool bShared = false);
+		void SetDefaultDisabledColor(DWORD dwColor, BOOL bShared = false);
 		DWORD GetDefaultFontColor() const;
-		void SetDefaultFontColor(DWORD dwColor, bool bShared = false);
+		void SetDefaultFontColor(DWORD dwColor, BOOL bShared = false);
 		DWORD GetDefaultLinkFontColor() const;
-		void SetDefaultLinkFontColor(DWORD dwColor, bool bShared = false);
+		void SetDefaultLinkFontColor(DWORD dwColor, BOOL bShared = false);
 		DWORD GetDefaultLinkHoverFontColor() const;
-		void SetDefaultLinkHoverFontColor(DWORD dwColor, bool bShared = false);
+		void SetDefaultLinkHoverFontColor(DWORD dwColor, BOOL bShared = false);
 		DWORD GetDefaultSelectedBkColor() const;
-		void SetDefaultSelectedBkColor(DWORD dwColor, bool bShared = false);
+		void SetDefaultSelectedBkColor(DWORD dwColor, BOOL bShared = false);
 		TFontInfo* GetDefaultFontInfo();
-		void SetDefaultFont(LPCTSTR pStrFontName, int nSize, bool bBold, bool bUnderline, bool bItalic, bool bShared = false);
-		DWORD GetCustomFontCount(bool bShared = false) const;
+		void SetDefaultFont(LPCTSTR pStrFontName, int nSize, BOOL bBold, BOOL bUnderline, BOOL bItalic, BOOL bShared = false);
+		DWORD GetCustomFontCount(BOOL bShared = false) const;
 		void AddFontArray(LPCTSTR pstrPath);
-		HFONT AddFont(int id, LPCTSTR pStrFontName, int nSize, bool bBold, bool bUnderline, bool bItalic, bool bShared = false);
+		HFONT AddFont(int id, LPCTSTR pStrFontName, int nSize, BOOL bBold, BOOL bUnderline, BOOL bItalic, BOOL bShared = false);
 		HFONT GetFont(int id);
-		HFONT GetFont(LPCTSTR pStrFontName, int nSize, bool bBold, bool bUnderline, bool bItalic);
-		int GetFontIndex(HFONT hFont, bool bShared = false);
-		int GetFontIndex(LPCTSTR pStrFontName, int nSize, bool bBold, bool bUnderline, bool bItalic, bool bShared = false);
-		void RemoveFont(HFONT hFont, bool bShared = false);
-		void RemoveFont(int id, bool bShared = false);
-		void RemoveAllFonts(bool bShared = false);
+		HFONT GetFont(LPCTSTR pStrFontName, int nSize, BOOL bBold, BOOL bUnderline, BOOL bItalic);
+		int GetFontIndex(HFONT hFont, BOOL bShared = false);
+		int GetFontIndex(LPCTSTR pStrFontName, int nSize, BOOL bBold, BOOL bUnderline, BOOL bItalic, BOOL bShared = false);
+		void RemoveFont(HFONT hFont, BOOL bShared = false);
+		void RemoveFont(int id, BOOL bShared = false);
+		void RemoveAllFonts(BOOL bShared = false);
 		TFontInfo* GetFontInfo(int id);
 		TFontInfo* GetFontInfo(HFONT hFont);
 
 		const TImageInfo* GetImage(LPCTSTR bitmap);
-		const TImageInfo* GetImageEx(LPCTSTR bitmap, LPCTSTR type = NULL, DWORD mask = 0, bool bUseHSL = false, HINSTANCE instance = NULL);
-		const TImageInfo* AddImage(LPCTSTR bitmap, LPCTSTR type = NULL, DWORD mask = 0, bool bUseHSL = false, bool bShared = false, HINSTANCE instance = NULL);
-		const TImageInfo* AddImage(LPCTSTR bitmap, HBITMAP hBitmap, int iWidth, int iHeight, bool bAlpha, bool bShared = false);
-		void RemoveImage(LPCTSTR bitmap, bool bShared = false);
-		void RemoveAllImages(bool bShared = false);
+		const TImageInfo* GetImageEx(LPCTSTR bitmap, LPCTSTR type = NULL, DWORD mask = 0, BOOL bUseHSL = false, HINSTANCE instance = NULL);
+		const TImageInfo* AddImage(LPCTSTR bitmap, LPCTSTR type = NULL, DWORD mask = 0, BOOL bUseHSL = false, BOOL bShared = false, HINSTANCE instance = NULL);
+		const TImageInfo* AddImage(LPCTSTR bitmap, HBITMAP hBitmap, int iWidth, int iHeight, BOOL bAlpha, BOOL bShared = false);
+		void RemoveImage(LPCTSTR bitmap, BOOL bShared = false);
+		void RemoveAllImages(BOOL bShared = false);
 		static void ReloadSharedImages();
 		void ReloadImages();
 
@@ -351,34 +351,34 @@ namespace DuiLib {
 		void RemoveDrawInfo(LPCTSTR pStrImage, LPCTSTR pStrModify);
 		void RemoveAllDrawInfos();
 
-		void AddDefaultAttributeList(LPCTSTR pStrControlName, LPCTSTR pStrControlAttrList, bool bShared = false);
+		void AddDefaultAttributeList(LPCTSTR pStrControlName, LPCTSTR pStrControlAttrList, BOOL bShared = false);
 		LPCTSTR GetDefaultAttributeList(LPCTSTR pStrControlName) const;
-		bool RemoveDefaultAttributeList(LPCTSTR pStrControlName, bool bShared = false);
-		void RemoveAllDefaultAttributeList(bool bShared = false);
+		BOOL RemoveDefaultAttributeList(LPCTSTR pStrControlName, BOOL bShared = false);
+		void RemoveAllDefaultAttributeList(BOOL bShared = false);
 
 		void AddWindowCustomAttribute(LPCTSTR pstrName, LPCTSTR pstrAttr);
 		LPCTSTR GetWindowCustomAttribute(LPCTSTR pstrName) const;
-		bool RemoveWindowCustomAttribute(LPCTSTR pstrName);
+		BOOL RemoveWindowCustomAttribute(LPCTSTR pstrName);
 		void RemoveAllWindowCustomAttribute();
 
 		// 样式管理
-		void AddStyle(LPCTSTR pName, LPCTSTR pStyle, bool bShared = false);
+		void AddStyle(LPCTSTR pName, LPCTSTR pStyle, BOOL bShared = false);
 		LPCTSTR GetStyle(LPCTSTR pName) const;
-		BOOL RemoveStyle(LPCTSTR pName, bool bShared = false);
-		const CStdStringPtrMap& GetStyles(bool bShared = false) const;
-		void RemoveAllStyle(bool bShared = false);
+		BOOL RemoveStyle(LPCTSTR pName, BOOL bShared = false);
+		const CStdStringPtrMap& GetStyles(BOOL bShared = false) const;
+		void RemoveAllStyle(BOOL bShared = false);
 
 		const TImageInfo* GetImageString(LPCTSTR pStrImage, LPCTSTR pStrModify = NULL);
 
 		// 初始化拖拽
-		bool InitDragDrop();
-		virtual bool OnDrop(FORMATETC* pFmtEtc, STGMEDIUM& medium,DWORD *pdwEffect);
+		BOOL InitDragDrop();
+		virtual BOOL OnDrop(FORMATETC* pFmtEtc, STGMEDIUM& medium,DWORD *pdwEffect);
 
-		bool AttachDialog(CControlUI* pControl);
-		bool InitControls(CControlUI* pControl, CControlUI* pParent = NULL);
+		BOOL AttachDialog(CControlUI* pControl);
+		BOOL InitControls(CControlUI* pControl, CControlUI* pParent = NULL);
 		void ReapObjects(CControlUI* pControl);
 
-		bool AddOptionGroup(LPCTSTR pStrGroupName, CControlUI* pControl);
+		BOOL AddOptionGroup(LPCTSTR pStrGroupName, CControlUI* pControl);
 		CStdPtrArray* GetOptionGroup(LPCTSTR pStrGroupName);
 		void RemoveOptionGroup(LPCTSTR pStrGroupName, CControlUI* pControl);
 		void RemoveAllOptionGroups();
@@ -387,49 +387,49 @@ namespace DuiLib {
 		void SetFocus(CControlUI* pControl);
 		void SetFocusNeeded(CControlUI* pControl);
 
-		bool SetNextTabControl(bool bForward = true);
+		BOOL SetNextTabControl(BOOL bForward = true);
 
-		bool SetTimer(CControlUI* pControl, UINT nTimerID, UINT uElapse);
-		bool KillTimer(CControlUI* pControl, UINT nTimerID);
+		BOOL SetTimer(CControlUI* pControl, UINT nTimerID, UINT uElapse);
+		BOOL KillTimer(CControlUI* pControl, UINT nTimerID);
 		void KillTimer(CControlUI* pControl);
 		void RemoveAllTimers();
 
 		void SetCapture();
 		void ReleaseCapture();
-		bool IsCaptured();
+		BOOL IsCaptured();
 
-		bool IsPainting();
-		void SetPainting(bool bIsPainting);
+		BOOL IsPainting();
+		void SetPainting(BOOL bIsPainting);
 
-		bool AddNotifier(INotifyUI* pControl);
-		bool RemoveNotifier(INotifyUI* pControl);   
-		void SendNotify(TNotifyUI& Msg, bool bAsync = false);
-		void SendNotify(CControlUI* pControl, LPCTSTR pstrMessage, WPARAM wParam = 0, LPARAM lParam = 0, bool bAsync = false);
+		BOOL AddNotifier(INotifyUI* pControl);
+		BOOL RemoveNotifier(INotifyUI* pControl);   
+		void SendNotify(TNotifyUI& Msg, BOOL bAsync = false);
+		void SendNotify(CControlUI* pControl, LPCTSTR pstrMessage, WPARAM wParam = 0, LPARAM lParam = 0, BOOL bAsync = false);
 
-		bool AddPreMessageFilter(IMessageFilterUI* pFilter);
-		bool RemovePreMessageFilter(IMessageFilterUI* pFilter);
+		BOOL AddPreMessageFilter(IMessageFilterUI* pFilter);
+		BOOL RemovePreMessageFilter(IMessageFilterUI* pFilter);
 
-		bool AddMessageFilter(IMessageFilterUI* pFilter);
-		bool RemoveMessageFilter(IMessageFilterUI* pFilter);
+		BOOL AddMessageFilter(IMessageFilterUI* pFilter);
+		BOOL RemoveMessageFilter(IMessageFilterUI* pFilter);
 
 		int GetPostPaintCount() const;
-		bool IsPostPaint(CControlUI* pControl);
-		bool AddPostPaint(CControlUI* pControl);
-		bool RemovePostPaint(CControlUI* pControl);
-		bool SetPostPaintIndex(CControlUI* pControl, int iIndex);
+		BOOL IsPostPaint(CControlUI* pControl);
+		BOOL AddPostPaint(CControlUI* pControl);
+		BOOL RemovePostPaint(CControlUI* pControl);
+		BOOL SetPostPaintIndex(CControlUI* pControl, int iIndex);
 
 		int GetNativeWindowCount() const;
 		RECT GetNativeWindowRect(HWND hChildWnd);
-		bool AddNativeWindow(CControlUI* pControl, HWND hChildWnd);
-		bool RemoveNativeWindow(HWND hChildWnd);
+		BOOL AddNativeWindow(CControlUI* pControl, HWND hChildWnd);
+		BOOL RemoveNativeWindow(HWND hChildWnd);
 
 		void AddDelayedCleanup(CControlUI* pControl);
 		void AddMouseLeaveNeeded(CControlUI* pControl);
-		bool RemoveMouseLeaveNeeded(CControlUI* pControl);
+		BOOL RemoveMouseLeaveNeeded(CControlUI* pControl);
 
-		bool AddTranslateAccelerator(ITranslateAccelerator *pTranslateAccelerator);
-		bool RemoveTranslateAccelerator(ITranslateAccelerator *pTranslateAccelerator);
-		bool TranslateAccelerator(LPMSG pMsg);
+		BOOL AddTranslateAccelerator(ITranslateAccelerator *pTranslateAccelerator);
+		BOOL RemoveTranslateAccelerator(ITranslateAccelerator *pTranslateAccelerator);
+		BOOL TranslateAccelerator(LPMSG pMsg);
 
 		CControlUI* GetRoot() const;
 		CControlUI* FindControl(POINT pt) const;
@@ -440,7 +440,7 @@ namespace DuiLib {
 		CStdPtrArray* FindSubControlsByClass(CControlUI* pParent, LPCTSTR pstrClass);
 
 		static void MessageLoop();
-		static bool TranslateMessage(const LPMSG pMsg);
+		static BOOL TranslateMessage(const LPMSG pMsg);
 		static void Term();
 
 		CDPI* GetDPIObj();
@@ -449,9 +449,9 @@ namespace DuiLib {
 		void SetDPI(int iDPI);
 		static void SetAllDPI(int iDPI);
 
-		bool MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
-		bool PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
-		void UsedVirtualWnd(bool bUsed);
+		BOOL MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
+		BOOL PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
+		void UsedVirtualWnd(BOOL bUsed);
 
 	private:
 		CStdPtrArray* GetFoundControls();
@@ -484,8 +484,8 @@ namespace DuiLib {
 		HWND m_hwndTooltip;
 		TOOLINFO m_ToolTip;
 		int m_iHoverTime;
-		bool m_bNoActivate;
-		bool m_bShowUpdateRect;
+		BOOL m_bNoActivate;
+		BOOL m_bShowUpdateRect;
 
 		//
 		CControlUI* m_pRoot;
@@ -503,23 +503,23 @@ namespace DuiLib {
 		SIZE m_szRoundCorner;
 		RECT m_rcCaption;
 		UINT m_uTimerID;
-		bool m_bFirstLayout;
-		bool m_bUpdateNeeded;
-		bool m_bFocusNeeded;
-		bool m_bOffscreenPaint;
+		BOOL m_bFirstLayout;
+		BOOL m_bUpdateNeeded;
+		BOOL m_bFocusNeeded;
+		BOOL m_bOffscreenPaint;
 		
 		BYTE m_nOpacity;
-		bool m_bLayered;
+		BOOL m_bLayered;
 		RECT m_rcLayeredInset;
-		bool m_bLayeredChanged;
+		BOOL m_bLayeredChanged;
 		RECT m_rcLayeredUpdate;
 		TDrawInfo m_diLayered;
 
-		bool m_bMouseTracking;
-		bool m_bMouseCapture;
-		bool m_bIsPainting;
-		bool m_bUsedVirtualWnd;
-		bool m_bAsyncNotifyPosted;
+		BOOL m_bMouseTracking;
+		BOOL m_bMouseCapture;
+		BOOL m_bIsPainting;
+		BOOL m_bUsedVirtualWnd;
+		BOOL m_bAsyncNotifyPosted;
 
 		//
 		CStdPtrArray m_aNotifiers;
@@ -539,7 +539,7 @@ namespace DuiLib {
 		CStdStringPtrMap m_mWindowCustomAttrHash;
 		CStdStringPtrMap m_mOptionGroup;
 		
-		bool m_bForceUseSharedRes;
+		BOOL m_bForceUseSharedRes;
 		TResInfo m_ResInfo;
 		
 		// 窗口阴影
@@ -548,13 +548,13 @@ namespace DuiLib {
 		// DPI管理器
 		CDPI* m_pDPI;
 		// 是否开启Gdiplus
-		bool m_bUseGdiplusText;
+		BOOL m_bUseGdiplusText;
 		int m_trh;
 		ULONG_PTR m_gdiplusToken;
 		Gdiplus::GdiplusStartupInput *m_pGdiplusStartupInput;
 
 		// 拖拽
-		bool m_bDragMode;
+		BOOL m_bDragMode;
 		HBITMAP m_hDragBitmap;
 		
 		//
@@ -564,10 +564,10 @@ namespace DuiLib {
 		static CDuiString m_pStrResourceZip;
 		static CDuiString m_pStrResourceZipPwd;
 		static HANDLE m_hResourceZip;
-		static bool m_bCachedResourceZip;
+		static BOOL m_bCachedResourceZip;
 		static int m_nResType;
 		static TResInfo m_SharedResInfo;
-		static bool m_bUseHSL;
+		static BOOL m_bUseHSL;
 		static short m_H;
 		static short m_S;
 		static short m_L;

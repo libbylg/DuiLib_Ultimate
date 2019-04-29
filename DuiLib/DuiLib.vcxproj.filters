@@ -47,9 +47,6 @@
     <ClCompile Include="Utils\Utils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Core\UIBase.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\UIContainer.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -86,6 +83,9 @@
     <ClCompile Include="Core\UIShadow.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Core\UIWindow.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -108,9 +108,6 @@
     </ClInclude>
     <ClInclude Include="Utils\WebBrowserEventHandler.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\UIBase.h">
-      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\UIContainer.h">
       <Filter>Header Files\Core</Filter>
@@ -159,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Core\UIShadow.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UIWindow.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

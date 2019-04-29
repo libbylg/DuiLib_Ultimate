@@ -181,10 +181,10 @@ namespace DuiLib
 		}
 	}
 
-	bool CFlashUI::DoCreateControl()
+	BOOL CFlashUI::DoCreateControl()
 	{
 		if (!CActiveXUI::DoCreateControl())
-			return false;
+			return FALSE;
 		//GetManager()->AddTranslateAccelerator(this);
 		GetControl(__uuidof(IShockwaveFlash),(LPVOID*)&m_pFlash);
 		RegisterEventHandler(TRUE);

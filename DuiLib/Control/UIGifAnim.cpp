@@ -13,8 +13,8 @@ namespace DuiLib
 		m_nFrameCount		=	0;	
 		m_nFramePosition	=	0;	
 		m_bIsAutoPlay		=	true;
-		m_bIsAutoSize		=	false;
-		m_bIsPlaying		=	false;
+		m_bIsAutoSize		=	FALSE;
+		m_bIsPlaying		=	FALSE;
 
 	}
 
@@ -42,7 +42,7 @@ namespace DuiLib
 		InitGifImage();
 	}
 
-	bool CGifAnimUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CGifAnimUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		if( !::IntersectRect( &m_rcPaint, &rcPaint, &m_rcItem ) ) return true;
 		if ( NULL == m_pGifImage )
@@ -59,7 +59,7 @@ namespace DuiLib
 			OnTimer( (UINT_PTR)event.wParam );
 	}
 
-	void CGifAnimUI::SetVisible(bool bVisible /* = true */)
+	void CGifAnimUI::SetVisible(BOOL bVisible /* = true */)
 	{
 		CControlUI::SetVisible(bVisible);
 		if (bVisible)
@@ -99,22 +99,22 @@ namespace DuiLib
 		return m_sBkImage.GetData();
 	}
 
-	void CGifAnimUI::SetAutoPlay(bool bIsAuto)
+	void CGifAnimUI::SetAutoPlay(BOOL bIsAuto)
 	{
 		m_bIsAutoPlay = bIsAuto;
 	}
 
-	bool CGifAnimUI::IsAutoPlay() const
+	BOOL CGifAnimUI::IsAutoPlay() const
 	{
 		return m_bIsAutoPlay;
 	}
 
-	void CGifAnimUI::SetAutoSize(bool bIsAuto)
+	void CGifAnimUI::SetAutoSize(BOOL bIsAuto)
 	{
 		m_bIsAutoSize = bIsAuto;
 	}
 
-	bool CGifAnimUI::IsAutoSize() const
+	BOOL CGifAnimUI::IsAutoSize() const
 	{
 		return m_bIsAutoSize;
 	}
@@ -142,7 +142,7 @@ namespace DuiLib
 
 		m_pManager->KillTimer(this, EVENT_TIEM_ID);
 		this->Invalidate();
-		m_bIsPlaying = false;
+		m_bIsPlaying = FALSE;
 	}
 
 	void CGifAnimUI::StopGif()
@@ -155,7 +155,7 @@ namespace DuiLib
 		m_pManager->KillTimer(this, EVENT_TIEM_ID);
 		m_nFramePosition = 0;
 		this->Invalidate();
-		m_bIsPlaying = false;
+		m_bIsPlaying = FALSE;
 	}
 
 	void CGifAnimUI::InitGifImage()

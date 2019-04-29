@@ -245,9 +245,9 @@ namespace DuiLib {
 	//
 	//
 
-	bool DrawImage(HDC hDC, CPaintManagerUI* pManager, const RECT& rc, const RECT& rcPaint, const CDuiString& sImageName, \
+	BOOL DrawImage(HDC hDC, CPaintManagerUI* pManager, const RECT& rc, const RECT& rcPaint, const CDuiString& sImageName, \
 		const CDuiString& sImageResType, RECT rcItem, RECT rcBmpPart, RECT rcCorner, DWORD dwMask, BYTE bFade, \
-		bool bHole, bool bTiledX, bool bTiledY, HINSTANCE instance = NULL)
+		BOOL bHole, BOOL bTiledX, BOOL bTiledY, HINSTANCE instance = NULL)
 	{
 		if (sImageName.IsEmpty()) {
 			return false;
@@ -420,7 +420,7 @@ namespace DuiLib {
 		bmi.bmiHeader.biCompression = BI_RGB;
 		bmi.bmiHeader.biSizeImage = x * y * 4;
 
-		bool bAlphaChannel = false;
+		BOOL bAlphaChannel = false;
 		LPBYTE pDest = NULL;
 		HBITMAP hBitmap = ::CreateDIBSection(NULL, &bmi, DIB_RGB_COLORS, (void**)&pDest, NULL, 0);
 		if( !hBitmap ) {
@@ -738,7 +738,7 @@ namespace DuiLib {
 	}
 
 
-	bool CRenderEngine::DrawIconImageString(HDC hDC, CPaintManagerUI* pManager, const RECT& rc, const RECT& rcPaint, LPCTSTR pStrImage, LPCTSTR pStrModify)
+	BOOL CRenderEngine::DrawIconImageString(HDC hDC, CPaintManagerUI* pManager, const RECT& rc, const RECT& rcPaint, LPCTSTR pStrImage, LPCTSTR pStrModify)
 	{
 		if ((pManager == NULL) || (hDC == NULL)) 
 			return false;
@@ -749,13 +749,13 @@ namespace DuiLib {
 			MakeFitIconDest(rc, pDrawInfo->szIcon, pDrawInfo->sIconAlign, rcDest);
 		}
 		
-		bool bRet = DuiLib::DrawImage(hDC, pManager, rc, rcPaint, pDrawInfo->sImageName, pDrawInfo->sResType, rcDest, \
+		BOOL bRet = DuiLib::DrawImage(hDC, pManager, rc, rcPaint, pDrawInfo->sImageName, pDrawInfo->sResType, rcDest, \
 			pDrawInfo->rcSource, pDrawInfo->rcCorner, pDrawInfo->dwMask, pDrawInfo->uFade, pDrawInfo->bHole, pDrawInfo->bTiledX, pDrawInfo->bTiledY);
 
 		return true;
 	}
 
-	bool CRenderEngine::MakeFitIconDest(const RECT& rcControl,const CDuiSize& szIcon, const CDuiString& sAlign, RECT& rcDest)
+	BOOL CRenderEngine::MakeFitIconDest(const RECT& rcControl,const CDuiSize& szIcon, const CDuiString& sAlign, RECT& rcDest)
 	{
 		ASSERT(!sAlign.IsEmpty());
 		if(sAlign == _T("left"))
@@ -802,7 +802,7 @@ namespace DuiLib {
 
 		CDuiString sStrPath = pStrImage;
 		if( type == NULL )  {
-			sStrPath = CResourceManager::GetInstance()->GetImagePath(pStrImage);
+			sStrPath = CResourceManagerUI::GetInstance()->GetImagePath(pStrImage);
 			if (sStrPath.IsEmpty()) sStrPath = pStrImage;
 			else {
 				/*if (CResourceManager::GetInstance()->GetScale() != 100) {
@@ -830,8 +830,8 @@ namespace DuiLib {
 	}
 
 	void CRenderEngine::DrawImage(HDC hDC, HBITMAP hBitmap, const RECT& rc, const RECT& rcPaint,
-		const RECT& rcBmpPart, const RECT& rcCorners, bool bAlpha, 
-		BYTE uFade, bool hole, bool xtiled, bool ytiled)
+		const RECT& rcBmpPart, const RECT& rcCorners, BOOL bAlpha, 
+		BYTE uFade, BOOL hole, BOOL xtiled, BOOL ytiled)
 	{
 		ASSERT(::GetObjectType(hDC)==OBJ_DC || ::GetObjectType(hDC)==OBJ_MEMDC);
 
@@ -1278,7 +1278,7 @@ namespace DuiLib {
 		::DeleteDC(hCloneDC);
 	}
 
-	bool CRenderEngine::DrawImageInfo(HDC hDC, CPaintManagerUI* pManager, const RECT& rcItem, const RECT& rcPaint, const TDrawInfo* pDrawInfo, HINSTANCE instance)
+	BOOL CRenderEngine::DrawImageInfo(HDC hDC, CPaintManagerUI* pManager, const RECT& rcItem, const RECT& rcPaint, const TDrawInfo* pDrawInfo, HINSTANCE instance)
 	{
 		if( pManager == NULL || hDC == NULL || pDrawInfo == NULL ) return false;
 		RECT rcDest = rcItem;
@@ -1291,13 +1291,13 @@ namespace DuiLib {
 				rcDest.bottom = rcItem.top + pDrawInfo->rcDest.bottom;
 				if( rcDest.bottom > rcItem.bottom ) rcDest.bottom = rcItem.bottom;
 		}
-		bool bRet = DuiLib::DrawImage(hDC, pManager, rcItem, rcPaint, pDrawInfo->sImageName, pDrawInfo->sResType, rcDest, \
+		BOOL bRet = DuiLib::DrawImage(hDC, pManager, rcItem, rcPaint, pDrawInfo->sImageName, pDrawInfo->sResType, rcDest, \
 			pDrawInfo->rcSource, pDrawInfo->rcCorner, pDrawInfo->dwMask, pDrawInfo->uFade, pDrawInfo->bHole, pDrawInfo->bTiledX, pDrawInfo->bTiledY, instance);
 
 		return bRet;
 	}
 
-	bool CRenderEngine::DrawImageString(HDC hDC, CPaintManagerUI* pManager, const RECT& rcItem, const RECT& rcPaint, LPCTSTR pStrImage, LPCTSTR pStrModify, HINSTANCE instance)
+	BOOL CRenderEngine::DrawImageString(HDC hDC, CPaintManagerUI* pManager, const RECT& rcItem, const RECT& rcPaint, LPCTSTR pStrImage, LPCTSTR pStrModify, HINSTANCE instance)
 	{
 		if ((pManager == NULL) || (hDC == NULL)) return false;
 		const TDrawInfo* pDrawInfo = pManager->GetDrawInfo(pStrImage, pStrModify);
@@ -1313,7 +1313,7 @@ namespace DuiLib {
 		graphics.FillRectangle(&brush, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top);
 	}
 
-	void CRenderEngine::DrawGradient(HDC hDC, const RECT& rc, DWORD dwFirst, DWORD dwSecond, bool bVertical, int nSteps)
+	void CRenderEngine::DrawGradient(HDC hDC, const RECT& rc, DWORD dwFirst, DWORD dwSecond, BOOL bVertical, int nSteps)
 	{
 		typedef BOOL (WINAPI *LPALPHABLEND)(HDC, int, int, int, int,HDC, int, int, int, int, BLENDFUNCTION);
 		static LPALPHABLEND lpAlphaBlend = (LPALPHABLEND) ::GetProcAddress(::GetModuleHandle(_T("msimg32.dll")), "AlphaBlend");
@@ -1433,7 +1433,7 @@ namespace DuiLib {
 	}
 
 	// 绘制及填充圆角矩形
-	void DrawRoundRectange(HDC hDC, float x, float y, float nWidth, float nHeight, float arcSize, Gdiplus::Color lineColor, float lineWidth, bool fillPath, Gdiplus::Color fillColor)
+	void DrawRoundRectange(HDC hDC, float x, float y, float nWidth, float nHeight, float arcSize, Gdiplus::Color lineColor, float lineWidth, BOOL fillPath, Gdiplus::Color fillColor)
 	{
 		// 小矩形的半宽（hew）和半高（heh）
 		float hew = arcSize/2;
@@ -1671,7 +1671,7 @@ namespace DuiLib {
 		if( pstrText == NULL || pManager == NULL ) return;
 		if( ::IsRectEmpty(&rc) ) return;
 
-		bool bDraw = (uStyle & DT_CALCRECT) == 0;
+		BOOL bDraw = (uStyle & DT_CALCRECT) == 0;
 
 		CStdPtrArray aFontArray(10);
 		CStdPtrArray aColorArray(10);
@@ -1718,7 +1718,7 @@ namespace DuiLib {
 			}
 		}
 
-		bool bHoverLink = false;
+		BOOL bHoverLink = false;
 		CDuiString sHoverLink;
 		POINT ptMouse = pManager->GetMousePos();
 		for( int i = 0; !bHoverLink && i < nLinkRects; i++ ) {
@@ -1734,10 +1734,10 @@ namespace DuiLib {
 		int cyMinHeight = 0;
 		int cxMaxWidth = 0;
 		POINT ptLinkStart = { 0 };
-		bool bLineEnd = false;
-		bool bInRaw = false;
-		bool bInLink = false;
-		bool bInSelected = false;
+		BOOL bLineEnd = false;
+		BOOL bInRaw = false;
+		BOOL bInLink = false;
+		BOOL bInSelected = false;
 		int iLineLinkIndex = 0;
 
 		// 排版习惯是图文底部对齐，所以每行绘制都要分两步，先计算高度，再绘制
@@ -1745,11 +1745,11 @@ namespace DuiLib {
 		CStdPtrArray aLineColorArray;
 		CStdPtrArray aLinePIndentArray;
 		LPCTSTR pstrLineBegin = pstrText;
-		bool bLineInRaw = false;
-		bool bLineInLink = false;
-		bool bLineInSelected = false;
+		BOOL bLineInRaw = false;
+		BOOL bLineInLink = false;
+		BOOL bLineInSelected = false;
 		int cyLineHeight = 0;
-		bool bLineDraw = false; // 行的第二阶段：绘制
+		BOOL bLineDraw = false; // 行的第二阶段：绘制
 		while( *pstrText != _T('\0') ) {
 			if( pt.x >= rc.right || *pstrText == _T('\n') || bLineEnd ) {
 				if( *pstrText == _T('\n') ) pstrText++;
@@ -1873,9 +1873,9 @@ namespace DuiLib {
 								CDuiString sFontName;
 								int iFontSize = 10;
 								CDuiString sFontAttr;
-								bool bBold = false;
-								bool bUnderline = false;
-								bool bItalic = false;
+								BOOL bBold = false;
+								BOOL bUnderline = false;
+								BOOL bItalic = false;
 								while( *pstrText != _T('\0') && *pstrText != _T('>') && *pstrText != _T('}') && *pstrText != _T(' ') ) {
 									pstrTemp = ::CharNext(pstrText);
 									while( pstrText < pstrTemp) {
@@ -2337,7 +2337,7 @@ namespace DuiLib {
 		int cx = rc.right - rc.left;
 		int cy = rc.bottom - rc.top;
 
-		bool bUseOffscreenBitmap = true;
+		BOOL bUseOffscreenBitmap = true;
 		HDC hPaintDC = ::CreateCompatibleDC(pManager->GetPaintDC());
 		ASSERT(hPaintDC);
 		HBITMAP hPaintBitmap = NULL;
@@ -2476,7 +2476,7 @@ namespace DuiLib {
 		return hBitmap;
 	}
 
-	void CRenderEngine::AdjustImage(bool bUseHSL, TImageInfo* imageInfo, short H, short S, short L)
+	void CRenderEngine::AdjustImage(BOOL bUseHSL, TImageInfo* imageInfo, short H, short S, short L)
 	{
 		if( imageInfo == NULL || imageInfo->bUseHSL == false || imageInfo->hBitmap == NULL || 
 			imageInfo->pBits == NULL || imageInfo->pSrcBits == NULL ) 

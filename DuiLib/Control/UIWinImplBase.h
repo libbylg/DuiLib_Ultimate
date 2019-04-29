@@ -2,7 +2,7 @@
 #define WIN_IMPL_BASE_HPP
 
 #include "Core/UIDefine.h"
-#include "Core/UIBase.h"
+#include "Core/UIWindow.h"
 #include "Core/UIManager.h"
 #include "Core/UIResourceManager.h"
 
@@ -15,7 +15,7 @@ namespace DuiLib
 		, public INotifyUI
 		, public IMessageFilterUI
 		//, public IDialogBuilderCallback
-		, public IQueryControlText
+		, public IQueryControlTextUI
 	{
 	public:
 		WindowImplBase(){};
@@ -44,7 +44,7 @@ namespace DuiLib
 		virtual CControlUI* CreateControl(LPCTSTR pstrClass);
 		virtual LPCTSTR QueryControlText(LPCTSTR lpstrId, LPCTSTR lpstrType);
 
-		virtual LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, bool& /*bHandled*/);
+		virtual LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 		virtual LRESULT OnClose(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);
 		virtual LRESULT OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);
 

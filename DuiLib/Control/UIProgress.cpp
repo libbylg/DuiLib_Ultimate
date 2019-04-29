@@ -5,7 +5,7 @@ namespace DuiLib
 {
 	IMPLEMENT_DUICONTROL(CProgressUI)
 
-	CProgressUI::CProgressUI() : m_bShowText(false), m_bHorizontal(true), m_nMin(0), m_nMax(100), m_nValue(0), m_bStretchForeImage(true)
+	CProgressUI::CProgressUI() : m_bShowText(FALSE), m_bHorizontal(true), m_nMin(0), m_nMax(100), m_nValue(0), m_bStretchForeImage(true)
 	{
 		m_uTextStyle = DT_SINGLELINE | DT_CENTER;
 		SetFixedHeight(12);
@@ -22,24 +22,24 @@ namespace DuiLib
 		return CLabelUI::GetInterface(pstrName);
 	}
 	
-	bool CProgressUI::IsShowText()
+	BOOL CProgressUI::IsShowText()
 	{
 		return m_bShowText;
 	}
 
-	void CProgressUI::SetShowText(bool bShowText)
+	void CProgressUI::SetShowText(BOOL bShowText)
 	{
 		if( m_bShowText == bShowText ) return;
 		m_bShowText = bShowText;
 		if(!m_bShowText) SetText(_T(""));
 	}
 
-	bool CProgressUI::IsHorizontal()
+	BOOL CProgressUI::IsHorizontal()
 	{
 		return m_bHorizontal;
 	}
 
-	void CProgressUI::SetHorizontal(bool bHorizontal)
+	void CProgressUI::SetHorizontal(BOOL bHorizontal)
 	{
 		if( m_bHorizontal == bHorizontal ) return;
 
@@ -90,7 +90,7 @@ namespace DuiLib
 		else if( _tcsicmp(pstrName, _T("min")) == 0 ) SetMinValue(_ttoi(pstrValue));
 		else if( _tcsicmp(pstrName, _T("max")) == 0 ) SetMaxValue(_ttoi(pstrValue));
 		else if( _tcsicmp(pstrName, _T("value")) == 0 ) SetValue(_ttoi(pstrValue));
-		else if( _tcsicmp(pstrName, _T("isstretchfore"))==0) SetStretchForeImage(_tcsicmp(pstrValue, _T("true")) == 0? true : false);
+		else if( _tcsicmp(pstrName, _T("isstretchfore"))==0) SetStretchForeImage(_tcsicmp(pstrValue, _T("true")) == 0? true : FALSE);
 		else CLabelUI::SetAttribute(pstrName, pstrValue);
 	}
 
@@ -151,12 +151,12 @@ namespace DuiLib
 		}
 	}
 
-	bool CProgressUI::IsStretchForeImage()
+	BOOL CProgressUI::IsStretchForeImage()
 	{
 		return m_bStretchForeImage;
 	}
 
-	void CProgressUI::SetStretchForeImage( bool bStretchForeImage /*= true*/ )
+	void CProgressUI::SetStretchForeImage( BOOL bStretchForeImage /*= true*/ )
 	{
 		if (m_bStretchForeImage==bStretchForeImage)		return;
 		m_bStretchForeImage=bStretchForeImage;

@@ -58,7 +58,7 @@ namespace DuiLib
 		else CContainerUI::SetAttribute(pstrName, pstrValue);
 	}
 
-	void CTileLayoutUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CTileLayoutUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 		rc = m_rcItem;

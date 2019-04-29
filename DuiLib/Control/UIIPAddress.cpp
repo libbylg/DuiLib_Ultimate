@@ -44,10 +44,10 @@ namespace DuiLib
 	protected:
 		CIPAddressUI* m_pOwner;
 		HBRUSH m_hBkBrush;
-		bool m_bInit;
+		BOOL m_bInit;
 	};
 
-	CIPAddressWnd::CIPAddressWnd() : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(false)
+	CIPAddressWnd::CIPAddressWnd() : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(FALSE)
 	{
 	}
 
@@ -170,7 +170,7 @@ namespace DuiLib
 		CIPAddressUI::CIPAddressUI()
 	{
 		m_dwIP = GetLocalIpAddress();
-		m_bReadOnly = false;
+		m_bReadOnly = FALSE;
 		m_pWindow = NULL;
 		m_nIPUpdateFlag=IP_UPDATE;
 		UpdateText();
@@ -199,13 +199,13 @@ namespace DuiLib
 		UpdateText();
 	}
 
-	void CIPAddressUI::SetReadOnly(bool bReadOnly)
+	void CIPAddressUI::SetReadOnly(BOOL bReadOnly)
 	{
 		m_bReadOnly = bReadOnly;
 		Invalidate();
 	}
 
-	bool CIPAddressUI::IsReadOnly() const
+	BOOL CIPAddressUI::IsReadOnly() const
 	{
 		return m_bReadOnly;
 	}

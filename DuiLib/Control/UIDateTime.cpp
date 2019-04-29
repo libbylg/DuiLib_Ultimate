@@ -25,12 +25,12 @@ namespace DuiLib
 	protected:
 		CDateTimeUI* m_pOwner;
 		HBRUSH m_hBkBrush;
-		bool m_bInit;
-		bool m_bDropOpen;
+		BOOL m_bInit;
+		BOOL m_bDropOpen;
 		SYSTEMTIME m_oldSysTime;
 	};
 
-	CDateTimeWnd::CDateTimeWnd() : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(false), m_bDropOpen(false)
+	CDateTimeWnd::CDateTimeWnd() : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(FALSE), m_bDropOpen(FALSE)
 	{
 	}
 
@@ -132,7 +132,7 @@ namespace DuiLib
 					m_pOwner->m_nDTUpdateFlag = DT_UPDATE;
 					m_pOwner->UpdateText();
 					PostMessage(WM_CLOSE);
-					m_bDropOpen = false;
+					m_bDropOpen = FALSE;
 				}
 			}
 			bHandled = FALSE;
@@ -161,7 +161,7 @@ namespace DuiLib
 	CDateTimeUI::CDateTimeUI()
 	{
 		::GetLocalTime(&m_sysTime);
-		m_bReadOnly = false;
+		m_bReadOnly = FALSE;
 		m_pWindow = NULL;
 		m_nDTUpdateFlag=DT_UPDATE;
 		UpdateText();
@@ -193,13 +193,13 @@ namespace DuiLib
 		m_nDTUpdateFlag = DT_NONE;
 	}
 
-	void CDateTimeUI::SetReadOnly(bool bReadOnly)
+	void CDateTimeUI::SetReadOnly(BOOL bReadOnly)
 	{
 		m_bReadOnly = bReadOnly;
 		Invalidate();
 	}
 
-	bool CDateTimeUI::IsReadOnly() const
+	BOOL CDateTimeUI::IsReadOnly() const
 	{
 		return m_bReadOnly;
 	}

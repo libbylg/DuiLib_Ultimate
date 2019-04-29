@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "Core/UIContainer.h"
 #include "Core/UIDefine.h"
-#include "Core/UIBase.h"
+#include "Core/UIWindow.h"
 #include "Core/UIManager.h"
 #include "Core/UIRender.h"
 
@@ -72,7 +72,7 @@ namespace DuiLib
 		return -1;
 	}
 
-	bool CContainerUI::SetItemIndex(CControlUI* pControl, int iIndex)
+	BOOL CContainerUI::SetItemIndex(CControlUI* pControl, int iIndex)
 	{
 		for( int it = 0; it < m_items.GetSize(); it++ ) {
 			if( static_cast<CControlUI*>(m_items[it]) == pControl ) {
@@ -90,7 +90,7 @@ namespace DuiLib
 		return m_items.GetSize();
 	}
 
-	bool CContainerUI::Add(CControlUI* pControl)
+	BOOL CContainerUI::Add(CControlUI* pControl)
 	{
 		if( pControl == NULL) return false;
 
@@ -100,7 +100,7 @@ namespace DuiLib
 		return m_items.Add(pControl);   
 	}
 
-	bool CContainerUI::AddAt(CControlUI* pControl, int iIndex)
+	BOOL CContainerUI::AddAt(CControlUI* pControl, int iIndex)
 	{
 		if( pControl == NULL) return false;
 
@@ -110,7 +110,7 @@ namespace DuiLib
 		return m_items.InsertAt(iIndex, pControl);
 	}
 
-	bool CContainerUI::Remove(CControlUI* pControl)
+	BOOL CContainerUI::Remove(CControlUI* pControl)
 	{
 		if( pControl == NULL) return false;
 
@@ -127,7 +127,7 @@ namespace DuiLib
 		return false;
 	}
 
-	bool CContainerUI::RemoveAt(int iIndex)
+	BOOL CContainerUI::RemoveAt(int iIndex)
 	{
 		CControlUI* pControl = GetItemAt(iIndex);
 		if (pControl != NULL) {
@@ -153,22 +153,22 @@ namespace DuiLib
 		NeedUpdate();
 	}
 
-	bool CContainerUI::IsAutoDestroy() const
+	BOOL CContainerUI::IsAutoDestroy() const
 	{
 		return m_bAutoDestroy;
 	}
 
-	void CContainerUI::SetAutoDestroy(bool bAuto)
+	void CContainerUI::SetAutoDestroy(BOOL bAuto)
 	{
 		m_bAutoDestroy = bAuto;
 	}
 
-	bool CContainerUI::IsDelayedDestroy() const
+	BOOL CContainerUI::IsDelayedDestroy() const
 	{
 		return m_bDelayedDestroy;
 	}
 
-	void CContainerUI::SetDelayedDestroy(bool bDelayed)
+	void CContainerUI::SetDelayedDestroy(BOOL bDelayed)
 	{
 		m_bDelayedDestroy = bDelayed;
 	}
@@ -220,17 +220,17 @@ namespace DuiLib
 		NeedUpdate();
 	}
 
-	bool CContainerUI::IsMouseChildEnabled() const
+	BOOL CContainerUI::IsMouseChildEnabled() const
 	{
 		return m_bMouseChildEnabled;
 	}
 
-	void CContainerUI::SetMouseChildEnabled(bool bEnable)
+	void CContainerUI::SetMouseChildEnabled(BOOL bEnable)
 	{
 		m_bMouseChildEnabled = bEnable;
 	}
 
-	void CContainerUI::SetVisible(bool bVisible)
+	void CContainerUI::SetVisible(BOOL bVisible)
 	{
 		if( m_bVisible == bVisible ) return;
 		CControlUI::SetVisible(bVisible);
@@ -241,7 +241,7 @@ namespace DuiLib
 
 	// 逻辑上，对于Container控件不公开此方法
 	// 调用此方法的结果是，内部子控件隐藏，控件本身依然显示，背景等效果存在
-	void CContainerUI::SetInternVisible(bool bVisible)
+	void CContainerUI::SetInternVisible(BOOL bVisible)
 	{
 		CControlUI::SetInternVisible(bVisible);
 		if( m_items.IsEmpty() ) return;
@@ -252,7 +252,7 @@ namespace DuiLib
 		}
 	}
 
-	void CContainerUI::SetEnabled(bool bEnabled)
+	void CContainerUI::SetEnabled(BOOL bEnabled)
 	{
 		if( m_bEnabled == bEnabled ) return;
 
@@ -265,7 +265,7 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	void CContainerUI::SetMouseEnabled(bool bEnabled)
+	void CContainerUI::SetMouseEnabled(BOOL bEnabled)
 	{
 		if( m_pVerticalScrollBar != NULL ) m_pVerticalScrollBar->SetMouseEnabled(bEnabled);
 		if( m_pHorizontalScrollBar != NULL ) m_pHorizontalScrollBar->SetMouseEnabled(bEnabled);
@@ -382,7 +382,7 @@ namespace DuiLib
 		return sz;
 	}
 
-	void CContainerUI::SetScrollPos(SIZE szPos, bool bMsg)
+	void CContainerUI::SetScrollPos(SIZE szPos, BOOL bMsg)
 	{
 		int cx = 0;
 		int cy = 0;
@@ -555,7 +555,7 @@ namespace DuiLib
 		SetScrollPos(sz);
 	}
 
-	void CContainerUI::EnableScrollBar(bool bEnableVertical, bool bEnableHorizontal)
+	void CContainerUI::EnableScrollBar(BOOL bEnableVertical, BOOL bEnableHorizontal)
 	{
 		if( bEnableVertical && !m_pVerticalScrollBar ) {
 			m_pVerticalScrollBar = new CScrollBarUI;
@@ -604,7 +604,7 @@ namespace DuiLib
 		return m_pHorizontalScrollBar;
 	}
 
-	int CContainerUI::FindSelectable(int iIndex, bool bForward /*= true*/) const
+	int CContainerUI::FindSelectable(int iIndex, BOOL bForward /*= true*/) const
 	{
 		// NOTE: This is actually a helper-function for the list/combo/ect controls
 		//       that allow them to find the next enabled/available selectable item
@@ -651,7 +651,7 @@ namespace DuiLib
 		return rc;
 	}
 
-	void CContainerUI::Move(SIZE szOffset, bool bNeedInvalidate)
+	void CContainerUI::Move(SIZE szOffset, BOOL bNeedInvalidate)
 	{
 		CControlUI::Move(szOffset, bNeedInvalidate);
 		if( m_pVerticalScrollBar && m_pVerticalScrollBar->IsVisible() ) m_pVerticalScrollBar->Move(szOffset, false);
@@ -662,7 +662,7 @@ namespace DuiLib
 		}
 	}
 
-	void CContainerUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CContainerUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 		if( m_items.IsEmpty() ) return;
@@ -763,7 +763,7 @@ namespace DuiLib
 		else CControlUI::SetAttribute(pstrName, pstrValue);
 	}
 
-	void CContainerUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit)
+	void CContainerUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, BOOL bInit)
 	{
 		for( int it = 0; it < m_items.GetSize(); it++ ) {
 			static_cast<CControlUI*>(m_items[it])->SetManager(pManager, this, bInit);
@@ -832,7 +832,7 @@ namespace DuiLib
 		return pResult;
 	}
 
-	bool CContainerUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CContainerUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		RECT rcTemp = { 0 };
 		if( !::IntersectRect(&rcTemp, &rcPaint, &m_rcItem) ) return true;
@@ -1042,7 +1042,7 @@ namespace DuiLib
 		}
 	}
 
-	bool CContainerUI::SetSubControlText( LPCTSTR pstrSubControlName,LPCTSTR pstrText )
+	BOOL CContainerUI::SetSubControlText( LPCTSTR pstrSubControlName,LPCTSTR pstrText )
 	{
 		CControlUI* pSubControl=NULL;
 		pSubControl=this->FindSubControl(pstrSubControlName);
@@ -1053,7 +1053,7 @@ namespace DuiLib
 		else return FALSE;
 	}
 
-	bool CContainerUI::SetSubControlFixedHeight( LPCTSTR pstrSubControlName,int cy )
+	BOOL CContainerUI::SetSubControlFixedHeight( LPCTSTR pstrSubControlName,int cy )
 	{
 		CControlUI* pSubControl=NULL;
 		pSubControl=this->FindSubControl(pstrSubControlName);
@@ -1064,7 +1064,7 @@ namespace DuiLib
 		else return FALSE;
 	}
 
-	bool CContainerUI::SetSubControlFixedWdith( LPCTSTR pstrSubControlName,int cx )
+	BOOL CContainerUI::SetSubControlFixedWdith( LPCTSTR pstrSubControlName,int cx )
 	{
 		CControlUI* pSubControl=NULL;
 		pSubControl=this->FindSubControl(pstrSubControlName);
@@ -1075,7 +1075,7 @@ namespace DuiLib
 		else return FALSE;
 	}
 
-	bool CContainerUI::SetSubControlUserData( LPCTSTR pstrSubControlName,LPCTSTR pstrText )
+	BOOL CContainerUI::SetSubControlUserData( LPCTSTR pstrSubControlName,LPCTSTR pstrText )
 	{
 		CControlUI* pSubControl=NULL;
 		pSubControl=this->FindSubControl(pstrSubControlName);

@@ -15,10 +15,10 @@ namespace DuiLib
 		LPCTSTR GetClass() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 
-		void SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit = true);
+		void SetManager(CPaintManagerUI* pManager, CControlUI* pParent, BOOL bInit = true);
 
-		bool Activate();
-		void SetEnabled(bool bEnable = true);
+		BOOL Activate();
+		void SetEnabled(BOOL bEnable = true);
 
 		LPCTSTR GetSelectedImage();
 		void SetSelectedImage(LPCTSTR pStrImage);
@@ -48,8 +48,8 @@ namespace DuiLib
 
 		LPCTSTR GetGroup() const;
 		void SetGroup(LPCTSTR pStrGroupName = NULL);
-		bool IsSelected() const;
-		virtual void Selected(bool bSelected, bool bMsg = true);
+		BOOL IsSelected() const;
+		virtual void Selected(BOOL bSelected, BOOL bMsg = true);
 
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
@@ -59,7 +59,7 @@ namespace DuiLib
 		void PaintText(HDC hDC);
 
 	protected:
-		bool			m_bSelected;
+		BOOL			m_bSelected;
 		CDuiString		m_sGroupName;
 
 		int				m_iSelectedFont;
@@ -86,17 +86,17 @@ namespace DuiLib
 		virtual LPCTSTR GetClass() const;
 		virtual LPVOID GetInterface(LPCTSTR pstrName);
 
-		void SetCheck(bool bCheck);
-		bool GetCheck() const;
+		void SetCheck(BOOL bCheck);
+		BOOL GetCheck() const;
 
 	public:
 		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-		void SetAutoCheck(bool bEnable);
+		void SetAutoCheck(BOOL bEnable);
 		virtual void DoEvent(TEventUI& event);
-		virtual void Selected(bool bSelected, bool bMsg = true);
+		virtual void Selected(BOOL bSelected, BOOL bMsg = true);
 
 	protected:
-		bool m_bAutoCheck; 
+		BOOL m_bAutoCheck; 
 	};
 } // namespace DuiLib
 

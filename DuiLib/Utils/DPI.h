@@ -21,7 +21,7 @@ typedef enum MONITOR_DPI_TYPE {
 
 namespace DuiLib
 {
-	class UILIB_API CDPI
+	class DUILIB_API CDPI
 	{
 	public:
 		CDPI(void);

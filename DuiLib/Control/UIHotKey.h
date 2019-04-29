@@ -29,7 +29,7 @@ namespace DuiLib{
 	protected:
 		CHotKeyUI * m_pOwner;
 		HBRUSH m_hBkBrush;
-		bool m_bInit;
+		BOOL m_bInit;
 	};
 
 	class UILIB_API CHotKeyUI : public CLabelUI
@@ -41,7 +41,7 @@ namespace DuiLib{
 		LPCTSTR GetClass() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 		UINT GetControlFlags() const;
-		void SetEnabled(bool bEnable = true);
+		void SetEnabled(BOOL bEnable = true);
 		void SetText(LPCTSTR pstrText);
 		LPCTSTR GetNormalImage();
 		void SetNormalImage(LPCTSTR pStrImage);
@@ -55,8 +55,8 @@ namespace DuiLib{
 		DWORD GetNativeBkColor() const;
 
 		void SetPos(RECT rc);
-		void SetVisible(bool bVisible = true);
-		void SetInternVisible(bool bVisible = true);
+		void SetVisible(BOOL bVisible = true);
+		void SetInternVisible(BOOL bVisible = true);
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(TEventUI& event);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);

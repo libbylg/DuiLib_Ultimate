@@ -2,7 +2,7 @@
 #include "Core/UIWinImplBase.h"
 #include "Core/UIDefine.h"
 #include "Core/UIControl.h"
-#include "Core/UIBase.h"
+#include "Core/UIWindow.h"
 #include "UIlib.h"
 
 
@@ -50,7 +50,7 @@ namespace DuiLib
 		return NULL;
 	}
 
-	LRESULT WindowImplBase::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, bool& /*bHandled*/)
+	LRESULT WindowImplBase::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 	{
 		if (uMsg == WM_KEYDOWN)
 		{
@@ -264,7 +264,7 @@ namespace DuiLib
 		if( ::IsZoomed(*this) != bZoomed ) {
 			if( !bZoomed ) {
 				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));
-				if( pControl ) pControl->SetVisible(false);
+				if( pControl ) pControl->SetVisible(FALSE);
 				pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("restorebtn")));
 				if( pControl ) pControl->SetVisible(true);
 			}
@@ -272,7 +272,7 @@ namespace DuiLib
 				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));
 				if( pControl ) pControl->SetVisible(true);
 				pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("restorebtn")));
-				if( pControl ) pControl->SetVisible(false);
+				if( pControl ) pControl->SetVisible(FALSE);
 			}
 		}
 #else

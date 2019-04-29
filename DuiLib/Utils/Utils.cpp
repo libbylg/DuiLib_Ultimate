@@ -100,7 +100,7 @@ namespace DuiLib
 		left = top = right = bottom = 0;
 	}
 
-	bool CDuiRect::IsNull() const
+	BOOL CDuiRect::IsNull() const
 	{
 		return (left == 0 && right == 0 && top == 0 && bottom == 0); 
 	}
@@ -182,12 +182,12 @@ namespace DuiLib
 		m_nCount = iSize;
 	}
 
-	bool CStdPtrArray::IsEmpty() const
+	BOOL CStdPtrArray::IsEmpty() const
 	{
 		return m_nCount == 0;
 	}
 
-	bool CStdPtrArray::Add(LPVOID pData)
+	BOOL CStdPtrArray::Add(LPVOID pData)
 	{
 		if( ++m_nCount >= m_nAllocated) {
 			int nAllocated = m_nAllocated * 2;
@@ -206,7 +206,7 @@ namespace DuiLib
 		return true;
 	}
 
-	bool CStdPtrArray::InsertAt(int iIndex, LPVOID pData)
+	BOOL CStdPtrArray::InsertAt(int iIndex, LPVOID pData)
 	{
 		if( iIndex == m_nCount ) return Add(pData);
 		if( iIndex < 0 || iIndex > m_nCount ) return false;
@@ -228,14 +228,14 @@ namespace DuiLib
 		return true;
 	}
 
-	bool CStdPtrArray::SetAt(int iIndex, LPVOID pData)
+	BOOL CStdPtrArray::SetAt(int iIndex, LPVOID pData)
 	{
 		if( iIndex < 0 || iIndex >= m_nCount ) return false;
 		m_ppVoid[iIndex] = pData;
 		return true;
 	}
 
-	bool CStdPtrArray::Remove(int iIndex)
+	BOOL CStdPtrArray::Remove(int iIndex)
 	{
 		if( iIndex < 0 || iIndex >= m_nCount ) return false;
 		if( iIndex < --m_nCount ) ::CopyMemory(m_ppVoid + iIndex, m_ppVoid + iIndex + 1, (m_nCount - iIndex) * sizeof(LPVOID));
@@ -296,12 +296,12 @@ namespace DuiLib
 		m_nCount = 0;  // NOTE: We keep the memory in place
 	}
 
-	bool CStdValArray::IsEmpty() const
+	BOOL CStdValArray::IsEmpty() const
 	{
 		return m_nCount == 0;
 	}
 
-	bool CStdValArray::Add(LPCVOID pData)
+	BOOL CStdValArray::Add(LPCVOID pData)
 	{
 		if( ++m_nCount >= m_nAllocated) {
 			int nAllocated = m_nAllocated * 2;
@@ -320,7 +320,7 @@ namespace DuiLib
 		return true;
 	}
 
-	bool CStdValArray::Remove(int iIndex)
+	BOOL CStdValArray::Remove(int iIndex)
 	{
 		if( iIndex < 0 || iIndex >= m_nCount ) return false;
 		if( iIndex < --m_nCount ) ::CopyMemory(m_pVoid + (iIndex * m_iElementSize), m_pVoid + ((iIndex + 1) * m_iElementSize), (m_nCount - iIndex) * m_iElementSize);
@@ -434,7 +434,7 @@ namespace DuiLib
 		m_pstr[cchMax] = '\0';
 	}
 
-	bool CDuiString::IsEmpty() const 
+	BOOL CDuiString::IsEmpty() const 
 	{ 
 		return m_pstr[0] == '\0'; 
 	}
@@ -602,12 +602,12 @@ namespace DuiLib
 		return *this;
 	}
 
-	bool CDuiString::operator == (LPCTSTR str) const { return (Compare(str) == 0); };
-	bool CDuiString::operator != (LPCTSTR str) const { return (Compare(str) != 0); };
-	bool CDuiString::operator <= (LPCTSTR str) const { return (Compare(str) <= 0); };
-	bool CDuiString::operator <  (LPCTSTR str) const { return (Compare(str) <  0); };
-	bool CDuiString::operator >= (LPCTSTR str) const { return (Compare(str) >= 0); };
-	bool CDuiString::operator >  (LPCTSTR str) const { return (Compare(str) >  0); };
+	BOOL CDuiString::operator == (LPCTSTR str) const { return (Compare(str) == 0); };
+	BOOL CDuiString::operator != (LPCTSTR str) const { return (Compare(str) != 0); };
+	BOOL CDuiString::operator <= (LPCTSTR str) const { return (Compare(str) <= 0); };
+	BOOL CDuiString::operator <  (LPCTSTR str) const { return (Compare(str) <  0); };
+	BOOL CDuiString::operator >= (LPCTSTR str) const { return (Compare(str) >= 0); };
+	BOOL CDuiString::operator >  (LPCTSTR str) const { return (Compare(str) >  0); };
 
 	void CDuiString::SetAt(int nIndex, TCHAR ch)
 	{
@@ -846,7 +846,7 @@ namespace DuiLib
 		m_nCount = 0;
 	}
 
-	LPVOID CStdStringPtrMap::Find(LPCTSTR key, bool optimize) const
+	LPVOID CStdStringPtrMap::Find(LPCTSTR key, BOOL optimize) const
 	{
 		if( m_nBuckets == 0 || GetSize() == 0 ) return NULL;
 
@@ -871,7 +871,7 @@ namespace DuiLib
 		return NULL;
 	}
 
-	bool CStdStringPtrMap::Insert(LPCTSTR key, LPVOID pData)
+	BOOL CStdStringPtrMap::Insert(LPCTSTR key, LPVOID pData)
 	{
 		if( m_nBuckets == 0 ) return false;
 		if( Find(key) ) return false;
@@ -910,7 +910,7 @@ namespace DuiLib
 		return NULL;
 	}
 
-	bool CStdStringPtrMap::Remove(LPCTSTR key)
+	BOOL CStdStringPtrMap::Remove(LPCTSTR key)
 	{
 		if( m_nBuckets == 0 || GetSize() == 0 ) return false;
 
@@ -1039,7 +1039,7 @@ namespace DuiLib
 	//	m_sImage = m_sImageAttribute;
 	//}
 
-	//bool CImageString::LoadImage(CPaintManagerUI* pManager)
+	//BOOL CImageString::LoadImage(CPaintManagerUI* pManager)
 	//{
 	//	m_imageInfo = NULL;
 	//	m_bLoadSuccess = true;
@@ -1085,7 +1085,7 @@ namespace DuiLib
 	//	return true;
 	//}
 
-	//bool CImageString::IsLoadSuccess()
+	//BOOL CImageString::IsLoadSuccess()
 	//{
 	//	return !m_sImageAttribute.IsEmpty() && m_bLoadSuccess;
 	//}

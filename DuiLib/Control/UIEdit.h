@@ -18,18 +18,18 @@ namespace DuiLib
 		LPVOID GetInterface(LPCTSTR pstrName);
 		UINT GetControlFlags() const;
 
-		void SetEnabled(bool bEnable = true);
+		void SetEnabled(BOOL bEnable = true);
 		void SetText(LPCTSTR pstrText);
 		void SetMaxChar(UINT uMax);
 		UINT GetMaxChar();
-		void SetReadOnly(bool bReadOnly);
-		bool IsReadOnly() const;
-		void SetPasswordMode(bool bPasswordMode);
-		bool IsPasswordMode() const;
+		void SetReadOnly(BOOL bReadOnly);
+		BOOL IsReadOnly() const;
+		void SetPasswordMode(BOOL bPasswordMode);
+		BOOL IsPasswordMode() const;
 		void SetPasswordChar(TCHAR cPasswordChar);
 		TCHAR GetPasswordChar() const;
-		void SetNumberOnly(bool bNumberOnly);
-		bool IsNumberOnly() const;
+		void SetNumberOnly(BOOL bNumberOnly);
+		BOOL IsNumberOnly() const;
 		int GetWindowStyls() const;
 
 		LPCTSTR GetNormalImage();
@@ -45,8 +45,8 @@ namespace DuiLib
 		void SetNativeEditTextColor( LPCTSTR pStrColor );
 		DWORD GetNativeEditTextColor() const;
 
-		bool IsAutoSelAll();
-		void SetAutoSelAll(bool bAutoSelAll);
+		BOOL IsAutoSelAll();
+		void SetAutoSelAll(BOOL bAutoSelAll);
 		void SetSel(long nStartChar, long nEndChar);
 		void SetSelAll();
 		void SetReplaceSel(LPCTSTR lpszReplace);
@@ -56,10 +56,10 @@ namespace DuiLib
 		void SetTipValueColor(LPCTSTR pStrColor);
 		DWORD GetTipValueColor();
 
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
-		void Move(SIZE szOffset, bool bNeedInvalidate = true);
-		void SetVisible(bool bVisible = true);
-		void SetInternVisible(bool bVisible = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
+		void Move(SIZE szOffset, BOOL bNeedInvalidate = true);
+		void SetVisible(BOOL bVisible = true);
+		void SetInternVisible(BOOL bVisible = true);
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(struct TEventUI& event);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
@@ -71,9 +71,9 @@ namespace DuiLib
 		CEditWnd* m_pWindow;
 
 		UINT m_uMaxChar;
-		bool m_bReadOnly;
-		bool m_bPasswordMode;
-		bool m_bAutoSelAll;
+		BOOL m_bReadOnly;
+		BOOL m_bPasswordMode;
+		BOOL m_bAutoSelAll;
 		TCHAR m_cPasswordChar;
 		UINT m_uButtonState;
 		CDuiString m_sNormalImage;

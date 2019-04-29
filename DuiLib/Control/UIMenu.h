@@ -18,7 +18,7 @@ struct ContextMenuParam
 struct MenuItemInfo
 {
 	TCHAR szName[256];
-	bool bChecked;
+	BOOL bChecked;
 };
 struct MenuCmd
 {
@@ -254,12 +254,12 @@ public:
 
 	virtual void DoEvent(TEventUI& event);
 
-    virtual bool Add(CControlUI* pControl);
-    virtual bool AddAt(CControlUI* pControl, int iIndex);
+    virtual BOOL Add(CControlUI* pControl);
+    virtual BOOL AddAt(CControlUI* pControl, int iIndex);
 
     virtual int GetItemIndex(CControlUI* pControl) const;
-    virtual bool SetItemIndex(CControlUI* pControl, int iIndex);
-    virtual bool Remove(CControlUI* pControl);
+    virtual BOOL SetItemIndex(CControlUI* pControl, int iIndex);
+    virtual BOOL Remove(CControlUI* pControl);
 
 	SIZE EstimateSize(SIZE szAvailable);
 
@@ -282,13 +282,13 @@ public:
 		CPaintManagerUI* pMainPaintManager, CStdStringPtrMap* pMenuCheckInfo = NULL,
 		DWORD dwAlignment = eMenuAlignment_Left | eMenuAlignment_Top);
 	static void DestroyMenu();
-	static MenuItemInfo* SetMenuItemInfo(LPCTSTR pstrName, bool bChecked);
+	static MenuItemInfo* SetMenuItemInfo(LPCTSTR pstrName, BOOL bChecked);
 
 public:
 	CMenuWnd();
 	~CMenuWnd();
 	void Close(UINT nRet = IDOK);
-	bool isClosing;
+	BOOL isClosing;
 	/*
 	 *	@pOwner 一级菜单不要指定这个参数，这是菜单内部使用的
 	 *	@xml	菜单的布局文件
@@ -344,7 +344,7 @@ public:
 
     LPCTSTR GetClass() const;
     LPVOID GetInterface(LPCTSTR pstrName);
-    bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
+    BOOL DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 	void DrawItemText(HDC hDC, const RECT& rcItem);
 	SIZE EstimateSize(SIZE szAvailable);
 
@@ -361,30 +361,30 @@ public:
 	void SetIcon(LPCTSTR strIcon);
 	void SetIconSize(LONG cx, LONG cy);
 	void DrawItemIcon(HDC hDC, const RECT& rcItem);
-	void SetChecked(bool bCheck = true);
-	bool GetChecked() const;
-	void SetCheckItem(bool bCheckItem = false);
-	bool GetCheckItem() const;
+	void SetChecked(BOOL bCheck = true);
+	BOOL GetChecked() const;
+	void SetCheckItem(BOOL bCheckItem = FALSE);
+	BOOL GetCheckItem() const;
 
-	void SetShowExplandIcon(bool bShow);
+	void SetShowExplandIcon(BOOL bShow);
 	void DrawItemExpland(HDC hDC, const RECT& rcItem);
 
 	void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
 	MenuItemInfo* GetItemInfo(LPCTSTR pstrName);
-	MenuItemInfo* SetItemInfo(LPCTSTR pstrName, bool bChecked);
+	MenuItemInfo* SetItemInfo(LPCTSTR pstrName, BOOL bChecked);
 protected:
 	CMenuWnd*	m_pWindow;
 
-	bool		m_bDrawLine;	//画分隔线
+	BOOL		m_bDrawLine;	//画分隔线
 	DWORD		m_dwLineColor;  //分隔线颜色
 	RECT		m_rcLinePadding;	//分割线的左右边距
 
 	SIZE		m_szIconSize; 	//画图标
 	CDuiString	m_strIcon;
-	bool		m_bCheckItem;
+	BOOL		m_bCheckItem;
 
-	bool		m_bShowExplandIcon;
+	BOOL		m_bShowExplandIcon;
 };
 
 } // namespace DuiLib

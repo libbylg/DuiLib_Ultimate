@@ -27,8 +27,8 @@ namespace DuiLib
 		void SetHomePage(LPCTSTR lpszUrl);
 		LPCTSTR GetHomePage();
 
-		void SetAutoNavigation(bool bAuto = TRUE);
-		bool IsAutoNavigation();
+		void SetAutoNavigation(BOOL bAuto = TRUE);
+		BOOL IsAutoNavigation();
 
 		void SetWebBrowserEventHandler(CWebBrowserEventHandler* pEventHandler);
 		void Navigate2(LPCTSTR lpszUrl);
@@ -38,7 +38,7 @@ namespace DuiLib
 		void GoForward();
 		void NavigateHomePage();
 		void NavigateUrl(LPCTSTR lpszUrl);
-		virtual bool DoCreateControl();
+		virtual BOOL DoCreateControl();
 		IWebBrowser2* GetWebBrowser2(void);
 		IDispatch*		   GetHtmlWindow();
 		static DISPID FindId(IDispatch *pObj, LPOLESTR pName);
@@ -55,7 +55,7 @@ namespace DuiLib
 		HRESULT RegisterEventHandler(BOOL inAdvise);
 		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		CDuiString m_sHomePage;	// 默认页面
-		bool m_bAutoNavi;	// 是否启动时打开默认页面
+		BOOL m_bAutoNavi;	// 是否启动时打开默认页面
 		CWebBrowserEventHandler* m_pWebBrowserEventHandler;	//浏览器事件处理
 
 		// DWebBrowserEvents2

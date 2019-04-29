@@ -26,8 +26,8 @@ namespace DuiLib
 		int GetFont() const;
 		RECT GetTextPadding() const;
 		void SetTextPadding(RECT rc);
-		bool IsShowHtml();
-		void SetShowHtml(bool bShowHtml = true);
+		BOOL IsShowHtml();
+		void SetShowHtml(BOOL bShowHtml = true);
 
 		SIZE EstimateSize(SIZE szAvailable);
 		void DoEvent(TEventUI& event);
@@ -35,10 +35,10 @@ namespace DuiLib
 
 		void PaintText(HDC hDC);
 
-		virtual bool GetAutoCalcWidth() const;
-		virtual void SetAutoCalcWidth(bool bAutoCalcWidth);
-		virtual bool GetAutoCalcHeight() const;
-		virtual void SetAutoCalcHeight(bool bAutoCalcHeight);
+		virtual BOOL GetAutoCalcWidth() const;
+		virtual void SetAutoCalcWidth(BOOL bAutoCalcWidth);
+		virtual BOOL GetAutoCalcHeight() const;
+		virtual void SetAutoCalcHeight(BOOL bAutoCalcHeight);
 		virtual void SetText(LPCTSTR pstrText);
 		
 	protected:
@@ -47,13 +47,13 @@ namespace DuiLib
 		int		m_iFont;
 		UINT	m_uTextStyle;
 		RECT	m_rcTextPadding;
-		bool	m_bShowHtml;
-		bool	m_bAutoCalcWidth;
-		bool	m_bAutoCalcHeight;
+		BOOL	m_bShowHtml;
+		BOOL	m_bAutoCalcWidth;
+		BOOL	m_bAutoCalcHeight;
 
 		SIZE    m_szAvailableLast;
 		SIZE    m_cxyFixedLast;
-		bool    m_bNeedEstimateSize;
+		BOOL    m_bNeedEstimateSize;
 	};
 }
 

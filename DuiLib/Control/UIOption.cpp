@@ -4,7 +4,7 @@
 namespace DuiLib
 {
 	IMPLEMENT_DUICONTROL(COptionUI)
-	COptionUI::COptionUI() : m_bSelected(false) ,m_iSelectedFont(-1), m_dwSelectedTextColor(0), m_dwSelectedBkColor(0), m_nSelectedStateCount(0)
+	COptionUI::COptionUI() : m_bSelected(FALSE) ,m_iSelectedFont(-1), m_dwSelectedTextColor(0), m_dwSelectedBkColor(0), m_nSelectedStateCount(0)
 	{
 	}
 
@@ -24,7 +24,7 @@ namespace DuiLib
 		return CButtonUI::GetInterface(pstrName);
 	}
 
-	void COptionUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit)
+	void COptionUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, BOOL bInit)
 	{
 		CControlUI::SetManager(pManager, pParent, bInit);
 		if( bInit && !m_sGroupName.IsEmpty() ) {
@@ -59,12 +59,12 @@ namespace DuiLib
 		Selected(m_bSelected);
 	}
 
-	bool COptionUI::IsSelected() const
+	BOOL COptionUI::IsSelected() const
 	{
 		return m_bSelected;
 	}
 
-	void COptionUI::Selected(bool bSelected, bool bMsg/* = true*/)
+	void COptionUI::Selected(BOOL bSelected, BOOL bMsg/* = true*/)
 	{
 		if(m_bSelected == bSelected) return;
 
@@ -79,7 +79,7 @@ namespace DuiLib
 					for( int i = 0; i < aOptionGroup->GetSize(); i++ ) {
 						COptionUI* pControl = static_cast<COptionUI*>(aOptionGroup->GetAt(i));
 						if( pControl != this ) {
-							pControl->Selected(false, bMsg);
+							pControl->Selected(FALSE, bMsg);
 						}
 					}
 					if(bMsg) {
@@ -97,16 +97,16 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	bool COptionUI::Activate()
+	BOOL COptionUI::Activate()
 	{
-		if( !CButtonUI::Activate() ) return false;
+		if( !CButtonUI::Activate() ) return FALSE;
 		if( !m_sGroupName.IsEmpty() ) Selected(true);
 		else Selected(!m_bSelected);
 
 		return true;
 	}
 
-	void COptionUI::SetEnabled(bool bEnable)
+	void COptionUI::SetEnabled(BOOL bEnable)
 	{
 		CControlUI::SetEnabled(bEnable);
 		if( !IsEnabled() ) {
@@ -366,7 +366,7 @@ namespace DuiLib
 	//
 	IMPLEMENT_DUICONTROL(CCheckBoxUI)
 
-	CCheckBoxUI::CCheckBoxUI() : m_bAutoCheck(false)
+	CCheckBoxUI::CCheckBoxUI() : m_bAutoCheck(FALSE)
 	{
 
 	}
@@ -381,12 +381,12 @@ namespace DuiLib
 		return COptionUI::GetInterface(pstrName);
 	}
 
-	void CCheckBoxUI::SetCheck(bool bCheck)
+	void CCheckBoxUI::SetCheck(BOOL bCheck)
 	{
 		Selected(bCheck);
 	}
 
-	bool  CCheckBoxUI::GetCheck() const
+	BOOL  CCheckBoxUI::GetCheck() const
 	{
 		return IsSelected();
 	}
@@ -398,7 +398,7 @@ namespace DuiLib
 		COptionUI::SetAttribute(pstrName, pstrValue);
 	}
 
-	void CCheckBoxUI::SetAutoCheck(bool bEnable)
+	void CCheckBoxUI::SetAutoCheck(BOOL bEnable)
 	{
 		m_bAutoCheck = bEnable;
 	}
@@ -422,7 +422,7 @@ namespace DuiLib
 		COptionUI::DoEvent(event);
 	}
 
-	void CCheckBoxUI::Selected(bool bSelected, bool bMsg/* = true*/)
+	void CCheckBoxUI::Selected(BOOL bSelected, BOOL bMsg/* = true*/)
 	{
 		if( m_bSelected == bSelected ) return;
 
@@ -437,7 +437,7 @@ namespace DuiLib
 					for( int i = 0; i < aOptionGroup->GetSize(); i++ ) {
 						COptionUI* pControl = static_cast<COptionUI*>(aOptionGroup->GetAt(i));
 						if( pControl != this ) {
-							pControl->Selected(false, bMsg);
+							pControl->Selected(FALSE, bMsg);
 						}
 					}
 					if(bMsg) {

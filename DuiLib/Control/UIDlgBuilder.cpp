@@ -72,7 +72,7 @@ namespace DuiLib {
 					nAttributes = node.GetAttributeCount();
 					LPCTSTR pImageName = NULL;
 					LPCTSTR pImageResType = NULL;
-					bool shared = false;
+					BOOL shared = FALSE;
 					DWORD mask = 0;
 					for( int i = 0; i < nAttributes; i++ ) {
 						pstrName = node.GetAttributeName(i);
@@ -91,18 +91,18 @@ namespace DuiLib {
 							shared = (_tcsicmp(pstrValue, _T("true")) == 0);
 						}
 					}
-					if( pImageName ) pManager->AddImage(pImageName, pImageResType, mask, false, shared);
+					if( pImageName ) pManager->AddImage(pImageName, pImageResType, mask, FALSE, shared);
 				}
 				else if( _tcsicmp(pstrClass, _T("Font")) == 0 ) {
 					nAttributes = node.GetAttributeCount();
 					int id = -1;
 					LPCTSTR pFontName = NULL;
 					int size = 12;
-					bool bold = false;
-					bool underline = false;
-					bool italic = false;
-					bool defaultfont = false;
-					bool shared = false;
+					BOOL bold = FALSE;
+					BOOL underline = FALSE;
+					BOOL italic = FALSE;
+					BOOL defaultfont = FALSE;
+					BOOL shared = FALSE;
 					for( int i = 0; i < nAttributes; i++ ) {
 						pstrName = node.GetAttributeName(i);
 						pstrValue = node.GetAttributeValue(i);
@@ -140,7 +140,7 @@ namespace DuiLib {
 					nAttributes = node.GetAttributeCount();
 					LPCTSTR pControlName = NULL;
 					LPCTSTR pControlValue = NULL;
-					bool shared = false;
+					BOOL shared = FALSE;
 					for( int i = 0; i < nAttributes; i++ ) {
 						pstrName = node.GetAttributeName(i);
 						pstrValue = node.GetAttributeValue(i);
@@ -162,7 +162,7 @@ namespace DuiLib {
 					nAttributes = node.GetAttributeCount();
 					LPCTSTR pName = NULL;
 					LPCTSTR pStyle = NULL;
-					bool shared = false;
+					BOOL shared = FALSE;
 					for( int i = 0; i < nAttributes; i++ ) {
 						pstrName = node.GetAttributeName(i);
 						pstrValue = node.GetAttributeValue(i);
@@ -479,7 +479,7 @@ namespace DuiLib {
 					pControl->SetManager(pManager, pTreeView, true);
 				}
 				else {
-					pControl->SetManager(pManager, NULL, false);
+					pControl->SetManager(pManager, NULL, FALSE);
 				}
 				LPCTSTR pDefaultAttributes = pManager->GetDefaultAttributeList(pstrClass);
 				if( pDefaultAttributes ) {
@@ -498,7 +498,7 @@ namespace DuiLib {
 			}
 			if( pManager ) {
 				if(pTreeView == NULL) {
-					pControl->SetManager(NULL, NULL, false);
+					pControl->SetManager(NULL, NULL, FALSE);
 				}
 			}
 			// Return first item

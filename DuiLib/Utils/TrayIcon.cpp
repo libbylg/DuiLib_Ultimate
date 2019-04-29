@@ -46,7 +46,7 @@ namespace DuiLib
 		m_uMessage = UIMSG_TRAYICON;
 	}
 
-	bool CTrayIcon::SetTooltipText( LPCTSTR _ToolTipText )
+	BOOL CTrayIcon::SetTooltipText( LPCTSTR _ToolTipText )
 	{
 		if(_ToolTipText) _tcscpy(m_trayData.szTip,_ToolTipText);
 		if (!m_bEnabled) return FALSE;
@@ -54,7 +54,7 @@ namespace DuiLib
 		return Shell_NotifyIcon(NIM_MODIFY, &m_trayData) == TRUE;
 	}
 
-	bool CTrayIcon::SetTooltipText( UINT _IDResource )
+	BOOL CTrayIcon::SetTooltipText( UINT _IDResource )
 	{
 		TCHAR mbuf[256] = {0};
 		LoadString(CPaintManagerUI::GetInstance(), _IDResource,mbuf, 256);
@@ -66,7 +66,7 @@ namespace DuiLib
 		return m_trayData.szTip;
 	}
 
-	bool CTrayIcon::SetIcon( HICON _Hicon )
+	BOOL CTrayIcon::SetIcon( HICON _Hicon )
 	{
 		if(_Hicon) m_hIcon = _Hicon;
 		m_trayData.uFlags = NIF_ICON;
@@ -78,13 +78,13 @@ namespace DuiLib
 		return false;
 	}
 
-	bool CTrayIcon::SetIcon( LPCTSTR _IconFile )
+	BOOL CTrayIcon::SetIcon( LPCTSTR _IconFile )
 	{
 		HICON hIcon = LoadIcon(CPaintManagerUI::GetInstance(),_IconFile);
 		return SetIcon(hIcon);
 	}
 
-	bool CTrayIcon::SetIcon( UINT _IDResource )
+	BOOL CTrayIcon::SetIcon( UINT _IDResource )
 	{
 		HICON hIcon = LoadIcon(CPaintManagerUI::GetInstance(), MAKEINTRESOURCE(_IDResource));
 		return SetIcon(hIcon);

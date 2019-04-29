@@ -2,7 +2,7 @@
 #include "Core/UIControl.h"
 #include "Core/UIDefine.h"
 #include "Core/UIResourceManager.h"
-#include "Core/UIBase.h"
+#include "Core/UIWindow.h"
 #include "Core/UIRender.h"
 
 namespace DuiLib {
@@ -86,7 +86,7 @@ namespace DuiLib {
 		return 0;
 	}
 
-	bool CControlUI::Activate()
+	BOOL CControlUI::Activate()
 	{
 		if( !IsVisible() ) return false;
 		if( !IsEnabled() ) return false;
@@ -98,7 +98,7 @@ namespace DuiLib {
 		return m_pManager;
 	}
 
-	void CControlUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit)
+	void CControlUI::SetManager(CPaintManagerUI* pManager, CControlUI* pParent, BOOL bInit)
 	{
 		m_pManager = pManager;
 		m_pParent = pParent;
@@ -110,7 +110,7 @@ namespace DuiLib {
 		return m_pParent;
 	}
 
-	bool CControlUI::SetTimer(UINT nTimerID, UINT nElapse)
+	BOOL CControlUI::SetTimer(UINT nTimerID, UINT nElapse)
 	{
 		if(m_pManager == NULL) return false;
 
@@ -127,7 +127,7 @@ namespace DuiLib {
 	CDuiString CControlUI::GetText() const
 	{
 		if (!IsResourceText()) return m_sText;
-		return CResourceManager::GetInstance()->GetText(m_sText);
+		return CResourceManagerUI::GetInstance()->GetText(m_sText);
 	}
 
 	void CControlUI::SetText(LPCTSTR pstrText)
@@ -140,34 +140,34 @@ namespace DuiLib {
 		Invalidate();
 	}
 
-	bool CControlUI::IsResourceText() const
+	BOOL CControlUI::IsResourceText() const
 	{
 		return m_bResourceText;
 	}
 
-	void CControlUI::SetResourceText(bool bResource)
+	void CControlUI::SetResourceText(BOOL bResource)
 	{
 		if( m_bResourceText == bResource ) return;
 		m_bResourceText = bResource;
 		Invalidate();
 	}
 
-	bool CControlUI::IsDragEnabled() const
+	BOOL CControlUI::IsDragEnabled() const
 	{
 		return m_bDragEnabled;
 	}
 
-	void CControlUI::SetDragEnable(bool bDrag)
+	void CControlUI::SetDragEnable(BOOL bDrag)
 	{
 		m_bDragEnabled = bDrag;
 	}
 
-	bool CControlUI::IsDropEnabled() const
+	BOOL CControlUI::IsDropEnabled() const
 	{
 		return m_bDropEnabled;
 	}
 
-	void CControlUI::SetDropEnable(bool bDrop)
+	void CControlUI::SetDropEnable(BOOL bDrop)
 	{
 		m_bDropEnabled = bDrop;
 	}
@@ -290,12 +290,12 @@ namespace DuiLib {
 		Invalidate();
 	}
 
-	bool CControlUI::IsColorHSL() const
+	BOOL CControlUI::IsColorHSL() const
 	{
 		return m_bColorHSL;
 	}
 
-	void CControlUI::SetColorHSL(bool bColorHSL)
+	void CControlUI::SetColorHSL(BOOL bColorHSL)
 	{
 		if( m_bColorHSL == bColorHSL ) return;
 
@@ -335,7 +335,7 @@ namespace DuiLib {
 		Invalidate();
 	}
 
-	bool CControlUI::DrawImage(HDC hDC, LPCTSTR pStrImage, LPCTSTR pStrModify)
+	BOOL CControlUI::DrawImage(HDC hDC, LPCTSTR pStrImage, LPCTSTR pStrModify)
 	{
 		return CRenderEngine::DrawImageString(hDC, m_pManager, m_rcItem, m_rcPaint, pStrImage, pStrModify, m_instance);
 	}
@@ -363,7 +363,7 @@ namespace DuiLib {
 	{
 		return m_rcItem;
 	}
-	void CControlUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CControlUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		if( rc.right < rc.left ) rc.right = rc.left;
 		if( rc.bottom < rc.top ) rc.bottom = rc.top;
@@ -397,7 +397,7 @@ namespace DuiLib {
 		}
 	}
 
-	void CControlUI::Move(SIZE szOffset, bool bNeedInvalidate)
+	void CControlUI::Move(SIZE szOffset, BOOL bNeedInvalidate)
 	{
 		m_cXY.cx += szOffset.cx;
 		m_cXY.cy += szOffset.cy;
@@ -576,7 +576,7 @@ namespace DuiLib {
 	CDuiString CControlUI::GetToolTip() const
 	{
 		if (!IsResourceText()) return m_sToolTip;
-		return CResourceManager::GetInstance()->GetText(m_sToolTip);
+		return CResourceManagerUI::GetInstance()->GetText(m_sToolTip);
 	}
 
 	void CControlUI::SetToolTip(LPCTSTR pstrText)
@@ -618,12 +618,12 @@ namespace DuiLib {
 		m_chShortcut = ch;
 	}
 
-	bool CControlUI::IsContextMenuUsed() const
+	BOOL CControlUI::IsContextMenuUsed() const
 	{
 		return m_bMenuUsed;
 	}
 
-	void CControlUI::SetContextMenuUsed(bool bMenuUsed)
+	void CControlUI::SetContextMenuUsed(BOOL bMenuUsed)
 	{
 		m_bMenuUsed = bMenuUsed;
 	}
@@ -648,17 +648,17 @@ namespace DuiLib {
 		m_pTag = pTag;
 	}
 
-	bool CControlUI::IsVisible() const
+	BOOL CControlUI::IsVisible() const
 	{
 
 		return m_bVisible && m_bInternVisible;
 	}
 
-	void CControlUI::SetVisible(bool bVisible)
+	void CControlUI::SetVisible(BOOL bVisible)
 	{
 		if( m_bVisible == bVisible ) return;
 
-		bool v = IsVisible();
+		BOOL v = IsVisible();
 		m_bVisible = bVisible;
 		if( m_bFocused ) m_bFocused = false;
 		if (!bVisible && m_pManager && m_pManager->GetFocus() == this) {
@@ -669,7 +669,7 @@ namespace DuiLib {
 		}
 	}
 
-	void CControlUI::SetInternVisible(bool bVisible)
+	void CControlUI::SetInternVisible(BOOL bVisible)
 	{
 		m_bInternVisible = bVisible;
 		if (!bVisible && m_pManager && m_pManager->GetFocus() == this) {
@@ -677,12 +677,12 @@ namespace DuiLib {
 		}
 	}
 
-	bool CControlUI::IsEnabled() const
+	BOOL CControlUI::IsEnabled() const
 	{
 		return m_bEnabled;
 	}
 
-	void CControlUI::SetEnabled(bool bEnabled)
+	void CControlUI::SetEnabled(BOOL bEnabled)
 	{
 		if( m_bEnabled == bEnabled ) return;
 
@@ -690,26 +690,26 @@ namespace DuiLib {
 		Invalidate();
 	}
 
-	bool CControlUI::IsMouseEnabled() const
+	BOOL CControlUI::IsMouseEnabled() const
 	{
 		return m_bMouseEnabled;
 	}
 
-	void CControlUI::SetMouseEnabled(bool bEnabled)
+	void CControlUI::SetMouseEnabled(BOOL bEnabled)
 	{
 		m_bMouseEnabled = bEnabled;
 	}
 
-	bool CControlUI::IsKeyboardEnabled() const
+	BOOL CControlUI::IsKeyboardEnabled() const
 	{
 		return m_bKeyboardEnabled ;
 	}
-	void CControlUI::SetKeyboardEnabled(bool bEnabled)
+	void CControlUI::SetKeyboardEnabled(BOOL bEnabled)
 	{
 		m_bKeyboardEnabled = bEnabled ; 
 	}
 
-	bool CControlUI::IsFocused() const
+	BOOL CControlUI::IsFocused() const
 	{
 		return m_bFocused;
 	}
@@ -719,12 +719,12 @@ namespace DuiLib {
 		if( m_pManager != NULL ) m_pManager->SetFocus(this);
 	}
 
-	bool CControlUI::IsFloat() const
+	BOOL CControlUI::IsFloat() const
 	{
 		return m_bFloat;
 	}
 
-	void CControlUI::SetFloat(bool bFloat)
+	void CControlUI::SetFloat(BOOL bFloat)
 	{
 		if( m_bFloat == bFloat ) return;
 
@@ -762,7 +762,7 @@ namespace DuiLib {
         }
     }
 
-	bool CControlUI::IsUpdateNeeded() const
+	BOOL CControlUI::IsUpdateNeeded() const
 	{
 		return m_bUpdateNeeded;
 	}
@@ -898,7 +898,7 @@ namespace DuiLib {
 		return NULL;
 	}
 
-	bool CControlUI::RemoveCustomAttribute(LPCTSTR pstrName)
+	BOOL CControlUI::RemoveCustomAttribute(LPCTSTR pstrName)
 	{
 		if( pstrName == NULL || pstrName[0] == _T('\0') ) return NULL;
 		CDuiString* pCostomAttr = static_cast<CDuiString*>(m_mCustomAttrHash.Find(pstrName));
@@ -1179,7 +1179,7 @@ namespace DuiLib {
 		return m_cxyFixed;
 	}
 
-	bool CControlUI::Paint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CControlUI::Paint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		if (pStopControl == this) return false;
 		if( !::IntersectRect(&m_rcPaint, &rcPaint, &m_rcItem) ) return true;
@@ -1187,7 +1187,7 @@ namespace DuiLib {
 		return true;
 	}
 
-	bool CControlUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CControlUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		// »æÖÆÑ­Ðò£º±³¾°ÑÕÉ«->±³¾°Í¼->×´Ì¬Í¼->ÎÄ±¾->±ß¿ò
 		SIZE cxyBorderRound;
@@ -1227,7 +1227,7 @@ namespace DuiLib {
 	void CControlUI::PaintBkColor(HDC hDC)
 	{
 		if( m_dwBackColor != 0 ) {
-			bool bVer = (m_sGradient.CompareNoCase(_T("hor")) != 0);
+			BOOL bVer = (m_sGradient.CompareNoCase(_T("hor")) != 0);
 			if( m_dwBackColor2 != 0 ) {
 				if( m_dwBackColor3 != 0 ) {
 					RECT rc = m_rcItem;

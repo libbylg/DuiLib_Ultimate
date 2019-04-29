@@ -61,7 +61,7 @@ ZRESULT GetZipItem(HZIP hz, int index, ZIPENTRY *ze);
 // then then comp_size and sometimes unc_size as well may not be known until
 // after the item has been unzipped.
 
-ZRESULT FindZipItem(HZIP hz, const TCHAR *name, bool ic, int *index, ZIPENTRY *ze);
+ZRESULT FindZipItem(HZIP hz, const TCHAR *name, BOOL ic, int *index, ZIPENTRY *ze);
 // FindZipItem - finds an item by name. ic means 'insensitive to case'.
 // It returns the index of the item, and returns information about it.
 // If nothing was found, then index is set to -1 and the function returns
@@ -200,7 +200,7 @@ unsigned int FormatZipMessage(ZRESULT code, TCHAR *buf, unsigned int len);
 // for only one is present, then we will bind to that particular one.
 ZRESULT CloseZipU(HZIP hz);
 unsigned int FormatZipMessageU(ZRESULT code, TCHAR *buf, unsigned int len);
-bool IsZipHandleU(HZIP hz);
+BOOL IsZipHandleU(HZIP hz);
 #ifdef _zip_H
 #undef CloseZip
 #define CloseZip(hz) (IsZipHandleU(hz)?CloseZipU(hz):CloseZipZ(hz))

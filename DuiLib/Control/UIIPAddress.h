@@ -23,8 +23,8 @@ namespace DuiLib
 		DWORD GetIP();
 		void SetIP(DWORD dwIP);
 
-		void SetReadOnly(bool bReadOnly);
-		bool IsReadOnly() const;
+		void SetReadOnly(BOOL bReadOnly);
+		BOOL IsReadOnly() const;
 
 		void UpdateText();
 
@@ -34,7 +34,7 @@ namespace DuiLib
 
 	protected:
 		DWORD	m_dwIP;
-		bool       m_bReadOnly;
+		BOOL       m_bReadOnly;
 		int		m_nIPUpdateFlag;
 
 		CIPAddressWnd* m_pWindow;

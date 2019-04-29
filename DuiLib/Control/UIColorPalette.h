@@ -31,7 +31,7 @@ namespace DuiLib {
 		void SetThumbImage(LPCTSTR pszImage);
 		LPCTSTR GetThumbImage() const;
 
-		virtual void SetPos(RECT rc, bool bNeedInvalidate = true);
+		virtual void SetPos(RECT rc, BOOL bNeedInvalidate = true);
 		virtual void DoInit();
 		virtual void DoEvent(struct TEventUI& event);
 		virtual void PaintBkColor(HDC hDC);
@@ -48,8 +48,8 @@ namespace DuiLib {
 		BITMAP		m_bmInfo;
 		BYTE		*m_pBits;
 		UINT		m_uButtonState;
-		bool		m_bIsInBar;
-		bool		m_bIsInPallet;
+		BOOL		m_bIsInBar;
+		BOOL		m_bIsInPallet;
 		int			m_nCurH;
 		int			m_nCurS;
 		int			m_nCurB;

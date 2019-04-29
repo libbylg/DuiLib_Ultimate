@@ -14,7 +14,7 @@ namespace DuiLib
 		LPCTSTR GetClass() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
 
 		SIZE GetItemSize() const;
 		void SetItemSize(SIZE szItem);

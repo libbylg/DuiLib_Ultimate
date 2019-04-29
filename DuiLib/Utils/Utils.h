@@ -8,7 +8,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API STRINGorID
+	class DUILIB_API STRINGorID
 	{
 	public:
 		STRINGorID(LPCTSTR lpString) : m_lpstr(lpString)
@@ -21,7 +21,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CDuiPoint : public tagPOINT
+	class DUILIB_API CDuiPoint : public tagPOINT
 	{
 	public:
 		CDuiPoint();
@@ -34,7 +34,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CDuiSize : public tagSIZE
+	class DUILIB_API CDuiSize : public tagSIZE
 	{
 	public:
 		CDuiSize();
@@ -47,7 +47,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CDuiRect : public tagRECT
+	class DUILIB_API CDuiRect : public tagRECT
 	{
 	public:
 		CDuiRect();
@@ -57,7 +57,7 @@ namespace DuiLib
 		int GetWidth() const;
 		int GetHeight() const;
 		void Empty();
-		bool IsNull() const;
+		BOOL IsNull() const;
 		void Join(const RECT& rc);
 		void ResetOffset();
 		void Normalize();
@@ -70,7 +70,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CStdPtrArray
+	class DUILIB_API CStdPtrArray
 	{
 	public:
 		CStdPtrArray(int iPreallocSize = 0);
@@ -79,12 +79,12 @@ namespace DuiLib
 
 		void Empty();
 		void Resize(int iSize);
-		bool IsEmpty() const;
+		BOOL IsEmpty() const;
 		int Find(LPVOID iIndex) const;
-		bool Add(LPVOID pData);
-		bool SetAt(int iIndex, LPVOID pData);
-		bool InsertAt(int iIndex, LPVOID pData);
-		bool Remove(int iIndex);
+		BOOL Add(LPVOID pData);
+		BOOL SetAt(int iIndex, LPVOID pData);
+		BOOL InsertAt(int iIndex, LPVOID pData);
+		BOOL Remove(int iIndex);
 		int GetSize() const;
 		LPVOID* GetData();
 
@@ -101,16 +101,16 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CStdValArray
+	class DUILIB_API CStdValArray
 	{
 	public:
 		CStdValArray(int iElementSize, int iPreallocSize = 0);
 		~CStdValArray();
 
 		void Empty();
-		bool IsEmpty() const;
-		bool Add(LPCVOID pData);
-		bool Remove(int iIndex);
+		BOOL IsEmpty() const;
+		BOOL Add(LPCVOID pData);
+		BOOL Remove(int iIndex);
 		int GetSize() const;
 		LPVOID GetData();
 
@@ -128,7 +128,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CDuiString
+	class DUILIB_API CDuiString
 	{
 	public:
 		enum { MAX_LOCAL_STRING_LEN = 63 };
@@ -141,7 +141,7 @@ namespace DuiLib
 
 		void Empty();
 		int GetLength() const;
-		bool IsEmpty() const;
+		BOOL IsEmpty() const;
 		TCHAR GetAt(int nIndex) const;
 		void Append(LPCTSTR pstr);
 		void Assign(LPCTSTR pstr, int nLength = -1);
@@ -167,12 +167,12 @@ namespace DuiLib
 		const CDuiString& operator+=(LPCTSTR pstr);
 		const CDuiString& operator+=(const TCHAR ch);
 
-		bool operator == (LPCTSTR str) const;
-		bool operator != (LPCTSTR str) const;
-		bool operator <= (LPCTSTR str) const;
-		bool operator <  (LPCTSTR str) const;
-		bool operator >= (LPCTSTR str) const;
-		bool operator >  (LPCTSTR str) const;
+		BOOL operator == (LPCTSTR str) const;
+		BOOL operator != (LPCTSTR str) const;
+		BOOL operator <= (LPCTSTR str) const;
+		BOOL operator <  (LPCTSTR str) const;
+		BOOL operator >= (LPCTSTR str) const;
+		BOOL operator >  (LPCTSTR str) const;
 
 		int Compare(LPCTSTR pstr) const;
 		int CompareNoCase(LPCTSTR pstr) const;
@@ -225,17 +225,17 @@ namespace DuiLib
 		struct TITEM* pNext;
 	};
 
-	class UILIB_API CStdStringPtrMap
+	class DUILIB_API CStdStringPtrMap
 	{
 	public:
 		CStdStringPtrMap(int nSize = 83);
 		~CStdStringPtrMap();
 
 		void Resize(int nSize = 83);
-		LPVOID Find(LPCTSTR key, bool optimize = true) const;
-		bool Insert(LPCTSTR key, LPVOID pData);
+		LPVOID Find(LPCTSTR key, BOOL optimize = true) const;
+		BOOL Insert(LPCTSTR key, LPVOID pData);
 		LPVOID Set(LPCTSTR key, LPVOID pData);
-		bool Remove(LPCTSTR key);
+		BOOL Remove(LPCTSTR key);
 		void RemoveAll();
 		int GetSize() const;
 		LPCTSTR GetAt(int iIndex) const;
@@ -250,7 +250,7 @@ namespace DuiLib
 	/////////////////////////////////////////////////////////////////////////////////////
 	//
 
-	class UILIB_API CWaitCursor
+	class DUILIB_API CWaitCursor
 	{
 	public:
 		CWaitCursor();
@@ -350,8 +350,8 @@ namespace DuiLib
 	//	const CDuiString& GetAttributeString() const;
 	//	void SetAttributeString(LPCTSTR pStrImageAttri);
 	//	void ModifyAttribute(LPCTSTR pStrModify);
-	//	bool LoadImage(CPaintManagerUI* pManager);
-	//	bool IsLoadSuccess();
+	//	BOOL LoadImage(CPaintManagerUI* pManager);
+	//	BOOL IsLoadSuccess();
 
 	//	RECT GetDest() const;
 	//	void SetDest(const RECT &rcDest);
@@ -369,16 +369,16 @@ namespace DuiLib
 	//	CDuiString	m_sImage;
 	//	CDuiString	m_sResType;
 	//	TImageInfo	*m_imageInfo;
-	//	bool		m_bLoadSuccess;
+	//	BOOL		m_bLoadSuccess;
 
 	//	RECT	m_rcDest;
 	//	RECT	m_rcSource;
 	//	RECT	m_rcCorner;
 	//	BYTE	m_bFade;
 	//	DWORD	m_dwMask;
-	//	bool	m_bHole;
-	//	bool	m_bTiledX;
-	//	bool	m_bTiledY;
+	//	BOOL	m_bHole;
+	//	BOOL	m_bTiledX;
+	//	BOOL	m_bTiledY;
 	//};
 }// namespace DuiLib
 

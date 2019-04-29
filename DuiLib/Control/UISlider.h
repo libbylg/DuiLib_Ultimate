@@ -15,7 +15,7 @@ namespace DuiLib
 		UINT GetControlFlags() const;
 		LPVOID GetInterface(LPCTSTR pstrName);
 
-		void SetEnabled(bool bEnable = true);
+		void SetEnabled(BOOL bEnable = true);
 
 		int GetChangeStep();
 		void SetChangeStep(int step);
@@ -33,8 +33,8 @@ namespace DuiLib
 		void PaintForeImage(HDC hDC);
 
 		void SetValue(int nValue);
-		void SetCanSendMove(bool bCanSend);
-		bool GetCanSendMove() const;
+		void SetCanSendMove(BOOL bCanSend);
+		BOOL GetCanSendMove() const;
 	protected:
 		SIZE m_szThumb;
 		UINT m_uButtonState;
@@ -45,7 +45,7 @@ namespace DuiLib
 		CDuiString m_sThumbPushedImage;
 
 		CDuiString m_sImageModify;
-		bool	   m_bSendMove;
+		BOOL	   m_bSendMove;
 	};
 }
 

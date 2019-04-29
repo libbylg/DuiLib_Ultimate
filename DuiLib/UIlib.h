@@ -3,7 +3,7 @@
 #else
 #if defined(UILIB_EXPORTS)
 #	if defined(_MSC_VER)
-#		define UILIB_API __declspec(dllexport)
+#		define DUILIB_API __declspec(dllexport)
 #	else
 #		define UILIB_API 
 #	endif
@@ -81,7 +81,7 @@
 //#include "Core/UIDefine.h"
 //#include "Core/UIResourceManager.h"
 //#include "Core/UIManager.h"
-//#include "Core/UIBase.h"
+//#include "Core/UIWindow.h"
 //#include "Core/ControlFactory.h"
 //#include "Core/UIControl.h"
 //#include "Core/UIContainer.h"

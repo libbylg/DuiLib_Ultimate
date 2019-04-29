@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "UIHotKey.h"
 namespace DuiLib{
-	CHotKeyWnd::CHotKeyWnd(void) : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(false)
+	CHotKeyWnd::CHotKeyWnd(void) : m_pOwner(NULL), m_hBkBrush(NULL), m_bInit(FALSE)
 	{
 	}
 	void CHotKeyWnd::Init(CHotKeyUI * pOwner)
@@ -337,7 +337,7 @@ namespace DuiLib{
 		CLabelUI::DoEvent(event);
 	}
 
-	void CHotKeyUI::SetEnabled(bool bEnable)
+	void CHotKeyUI::SetEnabled(BOOL bEnable)
 	{
 		CControlUI::SetEnabled(bEnable);
 		if( !IsEnabled() ) {
@@ -416,13 +416,13 @@ namespace DuiLib{
 		}
 	}
 
-	void CHotKeyUI::SetVisible(bool bVisible)
+	void CHotKeyUI::SetVisible(BOOL bVisible)
 	{
 		CControlUI::SetVisible(bVisible);
 		if( !IsVisible() && m_pWindow != NULL ) m_pManager->SetFocus(NULL);
 	}
 
-	void CHotKeyUI::SetInternVisible(bool bVisible)
+	void CHotKeyUI::SetInternVisible(BOOL bVisible)
 	{
 		if( !IsVisible() && m_pWindow != NULL ) m_pManager->SetFocus(NULL);
 	}

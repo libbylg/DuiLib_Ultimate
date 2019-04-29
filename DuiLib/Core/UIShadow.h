@@ -7,7 +7,7 @@
 namespace DuiLib
 {
 
-class UILIB_API CShadowUI
+class DUILIB_API CShadowUI
 {
 public:
 	friend class CPaintManagerUI;
@@ -17,32 +17,32 @@ public:
 
 public:
 	// bShow为真时才会创建阴影
-	void ShowShadow(bool bShow);	
-	bool IsShowShadow() const;
+	void ShowShadow(BOOL bShow);	
+	BOOL IsShowShadow() const;
 
-	void DisableShadow(bool bDisable);
-	bool IsDisableShadow() const;
+	void DisableShadow(BOOL bDisable);
+	BOOL IsDisableShadow() const;
 
 	// 算法阴影的函数
-	bool SetSize(int NewSize = 0);
-	bool SetSharpness(unsigned int NewSharpness = 5);
-	bool SetDarkness(unsigned int NewDarkness = 200);
-	bool SetPosition(int NewXOffset = 5, int NewYOffset = 5);
-	bool SetColor(COLORREF NewColor = 0);
+	BOOL SetSize(int NewSize = 0);
+	BOOL SetSharpness(unsigned int NewSharpness = 5);
+	BOOL SetDarkness(unsigned int NewDarkness = 200);
+	BOOL SetPosition(int NewXOffset = 5, int NewYOffset = 5);
+	BOOL SetColor(COLORREF NewColor = 0);
 
 	// 图片阴影的函数
-	bool SetImage(LPCTSTR szImage);
-	bool SetShadowCorner(RECT rcCorner);	// 九宫格方式描述阴影
+	BOOL SetImage(LPCTSTR szImage);
+	BOOL SetShadowCorner(RECT rcCorner);	// 九宫格方式描述阴影
 	
 	// 把自己的阴影样式复制到传入参数
-	bool CopyShadow(CShadowUI* pShadow);
+	BOOL CopyShadow(CShadowUI* pShadow);
 
 	//	创建阴影窗体，由CPaintManagerUI自动调用,除非自己要单独创建阴影
 	void Create(CPaintManagerUI* pPaintManager);
 protected:
 
 	//	初始化并注册阴影类
-	static bool Initialize(HINSTANCE hInstance);
+	static BOOL Initialize(HINSTANCE hInstance);
 
 	// 保存已经附加的窗体句柄和与其关联的阴影类,方便在ParentProc()函数中通过句柄得到阴影类
 	static std::map<HWND, CShadowUI *>& GetShadowMap();
@@ -73,15 +73,15 @@ protected:
 	};
 
 	
-	static bool s_bHasInit;
+	static BOOL s_bHasInit;
 
 	CPaintManagerUI	*m_pManager;		// 父窗体的CPaintManagerUI，用来获取素材资源和父窗体句柄
 	HWND			 m_hWnd;			// 阴影窗体的句柄
 	LONG_PTR		 m_OriParentProc;	// 子类化父窗体
 	BYTE			 m_Status;
-	bool			 m_bIsImageMode;	// 是否为图片阴影模式
-	bool			 m_bIsShowShadow;	// 是否要显示阴影
-	bool			m_bIsDisableShadow;
+	BOOL			 m_bIsImageMode;	// 是否为图片阴影模式
+	BOOL			 m_bIsShowShadow;	// 是否要显示阴影
+	BOOL			m_bIsDisableShadow;
 	// 算法阴影成员变量
 	unsigned char m_nDarkness;	// Darkness, transparency of blurred area
 	unsigned char m_nSharpness;	// Sharpness, width of blurred border of shadow window
@@ -96,7 +96,7 @@ protected:
 	LPARAM m_WndSize;
 
 	// Set this to true if the shadow should not be update until next WM_PAINT is received
-	bool m_bUpdate;
+	BOOL m_bUpdate;
 
 	COLORREF m_Color;	// Color of shadow
 

@@ -8,7 +8,7 @@
 
 namespace DuiLib
 {
-	class UILIB_API CScrollBarUI : public CControlUI
+	class DUILIB_API CScrollBarUI : public CControlUI
 	{
 		DECLARE_DUICONTROL(CScrollBarUI)
 	public:
@@ -20,12 +20,12 @@ namespace DuiLib
 		CContainerUI* GetOwner() const;
 		void SetOwner(CContainerUI* pOwner);
 
-		void SetVisible(bool bVisible = true);
-		void SetEnabled(bool bEnable = true);
+		void SetVisible(BOOL bVisible = true);
+		void SetEnabled(BOOL bEnable = true);
 		void SetFocus();
 
-		bool IsHorizontal();
-		void SetHorizontal(bool bHorizontal = true);
+		BOOL IsHorizontal();
+		void SetHorizontal(BOOL bHorizontal = true);
 		int GetScrollRange() const;
 		void SetScrollRange(int nRange);
 		int GetScrollPos() const;
@@ -33,8 +33,8 @@ namespace DuiLib
 		int GetLineSize() const;
 		void SetLineSize(int nSize);
 
-		bool GetShowButton1();
-		void SetShowButton1(bool bShow);
+		BOOL GetShowButton1();
+		void SetShowButton1(BOOL bShow);
 		LPCTSTR GetButton1NormalImage();
 		void SetButton1NormalImage(LPCTSTR pStrImage);
 		LPCTSTR GetButton1HotImage();
@@ -44,8 +44,8 @@ namespace DuiLib
 		LPCTSTR GetButton1DisabledImage();
 		void SetButton1DisabledImage(LPCTSTR pStrImage);
 
-		bool GetShowButton2();
-		void SetShowButton2(bool bShow);
+		BOOL GetShowButton2();
+		void SetShowButton2(BOOL bShow);
 		LPCTSTR GetButton2NormalImage();
 		void SetButton2NormalImage(LPCTSTR pStrImage);
 		LPCTSTR GetButton2HotImage();
@@ -82,11 +82,11 @@ namespace DuiLib
 		LPCTSTR GetBkDisabledImage();
 		void SetBkDisabledImage(LPCTSTR pStrImage);
 
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
 		void DoEvent(TEventUI& event);
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
-		bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
+		BOOL DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 
 		void PaintBk(HDC hDC);
 		void PaintButton1(HDC hDC);
@@ -102,7 +102,7 @@ namespace DuiLib
 			DEFAULT_TIMERID = 10,
 		};
 
-		bool m_bHorizontal;
+		BOOL m_bHorizontal;
 		int m_nRange;
 		int m_nScrollPos;
 		int m_nLineSize;
@@ -117,7 +117,7 @@ namespace DuiLib
 		CDuiString m_sBkPushedImage;
 		CDuiString m_sBkDisabledImage;
 
-		bool m_bShowButton1;
+		BOOL m_bShowButton1;
 		RECT m_rcButton1;
 		UINT m_uButton1State;
 		CDuiString m_sButton1NormalImage;
@@ -125,7 +125,7 @@ namespace DuiLib
 		CDuiString m_sButton1PushedImage;
 		CDuiString m_sButton1DisabledImage;
 
-		bool m_bShowButton2;
+		BOOL m_bShowButton2;
 		RECT m_rcButton2;
 		UINT m_uButton2State;
 		CDuiString m_sButton2NormalImage;

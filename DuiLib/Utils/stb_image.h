@@ -468,7 +468,7 @@ STBIDEF stbi_uc *stbi_load_from_file  (FILE *f,                  int *x, int *y,
    STBIDEF void   stbi_ldr_to_hdr_scale(float scale);
 #endif // STBI_NO_HDR
 
-// stbi_is_hdr is always defined, but always returns false if STBI_NO_HDR
+// stbi_is_hdr is always defined, but always returns FALSE if STBI_NO_HDR
 STBIDEF int    stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user);
 STBIDEF int    stbi_is_hdr_from_memory(stbi_uc const *buffer, int len);
 #ifndef STBI_NO_STDIO
@@ -1133,7 +1133,7 @@ STBIDEF float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_
 
 // these is-hdr-or-not is defined independent of whether STBI_NO_LINEAR is
 // defined, for API simplicity; if STBI_NO_LINEAR is defined, it always
-// reports false!
+// reports FALSE!
 
 STBIDEF int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len)
 {

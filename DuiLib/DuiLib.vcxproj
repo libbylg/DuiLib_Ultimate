@@ -972,7 +972,7 @@
     </ClCompile>
     <ClCompile Include="Utils\UIDelegate.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
-    <ClCompile Include="Core\UIBase.cpp" />
+    <ClCompile Include="Core\UIWindow.cpp" />
     <ClCompile Include="Core\UIContainer.cpp" />
     <ClCompile Include="Core\UIControl.cpp" />
     <ClCompile Include="Core\UIManager.cpp" />
@@ -997,7 +997,7 @@
     <ClInclude Include="Utils\Utils.h" />
     <ClInclude Include="Utils\VersionHelpers.h" />
     <ClInclude Include="Utils\WebBrowserEventHandler.h" />
-    <ClInclude Include="Core\UIBase.h" />
+    <ClInclude Include="Core\UIWindow.h" />
     <ClInclude Include="Core\UIContainer.h" />
     <ClInclude Include="Core\UIControl.h" />
     <ClInclude Include="Core\UIDefine.h" />

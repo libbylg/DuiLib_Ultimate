@@ -39,38 +39,38 @@ namespace DuiLib {
 
 		HWND GetHostWindow() const;
 
-		virtual bool IsDelayCreate() const;
-		virtual void SetDelayCreate(bool bDelayCreate = true);
-		virtual bool IsMFC() const;
-		virtual void SetMFC(bool bMFC = false);
+		virtual BOOL IsDelayCreate() const;
+		virtual void SetDelayCreate(BOOL bDelayCreate = true);
+		virtual BOOL IsMFC() const;
+		virtual void SetMFC(BOOL bMFC = FALSE);
 
-		bool CreateControl(const CLSID clsid);
-		bool CreateControl(LPCTSTR pstrCLSID);
+		BOOL CreateControl(const CLSID clsid);
+		BOOL CreateControl(LPCTSTR pstrCLSID);
 		HRESULT GetControl(const IID iid, LPVOID* ppRet);
 		CLSID GetClisd() const;
 		CDuiString GetModuleName() const;
 		void SetModuleName(LPCTSTR pstrText);
 
-		void SetVisible(bool bVisible = true);
-		void SetInternVisible(bool bVisible = true);
-		void SetPos(RECT rc, bool bNeedInvalidate = true);
-		void Move(SIZE szOffset, bool bNeedInvalidate = true);
-		bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
+		void SetVisible(BOOL bVisible = true);
+		void SetInternVisible(BOOL bVisible = true);
+		void SetPos(RECT rc, BOOL bNeedInvalidate = true);
+		void Move(SIZE szOffset, BOOL bNeedInvalidate = true);
+		BOOL DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 
 		void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 
-		LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, bool& bHandled);
+		LRESULT MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
 	protected:
 		virtual void ReleaseControl();
-		virtual bool DoCreateControl();
+		virtual BOOL DoCreateControl();
 
 	protected:
 		CLSID m_clsid;
 		CDuiString m_sModuleName;
-		bool m_bCreated;
-		bool m_bDelayCreate;
-		bool m_bMFC;
+		BOOL m_bCreated;
+		BOOL m_bDelayCreate;
+		BOOL m_bMFC;
 		IOleObject* m_pUnk;
 		CActiveXCtrl* m_pControl;
 		HWND m_hwndHost;

@@ -51,8 +51,8 @@ namespace DuiLib {
 				m_pEditUI->ApplyAttributeList(pDefaultAttributes);
 			}
 			m_pEditUI->SetBkColor(0xFFFFFFFF);
-			m_pEditUI->SetRich(false);
-			m_pEditUI->SetMultiLine(false);
+			m_pEditUI->SetRich(FALSE);
+			m_pEditUI->SetMultiLine(FALSE);
 			m_pEditUI->SetWantReturn(true);
 			m_pEditUI->SetFloat(true);
 			m_pEditUI->SetAttribute(_T("autohscroll"), _T("true"));
@@ -162,7 +162,7 @@ namespace DuiLib {
 				//Òþ²Ø±à¼­¿ò
 				RECT rc = {0,0,0,0};
 				m_pEditUI->SetPos(rc);
-				m_pEditUI->SetVisible(false);
+				m_pEditUI->SetVisible(FALSE);
 			}
 		}
 		else if (_tcsicmp(strName, _T("ListEx_Combo")) == 0 && m_pComboBoxUI && m_nRow >= 0 && m_nColum >= 0)
@@ -204,7 +204,7 @@ namespace DuiLib {
 		{	
 			m_pEditUI->SetPos(rc);
 
-			m_pEditUI->SetVisible(false);
+			m_pEditUI->SetVisible(FALSE);
 		}
 
 		if(m_pComboBoxUI)
@@ -230,7 +230,7 @@ namespace DuiLib {
 			{
 				m_pEditUI->SetPos(rc);
 
-				m_pEditUI->SetVisible(false);
+				m_pEditUI->SetVisible(FALSE);
 			}
 			if (m_pComboBoxUI)
 			{
@@ -283,7 +283,7 @@ namespace DuiLib {
 				{
 					m_pEditUI->SetPos(rc);
 
-					m_pEditUI->SetVisible(false);
+					m_pEditUI->SetVisible(FALSE);
 				}
 				if (m_pComboBoxUI)
 				{
@@ -1469,7 +1469,7 @@ Label_ForeImage:
 		m_sCheckBoxForeImage = pStrImage;
 	}
 
-	bool CListTextExtElementUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CListTextExtElementUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		if( !::IntersectRect(&m_rcPaint, &rcPaint, &m_rcItem) ) return true;
 		DrawItemBk(hDC, m_rcItem);

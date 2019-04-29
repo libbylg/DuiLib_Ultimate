@@ -15,7 +15,7 @@ namespace DuiLib {
 	typedef std::vector<STGMEDIUM*> PStgMediumArray;
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class UILIB_API CEnumFormatEtc : public IEnumFORMATETC
+	class DUILIB_API CEnumFormatEtc : public IEnumFORMATETC
 	{
 	private:
 		ULONG           m_cRefCount;
@@ -38,11 +38,11 @@ namespace DuiLib {
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class UILIB_API CIDropSource : public IDropSource
+	class DUILIB_API CIDropSource : public IDropSource
 	{
 		long m_cRefCount;
 	public:
-		bool m_bDropped;
+		BOOL m_bDropped;
 
 		CIDropSource::CIDropSource():m_cRefCount(0),m_bDropped(false) {}
 		//IUnknown
@@ -61,7 +61,7 @@ namespace DuiLib {
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class UILIB_API CIDataObject : public IDataObject//,public IAsyncOperation
+	class DUILIB_API CIDataObject : public IDataObject//,public IAsyncOperation
 	{
 		CIDropSource* m_pDropSource;
 		long m_cRefCount;
@@ -151,10 +151,10 @@ namespace DuiLib {
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	class UILIB_API CIDropTarget : public IDropTarget
+	class DUILIB_API CIDropTarget : public IDropTarget
 	{
 		DWORD m_cRefCount;
-		bool m_bAllowDrop;
+		BOOL m_bAllowDrop;
 		struct IDropTargetHelper *m_pDropTargetHelper;
 		FormatEtcArray m_formatetc;
 		FORMATETC* m_pSupportedFrmt;
@@ -168,7 +168,7 @@ namespace DuiLib {
 		void SetTargetWnd(HWND hWnd) { m_hTargetWnd = hWnd; }
 
 		//return values: true - release the medium. false - don't release the medium 
-		virtual bool OnDrop(FORMATETC* pFmtEtc, STGMEDIUM& medium,DWORD *pdwEffect) = 0;
+		virtual BOOL OnDrop(FORMATETC* pFmtEtc, STGMEDIUM& medium,DWORD *pdwEffect) = 0;
 
 		virtual HRESULT STDMETHODCALLTYPE QueryInterface( 
 			/* [in] */ REFIID riid,
@@ -176,7 +176,7 @@ namespace DuiLib {
 		virtual ULONG STDMETHODCALLTYPE AddRef( void) { return ++m_cRefCount; }
 		virtual ULONG STDMETHODCALLTYPE Release( void);
 
-		bool QueryDrop(DWORD grfKeyState, LPDWORD pdwEffect);
+		BOOL QueryDrop(DWORD grfKeyState, LPDWORD pdwEffect);
 		virtual HRESULT STDMETHODCALLTYPE DragEnter(
 			/* [unique][in] */ IDataObject __RPC_FAR *pDataObj,
 			/* [in] */ DWORD grfKeyState,
@@ -194,7 +194,7 @@ namespace DuiLib {
 			/* [out][in] */ DWORD __RPC_FAR *pdwEffect);
 	};
 
-	class UILIB_API CDragSourceHelper
+	class DUILIB_API CDragSourceHelper
 	{
 		IDragSourceHelper* pDragSourceHelper;
 	public:

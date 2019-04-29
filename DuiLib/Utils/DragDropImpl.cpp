@@ -472,7 +472,7 @@ namespace DuiLib {
 		return nTemp;
 	}
 
-	bool CIDropTarget::QueryDrop(DWORD grfKeyState, LPDWORD pdwEffect)
+	BOOL CIDropTarget::QueryDrop(DWORD grfKeyState, LPDWORD pdwEffect)
 	{  
 		ATLTRACE("CIDropTarget::QueryDrop\n");
 		DWORD dwOKEffects = *pdwEffect; 

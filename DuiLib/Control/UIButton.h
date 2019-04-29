@@ -16,8 +16,8 @@ namespace DuiLib
 		LPVOID GetInterface(LPCTSTR pstrName);
 		UINT GetControlFlags() const;
 
-		bool Activate();
-		void SetEnabled(bool bEnable = true);
+		BOOL Activate();
+		void SetEnabled(BOOL bEnable = true);
 		void DoEvent(TEventUI& event);
 
 		virtual LPCTSTR GetNormalImage();

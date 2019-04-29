@@ -9,10 +9,10 @@ namespace DuiLib
 	IMPLEMENT_DUICONTROL(CGifAnimExUI)
 	struct CGifAnimExUI::Imp
 	{
-		bool				m_bRealStop			;//外部停止了
-		bool				m_bLoadImg			;//是否加载过图片
-		bool				m_bTimer			;//是否启动定时器
-		bool				m_bAutoStart		;//是否自动开始
+		BOOL				m_bRealStop			;//外部停止了
+		BOOL				m_bLoadImg			;//是否加载过图片
+		BOOL				m_bTimer			;//是否启动定时器
+		BOOL				m_bAutoStart		;//是否自动开始
 		int					m_nDelay			;//循环毫秒数
 		UINT				m_nFrameCount		;//gif图片总帧数
 		UINT				m_nFramePosition	;//当前放到第几帧
@@ -20,10 +20,10 @@ namespace DuiLib
 		CPaintManagerUI*&	m_pManager			;
 		CGifAnimExUI*			m_pOwer				;//拥有者
 		Imp(CPaintManagerUI* & pManager):m_pManager(pManager),
-			m_bLoadImg(false),m_bTimer(false),
+			m_bLoadImg(FALSE),m_bTimer(FALSE),
 			m_nDelay(100),m_pGifImage(NULL),m_nFrameCount(0U),
 			m_nFramePosition(0U),
-			m_pOwer(NULL),m_bRealStop(false),m_bAutoStart(true)
+			m_pOwer(NULL),m_bRealStop(FALSE),m_bAutoStart(true)
 		{
 		}
 		void SetOwer(CGifAnimExUI *pOwer)
@@ -43,7 +43,7 @@ namespace DuiLib
 			if(!m_bLoadImg)
 				LoadGifImage();
 		}
-		inline bool IsLoadImage(){return m_bLoadImg;}
+		inline BOOL IsLoadImage(){return m_bLoadImg;}
 		virtual void LoadGifImage()
 		{
 			CDuiString sImag = m_pOwer->GetBkImage();
@@ -60,7 +60,7 @@ namespace DuiLib
 			if(m_bAutoStart && m_pOwer->IsVisible())
 				StartAnim();
 		}
-		void SetAutoStart(bool bAuto)
+		void SetAutoStart(BOOL bAuto)
 		{
 			m_bAutoStart = bAuto;
 		}
@@ -78,7 +78,7 @@ namespace DuiLib
 				m_bTimer = true;
 			}
 		}
-		void StopAnim(bool bGoFirstFrame)//bGoFirstFrame 是否跑到第一帧
+		void StopAnim(BOOL bGoFirstFrame)//bGoFirstFrame 是否跑到第一帧
 		{
 			if(m_bTimer)
 			{
@@ -88,7 +88,7 @@ namespace DuiLib
 					m_pOwer->Invalidate();
 				}
 				m_pManager->KillTimer( m_pOwer, GIFANIMUIEX_EVENT_TIEM_ID );
-				m_bTimer = false;
+				m_bTimer = FALSE;
 			}
 		}
 		void EventOnTimer(const WPARAM idEvent )
@@ -110,7 +110,7 @@ namespace DuiLib
 					pImage->Draw2(hDC,rcItem);
 			}
 		}
-		void EventSetVisible(bool bVisible)
+		void EventSetVisible(BOOL bVisible)
 		{
 			if(bVisible)
 			{
@@ -128,7 +128,7 @@ namespace DuiLib
 	}
 	CGifAnimExUI::~CGifAnimExUI(void)
 	{
-		m_pImp->StopAnim(false);
+		m_pImp->StopAnim(FALSE);
 		delete m_pImp;
 		m_pImp = nullptr;
 	}
@@ -154,18 +154,18 @@ namespace DuiLib
 		__super::Init();
 		m_pImp->CheckLoadImage();
 	}
-	void CGifAnimExUI::SetVisible(bool bVisible /*= true*/)
+	void CGifAnimExUI::SetVisible(BOOL bVisible /*= true*/)
 	{
 		__super::SetVisible(bVisible);
 		m_pImp->EventSetVisible(bVisible);
 	}
-	void CGifAnimExUI::SetInternVisible(bool bVisible/* = true*/)
+	void CGifAnimExUI::SetInternVisible(BOOL bVisible/* = true*/)
 	{
 		__super::SetInternVisible(bVisible);
 		m_pImp->EventSetVisible(bVisible);
 	}
 
-	bool CGifAnimExUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CGifAnimExUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		if( !::IntersectRect( &m_rcPaint, &rcPaint, &m_rcItem ) ) return true;
 		m_pImp->DrawFrame( hDC,rcPaint,m_rcItem);
@@ -181,7 +181,7 @@ namespace DuiLib
 	}
 	void CGifAnimExUI::StartAnim()
 	{
-		m_pImp->m_bRealStop = false;
+		m_pImp->m_bRealStop = FALSE;
 		m_pImp->StartAnim();
 	}
 	void CGifAnimExUI::StopAnim()

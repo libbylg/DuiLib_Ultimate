@@ -8,7 +8,7 @@ namespace DuiLib
 {
 
 const TCHAR *strWndClassName = _T("PerryShadowWnd");
-bool CShadowUI::s_bHasInit = FALSE;
+BOOL CShadowUI::s_bHasInit = FALSE;
 
 CShadowUI::CShadowUI(void)
 : m_hWnd((HWND)NULL)
@@ -33,7 +33,7 @@ CShadowUI::~CShadowUI(void)
 {
 }
 
-bool CShadowUI::Initialize(HINSTANCE hInstance)
+BOOL CShadowUI::Initialize(HINSTANCE hInstance)
 {
 	if (s_bHasInit)
 		return false;
@@ -553,18 +553,18 @@ void CShadowUI::MakeShadow(UINT32 *pShadBits, HWND hParent, RECT *rcParent)
 	DeleteObject(hParentRgn);
 }
 
-void CShadowUI::ShowShadow(bool bShow)
+void CShadowUI::ShowShadow(BOOL bShow)
 {
 	m_bIsShowShadow = bShow;
 }
 
-bool CShadowUI::IsShowShadow() const
+BOOL CShadowUI::IsShowShadow() const
 {
 	return m_bIsShowShadow;
 }
 
 
-void CShadowUI::DisableShadow(bool bDisable) {
+void CShadowUI::DisableShadow(BOOL bDisable) {
 
 
 	m_bIsDisableShadow = bDisable;
@@ -604,12 +604,12 @@ void CShadowUI::DisableShadow(bool bDisable) {
 
 }
 ////TODO shadow disnable fix////
-bool CShadowUI::IsDisableShadow() const {
+BOOL CShadowUI::IsDisableShadow() const {
 
 	return m_bIsDisableShadow;
 }
 
-bool CShadowUI::SetSize(int NewSize)
+BOOL CShadowUI::SetSize(int NewSize)
 {
 	if(NewSize > 35 || NewSize < -35)
 		return false;
@@ -620,7 +620,7 @@ bool CShadowUI::SetSize(int NewSize)
 	return true;
 }
 
-bool CShadowUI::SetSharpness(unsigned int NewSharpness)
+BOOL CShadowUI::SetSharpness(unsigned int NewSharpness)
 {
 	if(NewSharpness > 35)
 		return false;
@@ -631,7 +631,7 @@ bool CShadowUI::SetSharpness(unsigned int NewSharpness)
 	return true;
 }
 
-bool CShadowUI::SetDarkness(unsigned int NewDarkness)
+BOOL CShadowUI::SetDarkness(unsigned int NewDarkness)
 {
 	if(NewDarkness > 255)
 		return false;
@@ -642,7 +642,7 @@ bool CShadowUI::SetDarkness(unsigned int NewDarkness)
 	return true;
 }
 
-bool CShadowUI::SetPosition(int NewXOffset, int NewYOffset)
+BOOL CShadowUI::SetPosition(int NewXOffset, int NewYOffset)
 {
 	if(NewXOffset > 35 || NewXOffset < -35 ||
 		NewYOffset > 35 || NewYOffset < -35)
@@ -655,7 +655,7 @@ bool CShadowUI::SetPosition(int NewXOffset, int NewYOffset)
 	return true;
 }
 
-bool CShadowUI::SetColor(COLORREF NewColor)
+BOOL CShadowUI::SetColor(COLORREF NewColor)
 {
 	m_Color = NewColor;
 	if(m_hWnd != NULL && (SS_VISABLE & m_Status))
@@ -663,7 +663,7 @@ bool CShadowUI::SetColor(COLORREF NewColor)
 	return true;
 }
 
-bool CShadowUI::SetImage(LPCTSTR szImage)
+BOOL CShadowUI::SetImage(LPCTSTR szImage)
 {
 	if (szImage == NULL)
 		return false;
@@ -676,7 +676,7 @@ bool CShadowUI::SetImage(LPCTSTR szImage)
 	return true;
 }
 
-bool CShadowUI::SetShadowCorner(RECT rcCorner)
+BOOL CShadowUI::SetShadowCorner(RECT rcCorner)
 {
 	if (rcCorner.left < 0 || rcCorner.top < 0 || rcCorner.right < 0 || rcCorner.bottom < 0) return false;
 
@@ -688,7 +688,7 @@ bool CShadowUI::SetShadowCorner(RECT rcCorner)
 	return true;
 }
 
-bool CShadowUI::CopyShadow(CShadowUI* pShadow)
+BOOL CShadowUI::CopyShadow(CShadowUI* pShadow)
 {
 	if (m_bIsImageMode) {
 		pShadow->SetImage(m_sShadowImage);

@@ -39,17 +39,17 @@ namespace DuiLib
 		m_pOwner = pOwner;
 	}
 
-	void CScrollBarUI::SetVisible(bool bVisible)
+	void CScrollBarUI::SetVisible(BOOL bVisible)
 	{
 		if( m_bVisible == bVisible ) return;
 
-		bool v = IsVisible();
+		BOOL v = IsVisible();
 		m_bVisible = bVisible;
 		if( m_bFocused ) m_bFocused = false;
 
 	}
 
-	void CScrollBarUI::SetEnabled(bool bEnable)
+	void CScrollBarUI::SetEnabled(BOOL bEnable)
 	{
 		CControlUI::SetEnabled(bEnable);
 		if( !IsEnabled() ) {
@@ -65,12 +65,12 @@ namespace DuiLib
 		else CControlUI::SetFocus();
 	}
 
-	bool CScrollBarUI::IsHorizontal()
+	BOOL CScrollBarUI::IsHorizontal()
 	{
 		return m_bHorizontal;
 	}
 
-	void CScrollBarUI::SetHorizontal(bool bHorizontal)
+	void CScrollBarUI::SetHorizontal(BOOL bHorizontal)
 	{
 		if( m_bHorizontal == bHorizontal ) return;
 
@@ -131,12 +131,12 @@ namespace DuiLib
 		m_nLineSize = nSize;
 	}
 
-	bool CScrollBarUI::GetShowButton1()
+	BOOL CScrollBarUI::GetShowButton1()
 	{
 		return m_bShowButton1;
 	}
 
-	void CScrollBarUI::SetShowButton1(bool bShow)
+	void CScrollBarUI::SetShowButton1(BOOL bShow)
 	{
 		m_bShowButton1 = bShow;
 		SetPos(m_rcItem);
@@ -186,12 +186,12 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	bool CScrollBarUI::GetShowButton2()
+	BOOL CScrollBarUI::GetShowButton2()
 	{
 		return m_bShowButton2;
 	}
 
-	void CScrollBarUI::SetShowButton2(bool bShow)
+	void CScrollBarUI::SetShowButton2(BOOL bShow)
 	{
 		m_bShowButton2 = bShow;
 		SetPos(m_rcItem);
@@ -373,7 +373,7 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	void CScrollBarUI::SetPos(RECT rc, bool bNeedInvalidate)
+	void CScrollBarUI::SetPos(RECT rc, BOOL bNeedInvalidate)
 	{
 		CControlUI::SetPos(rc, bNeedInvalidate);
 		SIZE cxyFixed = m_cxyFixed;
@@ -780,7 +780,7 @@ namespace DuiLib
 		else CControlUI::SetAttribute(pstrName, pstrValue);
 	}
 
-	bool CScrollBarUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
+	BOOL CScrollBarUI::DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl)
 	{
 		PaintBkColor(hDC);
 		PaintBkImage(hDC);

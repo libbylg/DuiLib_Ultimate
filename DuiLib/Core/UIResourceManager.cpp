@@ -6,18 +6,18 @@
 
 namespace DuiLib {
 	
-	CResourceManager::CResourceManager(void)
+	CResourceManagerUI::CResourceManagerUI(void)
 	{
 		m_pQuerypInterface = NULL;
 		
 	}
 
-	CResourceManager::~CResourceManager(void)
+	CResourceManagerUI::~CResourceManagerUI(void)
 	{
 		ResetResourceMap();
 	}
 
-	BOOL CResourceManager::LoadResource(STRINGorID xml, LPCTSTR type)
+	BOOL CResourceManagerUI::LoadResource(STRINGorID xml, LPCTSTR type)
 	{
 		if( HIWORD(xml.m_lpstr) != NULL ) 
 		{
@@ -50,7 +50,7 @@ namespace DuiLib {
 		return LoadResource(m_xml.GetRoot());
 	}
 
-	BOOL CResourceManager::LoadResource(CMarkupNode Root)
+	BOOL CResourceManagerUI::LoadResource(CMarkupNode Root)
 	{
 		if( !Root.IsValid() ) return FALSE;
 
@@ -118,19 +118,19 @@ namespace DuiLib {
 		return TRUE;
 	}
 
-	LPCTSTR CResourceManager::GetImagePath(LPCTSTR lpstrId)
+	LPCTSTR CResourceManagerUI::GetImagePath(LPCTSTR lpstrId)
 	{
 		CDuiString * lpStr = static_cast<CDuiString *>(m_mImageHashMap.Find(lpstrId));
 		return lpStr == NULL? NULL:lpStr->GetData();
 	}
 
-	LPCTSTR CResourceManager::GetXmlPath(LPCTSTR lpstrId)
+	LPCTSTR CResourceManagerUI::GetXmlPath(LPCTSTR lpstrId)
 	{
 		CDuiString * lpStr = static_cast<CDuiString *>(m_mXmlHashMap.Find(lpstrId));
 		return lpStr == NULL? NULL:lpStr->GetData();
 	}
 
-	void CResourceManager::ResetResourceMap()
+	void CResourceManagerUI::ResetResourceMap()
 	{
 		CDuiString* lpStr;
 		for( int i = 0; i< m_mImageHashMap.GetSize(); i++ )
@@ -162,7 +162,7 @@ namespace DuiLib {
 		}
 	}
 
-	BOOL CResourceManager::LoadLanguage(LPCTSTR pstrXml)
+	BOOL CResourceManagerUI::LoadLanguage(LPCTSTR pstrXml)
 	{
 		CMarkup xml;
 		if( *(pstrXml) == _T('<') ) {
@@ -220,7 +220,7 @@ namespace DuiLib {
 		return TRUE;
 	}
 
-	CDuiString CResourceManager::GetText(LPCTSTR lpstrId, LPCTSTR lpstrType)
+	CDuiString CResourceManagerUI::GetText(LPCTSTR lpstrId, LPCTSTR lpstrType)
 	{
 		if(lpstrId == NULL) return _T("");
 
@@ -233,7 +233,7 @@ namespace DuiLib {
 		return lpstrFind == NULL ? lpstrId : *lpstrFind;
 	}
 
-	void CResourceManager::ReloadText()
+	void CResourceManagerUI::ReloadText()
 	{
 		if(m_pQuerypInterface == NULL) return;
 		//ÖØÔØÎÄ×ÖÃèÊö
@@ -250,7 +250,7 @@ namespace DuiLib {
 			}
 		}
 	}
-	void CResourceManager::ResetTextMap()
+	void CResourceManagerUI::ResetTextMap()
 	{
 		CDuiString * lpStr;
 		for( int i = 0; i< m_mTextResourceHashMap.GetSize(); i++ )

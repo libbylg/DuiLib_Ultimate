@@ -20,8 +20,8 @@ namespace DuiLib
 		SYSTEMTIME& GetTime();
 		void SetTime(SYSTEMTIME* pst);
 
-		void SetReadOnly(bool bReadOnly);
-		bool IsReadOnly() const;
+		void SetReadOnly(BOOL bReadOnly);
+		BOOL IsReadOnly() const;
 
 		void UpdateText();
 
@@ -30,7 +30,7 @@ namespace DuiLib
 	protected:
 		SYSTEMTIME m_sysTime;
 		int        m_nDTUpdateFlag;
-		bool       m_bReadOnly;
+		BOOL       m_bReadOnly;
 
 		CDateTimeWnd* m_pWindow;
 	};

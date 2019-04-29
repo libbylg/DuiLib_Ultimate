@@ -96,7 +96,7 @@ void zfree(void *buf)
   OutputDebugString(c);
   char *p = ((char*)buf)-16;
   unsigned int len = *((unsigned int*)p);
-  bool blown=false;
+  BOOL blown=false;
   for (int i=0; i<16; i++)
   { char lo = p[i];
     char hi = p[len+31-i];
@@ -2602,10 +2602,10 @@ typedef struct unz_file_info_internal_s
 
 
 typedef struct
-{ bool is_handle; // either a handle or memory
-  bool canseek;
+{ BOOL is_handle; // either a handle or memory
+  BOOL canseek;
   // for handles:
-  HANDLE h; bool herr; unsigned long initial_offset; bool mustclosehandle;
+  HANDLE h; BOOL herr; unsigned long initial_offset; BOOL mustclosehandle;
   // for memory:
   void *buf; unsigned int len,pos; // if it's a memory block
 } LUFILE;
@@ -2614,8 +2614,8 @@ typedef struct
 LUFILE *lufopen(void *z,unsigned int len,DWORD flags,ZRESULT *err)
 { if (flags!=ZIP_HANDLE && flags!=ZIP_FILENAME && flags!=ZIP_MEMORY) {*err=ZR_ARGS; return NULL;}
   //
-  HANDLE h=0; bool canseek=false; *err=ZR_OK;
-  bool mustclosehandle=false;
+  HANDLE h=0; BOOL canseek=false; *err=ZR_OK;
+  BOOL mustclosehandle=false;
   if (flags==ZIP_HANDLE||flags==ZIP_FILENAME)
   { if (flags==ZIP_HANDLE)
     { HANDLE hf = z;
@@ -2726,7 +2726,7 @@ typedef struct
 	LUFILE* file;                 // io structore of the zipfile
 	uLong compression_method;   // compression method (0==store)
 	uLong byte_before_the_zipfile;// byte before the zipfile, (>0 for sfx)
-  bool encrypted;               // is it encrypted?
+  BOOL encrypted;               // is it encrypted?
   unsigned long keys[3];        // decryption keys, initialized by unzOpenCurrentFile
   int encheadleft;              // the first call(s) to unzReadCurrentFile will read this many encryption-header bytes first
   char crcenctest;              // if encrypted, we'll check the encryption buffer against this
@@ -3445,7 +3445,7 @@ int unzOpenCurrentFile (unzFile file, const char *password)
 	pfile_in_zip_read_info->rest_read_compressed = s->cur_file_info.compressed_size ;
 	pfile_in_zip_read_info->rest_read_uncompressed = s->cur_file_info.uncompressed_size ;
   pfile_in_zip_read_info->encrypted = (s->cur_file_info.flag&1)!=0;
-  bool extlochead = (s->cur_file_info.flag&8)!=0;
+  BOOL extlochead = (s->cur_file_info.flag&8)!=0;
   if (extlochead) pfile_in_zip_read_info->crcenctest = (char)((s->cur_file_info.dosDate>>8)&0xff);
   else pfile_in_zip_read_info->crcenctest = (char)(s->cur_file_info.crc >> 24);
   pfile_in_zip_read_info->encheadleft = (pfile_in_zip_read_info->encrypted?12:0);
@@ -3473,7 +3473,7 @@ int unzOpenCurrentFile (unzFile file, const char *password)
 //  return 0 if the end of file was reached. (and also sets *reached_eof).
 //  return <0 with error code if there is an error. (in which case *reached_eof is meaningless)
 //    (UNZ_ERRNO for IO error, or zLib error for uncompress error)
-int unzReadCurrentFile  (unzFile file, voidp buf, unsigned len, bool *reached_eof)
+int unzReadCurrentFile  (unzFile file, voidp buf, unsigned len, BOOL *reached_eof)
 { int err=UNZ_OK;
   uInt iRead = 0;
   if (reached_eof!=0) *reached_eof=false;
@@ -3506,8 +3506,8 @@ int unzReadCurrentFile  (unzFile file, voidp buf, unsigned len, bool *reached_eo
       pfile_in_zip_read_info->stream.avail_in = (uInt)uReadThis;
       //
       if (pfile_in_zip_read_info->encrypted)
-      { char *buf = (char*)pfile_in_zip_read_info->stream.next_in;
-        for (unsigned int i=0; i<uReadThis; i++) buf[i]=zdecode(pfile_in_zip_read_info->keys,buf[i]);
+      { char *pbuf = (char*)pfile_in_zip_read_info->stream.next_in;
+        for (unsigned int i=0; i<uReadThis; i++) pbuf[i]=zdecode(pfile_in_zip_read_info->keys, pbuf[i]);
       }
     }
 
@@ -3763,7 +3763,7 @@ class TUnzip
 
   ZRESULT Open(void *z,unsigned int len,DWORD flags);
   ZRESULT Get(int index,ZIPENTRY *ze);
-  ZRESULT Find(const TCHAR *name,bool ic,int *index,ZIPENTRY *ze);
+  ZRESULT Find(const TCHAR *name,BOOL ic,int *index,ZIPENTRY *ze);
   ZRESULT Unzip(int index,void *dst,unsigned int len,DWORD flags);
   ZRESULT SetUnzipBaseDir(const TCHAR *dir);
   ZRESULT Close();
@@ -3784,7 +3784,7 @@ ZRESULT TUnzip::Open(void *z,unsigned int len,DWORD flags)
   if (flags==ZIP_HANDLE)
   { // test if we can seek on it. We can't use GetFileType(h)==FILE_TYPE_DISK since it's not on CE.
     DWORD res = SetFilePointer(z,0,0,FILE_CURRENT);
-    bool canseek = (res!=0xFFFFFFFF);
+    BOOL canseek = (res!=0xFFFFFFFF);
     if (!canseek) return ZR_SEEK;
   }
   ZRESULT e; LUFILE *f = lufopen(z,len,flags,&e);
@@ -3861,11 +3861,11 @@ ZRESULT TUnzip::Get(int index,ZIPENTRY *ze)
   // its upper half is standard unix stat.st_mode. We'll start trying
   // to read it in unix mode
   unsigned long a = ufi.external_fa;
-  bool isdir  =   (a&0x40000000)!=0;
-  bool readonly=  (a&0x00800000)==0;
-  //bool readable=  (a&0x01000000)!=0; // unused
-  //bool executable=(a&0x00400000)!=0; // unused
-  bool hidden=false, system=false, archive=true;
+  BOOL isdir  =   (a&0x40000000)!=0;
+  BOOL readonly=  (a&0x00800000)==0;
+  //BOOL readable=  (a&0x01000000)!=0; // unused
+  //BOOL executable=(a&0x00400000)!=0; // unused
+  BOOL hidden=false, system=false, archive=true;
   // but in normal hostmodes these are overridden by the lower half...
   int host = ufi.version>>8;
   if (host==0 || host==7 || host==11 || host==14)
@@ -3897,9 +3897,9 @@ ZRESULT TUnzip::Get(int index,ZIPENTRY *ze)
     int size = extra[epos+2];
     if (strcmp(etype,"UT")!=0) {epos += 4+size; continue;}
     int flags = extra[epos+4];
-    bool hasmtime = (flags&1)!=0;
-    bool hasatime = (flags&2)!=0;
-    bool hasctime = (flags&4)!=0;
+    BOOL hasmtime = (flags&1)!=0;
+    BOOL hasatime = (flags&2)!=0;
+    BOOL hasctime = (flags&4)!=0;
     epos+=5;
     if (hasmtime)
     { lutime_t mtime = ((extra[epos+0])<<0) | ((extra[epos+1])<<8) |((extra[epos+2])<<16) | ((extra[epos+3])<<24);
@@ -3924,7 +3924,7 @@ ZRESULT TUnzip::Get(int index,ZIPENTRY *ze)
   return ZR_OK;
 }
 
-ZRESULT TUnzip::Find(const TCHAR *tname,bool ic,int *index,ZIPENTRY *ze)
+ZRESULT TUnzip::Find(const TCHAR *tname,BOOL ic,int *index,ZIPENTRY *ze)
 { char name[MAX_PATH];
 #ifdef UNICODE
   WideCharToMultiByte(CP_UTF8,0,tname,-1,name,MAX_PATH,0,0);
@@ -3975,7 +3975,7 @@ ZRESULT TUnzip::Unzip(int index,void *dst,unsigned int len,DWORD flags)
       while ((int)uf->num_file<index) unzGoToNextFile(uf);
       unzOpenCurrentFile(uf,password); currentfile=index;
     }
-    bool reached_eof;
+    BOOL reached_eof;
     int res = unzReadCurrentFile(uf,dst,len,&reached_eof);
     if (res<=0) {unzCloseCurrentFile(uf); currentfile=-1;}
     if (reached_eof) return ZR_OK;
@@ -3993,7 +3993,7 @@ ZRESULT TUnzip::Unzip(int index,void *dst,unsigned int len,DWORD flags)
   if ((ze.attr&FILE_ATTRIBUTE_DIRECTORY)!=0)
   { if (flags==ZIP_HANDLE) return ZR_OK; // don't do anything
     const TCHAR *dir = (const TCHAR*)dst;
-    bool isabsolute = (dir[0]=='/' || dir[0]=='\\' || (dir[0]!=0 && dir[1]==':'));
+    BOOL isabsolute = (dir[0]=='/' || dir[0]=='\\' || (dir[0]!=0 && dir[1]==':'));
     if (isabsolute) EnsureDirectory(0,dir); else EnsureDirectory(rootdir,dir);
     return ZR_OK;
   }
@@ -4012,7 +4012,7 @@ ZRESULT TUnzip::Unzip(int index,void *dst,unsigned int len,DWORD flags)
     const TCHAR *name=ufn; const TCHAR *c=name; while (*c!=0) {if (*c=='/' || *c=='\\') name=c+1; c++;}
     TCHAR dir[MAX_PATH]; _tcscpy(dir,ufn); if (name==ufn) *dir=0; else dir[name-ufn]=0;
     TCHAR fn[MAX_PATH]; 
-    bool isabsolute = (dir[0]=='/' || dir[0]=='\\' || (dir[0]!=0 && dir[1]==':'));
+    BOOL isabsolute = (dir[0]=='/' || dir[0]=='\\' || (dir[0]!=0 && dir[1]==':'));
     if (isabsolute) {wsprintf(fn,_T("%s%s"),dir,name); EnsureDirectory(0,dir);}
     else {wsprintf(fn,_T("%s%s%s"),rootdir,dir,name); EnsureDirectory(rootdir,dir);}
     //
@@ -4024,7 +4024,7 @@ ZRESULT TUnzip::Unzip(int index,void *dst,unsigned int len,DWORD flags)
   //  
 
   for (; haderr==0;)
-  { bool reached_eof;
+  { BOOL reached_eof;
     int res = unzReadCurrentFile(uf,unzbuf,16384,&reached_eof);
     if (res==UNZ_PASSWORD) {haderr=ZR_PASSWORD; break;}
     if (res<0) {haderr=ZR_FLATE; break;}
@@ -4113,7 +4113,7 @@ ZRESULT GetZipItem(HZIP hz, int index, ZIPENTRY *ze)
   return lasterrorU;
 }
 
-ZRESULT FindZipItem(HZIP hz, const TCHAR *name, bool ic, int *index, ZIPENTRY *ze)
+ZRESULT FindZipItem(HZIP hz, const TCHAR *name, BOOL ic, int *index, ZIPENTRY *ze)
 { if (hz==0) {lasterrorU=ZR_ARGS;return ZR_ARGS;}
   TUnzipHandleData *han = (TUnzipHandleData*)hz;
   if (han->flag!=1) {lasterrorU=ZR_ZMODE;return ZR_ZMODE;}
@@ -4155,7 +4155,7 @@ ZRESULT CloseZipU(HZIP hz)
   return lasterrorU;
 }
 
-bool IsZipHandleU(HZIP hz)
+BOOL IsZipHandleU(HZIP hz)
 { if (hz==0) return false;
   TUnzipHandleData *han = (TUnzipHandleData*)hz;
   return (han->flag==1);

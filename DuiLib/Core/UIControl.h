@@ -2,7 +2,6 @@
 #define __UICONTROL_H__
 
 #include "Utils/UIDelegate.h"
-
 #include "Core/UIDefine.h"
 #include "Core/UIManager.h"
 
@@ -15,7 +14,7 @@ namespace DuiLib {
 
     typedef CControlUI* (CALLBACK* FINDCONTROLPROC)(CControlUI*, LPVOID);
 
-	class UILIB_API CControlUI
+	class DUILIB_API CControlUI
 	{
 		DECLARE_DUICONTROL(CControlUI)
 	public:
@@ -29,28 +28,28 @@ namespace DuiLib {
 		virtual LPVOID GetInterface(LPCTSTR pstrName);
 		virtual UINT GetControlFlags() const;
 
-		virtual bool Activate();
+		virtual BOOL Activate();
 		virtual CPaintManagerUI* GetManager() const;
-		virtual void SetManager(CPaintManagerUI* pManager, CControlUI* pParent, bool bInit = true);
+		virtual void SetManager(CPaintManagerUI* pManager, CControlUI* pParent, BOOL bInit = true);
 		virtual CControlUI* GetParent() const;
 	    void setInstance(HINSTANCE instance = NULL) {m_instance = instance;};
 		
 		// 定时器
-		bool SetTimer(UINT nTimerID, UINT nElapse);
+		BOOL SetTimer(UINT nTimerID, UINT nElapse);
 		void KillTimer(UINT nTimerID);
 
 		// 文本相关
 		virtual CDuiString GetText() const;
 		virtual void SetText(LPCTSTR pstrText);
 
-		virtual bool IsResourceText() const;
-		virtual void SetResourceText(bool bResource);
+		virtual BOOL IsResourceText() const;
+		virtual void SetResourceText(BOOL bResource);
 
-		virtual bool IsDragEnabled() const;
-		virtual void SetDragEnable(bool bDrag);
+		virtual BOOL IsDragEnabled() const;
+		virtual void SetDragEnable(BOOL bDrag);
 
-		virtual bool IsDropEnabled() const;
-		virtual void SetDropEnable(bool bDrop);
+		virtual BOOL IsDropEnabled() const;
+		virtual void SetDropEnable(BOOL bDrop);
 
 		// 图形相关
 		LPCTSTR GetGradient();
@@ -70,11 +69,11 @@ namespace DuiLib {
 
 		DWORD GetFocusBorderColor() const;
 		void SetFocusBorderColor(DWORD dwBorderColor);
-		bool IsColorHSL() const;
-		void SetColorHSL(bool bColorHSL);
+		BOOL IsColorHSL() const;
+		void SetColorHSL(BOOL bColorHSL);
 		SIZE GetBorderRound() const;
 		void SetBorderRound(SIZE cxyRound);
-		bool DrawImage(HDC hDC, LPCTSTR pStrImage, LPCTSTR pStrModify = NULL);
+		BOOL DrawImage(HDC hDC, LPCTSTR pStrImage, LPCTSTR pStrModify = NULL);
 
 		//边框相关
 		int GetBorderSize() const;
@@ -97,8 +96,8 @@ namespace DuiLib {
 		virtual RECT GetRelativePos() const; // 相对(父控件)位置
 		virtual RECT GetClientPos() const; // 客户区域（除去scrollbar和inset）
 		virtual const RECT& GetPos() const;
-		virtual void SetPos(RECT rc, bool bNeedInvalidate = true);
-		virtual void Move(SIZE szOffset, bool bNeedInvalidate = true);
+		virtual void SetPos(RECT rc, BOOL bNeedInvalidate = true);
+		virtual void Move(SIZE szOffset, BOOL bNeedInvalidate = true);
 		virtual int GetWidth() const;
 		virtual int GetHeight() const;
 		virtual int GetX() const;
@@ -138,8 +137,8 @@ namespace DuiLib {
 		virtual void SetShortcut(TCHAR ch);
 
 		// 菜单
-		virtual bool IsContextMenuUsed() const;
-		virtual void SetContextMenuUsed(bool bMenuUsed);
+		virtual BOOL IsContextMenuUsed() const;
+		virtual void SetContextMenuUsed(BOOL bMenuUsed);
 
 		// 用户属性
 		virtual const CDuiString& GetUserData(); // 辅助函数，供用户使用
@@ -148,24 +147,24 @@ namespace DuiLib {
 		virtual void SetTag(UINT_PTR pTag); // 辅助函数，供用户使用
 
 		// 一些重要的属性
-		virtual bool IsVisible() const;
-		virtual void SetVisible(bool bVisible = true);
-		virtual void SetInternVisible(bool bVisible = true); // 仅供内部调用，有些UI拥有窗口句柄，需要重写此函数
-		virtual bool IsEnabled() const;
-		virtual void SetEnabled(bool bEnable = true);
-		virtual bool IsMouseEnabled() const;
-		virtual void SetMouseEnabled(bool bEnable = true);
-		virtual bool IsKeyboardEnabled() const;
-		virtual void SetKeyboardEnabled(bool bEnable = true);
-		virtual bool IsFocused() const;
+		virtual BOOL IsVisible() const;
+		virtual void SetVisible(BOOL bVisible = true);
+		virtual void SetInternVisible(BOOL bVisible = true); // 仅供内部调用，有些UI拥有窗口句柄，需要重写此函数
+		virtual BOOL IsEnabled() const;
+		virtual void SetEnabled(BOOL bEnable = true);
+		virtual BOOL IsMouseEnabled() const;
+		virtual void SetMouseEnabled(BOOL bEnable = true);
+		virtual BOOL IsKeyboardEnabled() const;
+		virtual void SetKeyboardEnabled(BOOL bEnable = true);
+		virtual BOOL IsFocused() const;
 		virtual void SetFocus();
-		virtual bool IsFloat() const;
-		virtual void SetFloat(bool bFloat = true);
+		virtual BOOL IsFloat() const;
+		virtual void SetFloat(BOOL bFloat = true);
 
 		virtual CControlUI* FindControl(FINDCONTROLPROC Proc, LPVOID pData, UINT uFlags);
 
 		void Invalidate();
-		bool IsUpdateNeeded() const;
+		BOOL IsUpdateNeeded() const;
 		void NeedUpdate();
 		void NeedParentUpdate();
 		DWORD GetAdjustColor(DWORD dwColor);
@@ -179,15 +178,15 @@ namespace DuiLib {
 		// 自定义(未处理的)属性
 		void AddCustomAttribute(LPCTSTR pstrName, LPCTSTR pstrAttr);
 		LPCTSTR GetCustomAttribute(LPCTSTR pstrName) const;
-		bool RemoveCustomAttribute(LPCTSTR pstrName);
+		BOOL RemoveCustomAttribute(LPCTSTR pstrName);
 		void RemoveAllCustomAttribute();
 
 		virtual void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
 		CControlUI* ApplyAttributeList(LPCTSTR pstrList);
 
 		virtual SIZE EstimateSize(SIZE szAvailable);
-		virtual bool Paint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl = NULL); // 返回要不要继续绘制
-		virtual bool DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
+		virtual BOOL Paint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl = NULL); // 返回要不要继续绘制
+		virtual BOOL DoPaint(HDC hDC, const RECT& rcPaint, CControlUI* pStopControl);
 		virtual void PaintBkColor(HDC hDC);
 		virtual void PaintBkImage(HDC hDC);
 		virtual void PaintStatusImage(HDC hDC);
@@ -214,29 +213,29 @@ namespace DuiLib {
 		CControlUI* m_pParent;
 		CDuiString m_sVirtualWnd;
 		CDuiString m_sName;
-		bool m_bUpdateNeeded;
-		bool m_bMenuUsed;
+		BOOL m_bUpdateNeeded;
+		BOOL m_bMenuUsed;
 		RECT m_rcItem;
 		RECT m_rcPadding;
 		SIZE m_cXY;
 		SIZE m_cxyFixed;
 		SIZE m_cxyMin;
 		SIZE m_cxyMax;
-		bool m_bVisible;
-		bool m_bInternVisible;
-		bool m_bEnabled;
-		bool m_bMouseEnabled;
-		bool m_bKeyboardEnabled ;
-		bool m_bFocused;
-		bool m_bFloat;
+		BOOL m_bVisible;
+		BOOL m_bInternVisible;
+		BOOL m_bEnabled;
+		BOOL m_bMouseEnabled;
+		BOOL m_bKeyboardEnabled ;
+		BOOL m_bFocused;
+		BOOL m_bFloat;
 		TPercentInfo m_piFloatPercent;
 		UINT m_uFloatAlign;
-		bool m_bSetPos; // 防止SetPos循环调用
+		BOOL m_bSetPos; // 防止SetPos循环调用
 
-		bool m_bDragEnabled;
-		bool m_bDropEnabled;
+		BOOL m_bDragEnabled;
+		BOOL m_bDropEnabled;
 
-		bool m_bResourceText;
+		BOOL m_bResourceText;
 		CDuiString m_sText;
 		CDuiString m_sToolTip;
 		TCHAR m_chShortcut;
@@ -252,7 +251,7 @@ namespace DuiLib {
 		CDuiString m_sForeImage;
 		DWORD m_dwBorderColor;
 		DWORD m_dwFocusBorderColor;
-		bool m_bColorHSL;
+		BOOL m_bColorHSL;
 		int m_nBorderSize;
 		int m_nBorderStyle;
 		int m_nTooltipWidth;

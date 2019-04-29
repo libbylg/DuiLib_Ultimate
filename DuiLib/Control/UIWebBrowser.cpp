@@ -15,7 +15,7 @@ namespace DuiLib
 		: m_pWebBrowser2(NULL)
 		, _pHtmlWnd2(NULL)
 		, m_pWebBrowserEventHandler(NULL)
-		, m_bAutoNavi(false)
+		, m_bAutoNavi(FALSE)
 		, m_dwRef(0)
 		, m_dwCookie(0)
 	{
@@ -23,10 +23,10 @@ namespace DuiLib
 		m_sHomePage.Empty();
 	}
 
-	bool CWebBrowserUI::DoCreateControl()
+	BOOL CWebBrowserUI::DoCreateControl()
 	{
 		if (!CActiveXUI::DoCreateControl())
-			return false;
+			return FALSE;
 		GetManager()->AddTranslateAccelerator(this);
 		GetControl(IID_IWebBrowser2,(LPVOID*)&m_pWebBrowser2);
 		if ( m_bAutoNavi && !m_sHomePage.IsEmpty())
@@ -39,7 +39,7 @@ namespace DuiLib
 
 	void CWebBrowserUI::ReleaseControl()
 	{
-		m_bCreated=false;
+		m_bCreated=FALSE;
 		GetManager()->RemoveTranslateAccelerator(this);
 		RegisterEventHandler(FALSE);
 	}
@@ -527,14 +527,14 @@ namespace DuiLib
 		return m_sHomePage;
 	}
 
-	void CWebBrowserUI::SetAutoNavigation( bool bAuto /*= TRUE*/ )
+	void CWebBrowserUI::SetAutoNavigation( BOOL bAuto /*= TRUE*/ )
 	{
 		if (m_bAutoNavi==bAuto)	return;
 
 		m_bAutoNavi=bAuto;
 	}
 
-	bool CWebBrowserUI::IsAutoNavigation()
+	BOOL CWebBrowserUI::IsAutoNavigation()
 	{
 		return m_bAutoNavi;
 	}

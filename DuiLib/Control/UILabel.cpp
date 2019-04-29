@@ -9,10 +9,10 @@ namespace DuiLib
 		CLabelUI::CLabelUI() : m_uTextStyle(DT_VCENTER | DT_SINGLELINE), m_dwTextColor(0), 
 		m_dwDisabledTextColor(0),
 		m_iFont(-1),
-		m_bShowHtml(false),
-		m_bAutoCalcWidth(false),
-		m_bAutoCalcHeight(false),
-		m_bNeedEstimateSize(false)
+		m_bShowHtml(FALSE),
+		m_bAutoCalcWidth(FALSE),
+		m_bAutoCalcHeight(FALSE),
+		m_bNeedEstimateSize(FALSE)
 	{
 		m_cxyFixedLast.cx = m_cxyFixedLast.cy = 0;
 		m_szAvailableLast.cx = m_szAvailableLast.cy = 0;
@@ -95,12 +95,12 @@ namespace DuiLib
 		Invalidate();
 	}
 
-	bool CLabelUI::IsShowHtml()
+	BOOL CLabelUI::IsShowHtml()
 	{
 		return m_bShowHtml;
 	}
 
-	void CLabelUI::SetShowHtml(bool bShowHtml)
+	void CLabelUI::SetShowHtml(BOOL bShowHtml)
 	{
 		if( m_bShowHtml == bShowHtml ) return;
 
@@ -124,7 +124,7 @@ namespace DuiLib
 
 		if (m_bNeedEstimateSize) {
 			CDuiString sText = GetText();
-			m_bNeedEstimateSize = false;
+			m_bNeedEstimateSize = FALSE;
 			m_szAvailableLast = szAvailable;
 			m_cxyFixedLast = m_cxyFixed;
 			// 自动计算宽度
@@ -179,7 +179,7 @@ namespace DuiLib
 		}
 		if( event.Type == UIEVENT_KILLFOCUS ) 
 		{
-			m_bFocused = false;
+			m_bFocused = FALSE;
 			return;
 		}
 		CControlUI::DoEvent(event);
@@ -305,22 +305,22 @@ namespace DuiLib
 		}
 	}
 
-	bool CLabelUI::GetAutoCalcWidth() const
+	BOOL CLabelUI::GetAutoCalcWidth() const
 	{
 		return m_bAutoCalcWidth;
 	}
 
-	void CLabelUI::SetAutoCalcWidth(bool bAutoCalcWidth)
+	void CLabelUI::SetAutoCalcWidth(BOOL bAutoCalcWidth)
 	{
 		m_bAutoCalcWidth = bAutoCalcWidth;
 	}
 
-	bool CLabelUI::GetAutoCalcHeight() const
+	BOOL CLabelUI::GetAutoCalcHeight() const
 	{
 		return m_bAutoCalcHeight;
 	}
 
-	void CLabelUI::SetAutoCalcHeight(bool bAutoCalcHeight)
+	void CLabelUI::SetAutoCalcHeight(BOOL bAutoCalcHeight)
 	{
 		m_bAutoCalcHeight = bAutoCalcHeight;
 	}
