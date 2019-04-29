@@ -1,9 +1,12 @@
 #include "StdAfx.h"
-#include "ControlFactory.h"
+#include "Control/UIControlFactory.h"
+#include "Core/UIDefine.h"
+#include "Core/UIControl.h"
+#include "Core/UIContainer.h"
 
 namespace DuiLib 
 {
-	CControlFactory::CControlFactory()
+	CControlFactoryUI::CControlFactoryUI()
 	{
 		INNER_REGISTER_DUICONTROL(CControlUI);
 		INNER_REGISTER_DUICONTROL(CContainerUI);
@@ -56,11 +59,11 @@ namespace DuiLib
 		INNER_REGISTER_DUICONTROL(CRingUI);
 	}
 
-	CControlFactory::~CControlFactory()
+	CControlFactoryUI::~CControlFactoryUI()
 	{
 	}
 
-	CControlUI* CControlFactory::CreateControl(CDuiString strClassName)
+	CControlUI* CControlFactoryUI::CreateControl(CDuiString strClassName)
 	{
 		strClassName.MakeLower();
 		MAP_DUI_CTRATECLASS::iterator iter = m_mapControl.find(strClassName);
@@ -72,19 +75,19 @@ namespace DuiLib
 		}
 	}
 
-	void CControlFactory::RegistControl(CDuiString strClassName, CreateClass pFunc)
+	void CControlFactoryUI::RegistControl(CDuiString strClassName, CreateClass pFunc)
 	{
 		strClassName.MakeLower();
 		m_mapControl.insert(MAP_DUI_CTRATECLASS::value_type(strClassName, pFunc));
 	}
 
-	CControlFactory* CControlFactory::GetInstance()  
+	CControlFactoryUI* CControlFactoryUI::GetInstance()  
 	{
-		static CControlFactory* pInstance = new CControlFactory;
+		static CControlFactoryUI* pInstance = new CControlFactoryUI;
 		return pInstance;
 	}
 
-	void CControlFactory::Release()
+	void CControlFactoryUI::Release()
 	{
 		delete this;
 	}

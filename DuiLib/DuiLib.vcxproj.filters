@@ -38,9 +38,6 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UIlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\UIDelegate.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -86,12 +83,15 @@
     <ClCompile Include="Core\UIWindow.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Control\UIControlFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DUILIB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UIlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils\downloadmgr.h">
@@ -159,6 +159,12 @@
     </ClInclude>
     <ClInclude Include="Core\UIWindow.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Control\UIControlFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DUILIB.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -934,6 +934,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Control\UIControlFactory.cpp" />
     <ClCompile Include="Control\UIScrollBar.cpp" />
     <ClCompile Include="Core\UIResourceManager.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -954,7 +955,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseA|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseA|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="UIlib.cpp" />
+    <ClCompile Include="DUILIB.cpp" />
     <ClCompile Include="Utils\DPI.cpp" />
     <ClCompile Include="Utils\DragDropImpl.cpp" />
     <ClCompile Include="Utils\TrayIcon.cpp" />
@@ -980,10 +981,11 @@
     <ClCompile Include="Core\UIRender.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Control\UIControlFactory.h" />
     <ClInclude Include="Control\UIScrollBar.h" />
     <ClInclude Include="Core\UIResourceManager.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="UIlib.h" />
+    <ClInclude Include="DUILIB.h" />
     <ClInclude Include="Utils\downloadmgr.h" />
     <ClInclude Include="Utils\DPI.h" />
     <ClInclude Include="Utils\DragDropImpl.h" />

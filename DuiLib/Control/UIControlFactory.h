@@ -1,22 +1,28 @@
-#pragma once
+#ifndef _UIControlFacoty_H_
+#define _UIControlFacoty_H_
+
+#include "DUILIB.h"
+#include "Utils/Utils.h"
+
 #include <map>
+
 namespace DuiLib 
 {
 	typedef CControlUI* (*CreateClass)();
 	typedef std::map<CDuiString, CreateClass> MAP_DUI_CTRATECLASS;
 
-	class UILIB_API CControlFactory
+	class UILIB_API CControlFactoryUI
 	{
 	public:
 		CControlUI* CreateControl(CDuiString strClassName);
 		void RegistControl(CDuiString strClassName, CreateClass pFunc);
 
-		static CControlFactory* GetInstance();
+		static CControlFactoryUI* GetInstance();
 		void Release();
 
 	private:	
-		CControlFactory();
-		virtual ~CControlFactory();
+		CControlFactoryUI();
+		virtual ~CControlFactoryUI();
 
 	private:
 		MAP_DUI_CTRATECLASS m_mapControl;
@@ -26,8 +32,14 @@ namespace DuiLib
 
 
 #define REGIST_DUICONTROL(class_name)\
-	CControlFactory::GetInstance()->RegistControl(_T(#class_name), (CreateClass)class_name::CreateControl);
+	CControlFactoryUI::GetInstance()->RegistControl(_T(#class_name), (CreateClass)class_name::CreateControl);
 
 #define INNER_REGISTER_DUICONTROL(class_name)\
 	RegistControl(_T(#class_name), (CreateClass)class_name::CreateControl);
 }
+
+
+#endif//_UIControlFacoty_H_
+
+
+
