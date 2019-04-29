@@ -32,7 +32,7 @@ void InitResource()
 			strResourcePath += _T("skin\\duidemo\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_RESOURCE:
@@ -40,7 +40,7 @@ void InitResource()
 			strResourcePath += _T("skin\\duidemo\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
+			CResourceManagerUI::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
 			break;
 		}
 	case UILIB_ZIP:
@@ -51,7 +51,7 @@ void InitResource()
 			CPaintManagerUI::SetResourceZip(_T("duidemo_pwd.zip"), true, _T("duilib_ultimate"));
 			//CPaintManagerUI::SetResourceZip(_T("duidemo.zip"), true);
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_ZIPRESOURCE:
@@ -67,7 +67,7 @@ void InitResource()
 					if( dwSize > 0 ) {
 						CPaintManagerUI::SetResourceZip((LPBYTE)::LockResource(hGlobal), dwSize);
 						// 加载资源管理器
-						CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+						CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 					}
 				}
 				::FreeResource(hResource);

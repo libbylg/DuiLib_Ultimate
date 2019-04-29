@@ -1,7 +1,7 @@
 #ifndef __SEARCHWND_H__
 #define __SEARCHWND_H__
 
-class CSearchWnd : public CWindowWnd, public INotifyUI
+class CSearchWnd : public CWindowUI, public INotifyUI
 {
 public:
 	CSearchWnd(CControlUI *pOwner) : m_pOwner(pOwner) { }
@@ -9,7 +9,7 @@ public:
 public:
 	void ShowWindow(bool bShow /* = true */, bool bTakeFocus  = true )
 	{
-		CWindowWnd::ShowWindow(bShow, bTakeFocus);
+		CWindowUI::ShowWindow(bShow, bTakeFocus);
 		AdjustPos();
 	}
 
@@ -76,7 +76,7 @@ public:
 	HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x = CW_USEDEFAULT, int y = CW_USEDEFAULT, int cx = CW_USEDEFAULT, int cy = CW_USEDEFAULT, HMENU hMenu = NULL)
 	{
 		dwExStyle |= WS_EX_TOOLWINDOW;
-		return CWindowWnd::Create(hwndParent, pstrName, dwStyle, dwExStyle, x, y, cx, cy, hMenu);
+		return CWindowUI::Create(hwndParent, pstrName, dwStyle, dwExStyle, x, y, cx, cy, hMenu);
 	}
 
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
@@ -120,7 +120,7 @@ public:
 		}
 		if( bHandled ) return lRes;
 		if( m_pm.MessageHandler(uMsg, wParam, lParam, lRes) ) return lRes;
-		return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+		return CWindowUI::HandleMessage(uMsg, wParam, lParam);
 	}
 
 public:

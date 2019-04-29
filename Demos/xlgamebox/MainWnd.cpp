@@ -243,7 +243,7 @@ LRESULT CMainWnd::OnMouseWheel( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 	if( pControl && pControl->IsVisible() ) {
 		RECT rc = pControl->GetPos();
 		if( ::PtInRect(&rc, pt) ) {
-			return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+			return CWindowUI::HandleMessage(uMsg, wParam, lParam);
 		}
 	}
 
@@ -260,7 +260,7 @@ LRESULT CMainWnd::OnSysCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 		return 0;
 	}
 	BOOL bZoomed = ::IsZoomed(*this);
-	LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+	LRESULT lRes = CWindowUI::HandleMessage(uMsg, wParam, lParam);
 	if( ::IsZoomed(*this) != bZoomed ) {
 		if( !bZoomed ) {
 			CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));

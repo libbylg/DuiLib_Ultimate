@@ -14,7 +14,7 @@ void InitResource()
 			strResourcePath += _T("skin\\animationWindow\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_RESOURCE:
@@ -22,7 +22,7 @@ void InitResource()
 			strResourcePath += _T("skin\\animationWindow\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
+			CResourceManagerUI::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
 			break;
 		}
 	case UILIB_ZIP:
@@ -31,7 +31,7 @@ void InitResource()
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			CPaintManagerUI::SetResourceZip(_T("animationWindow.zip"), true);
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_ZIPRESOURCE:
@@ -48,7 +48,7 @@ void InitResource()
 					if( dwSize > 0 ) {
 						CPaintManagerUI::SetResourceZip((LPBYTE)::LockResource(hGlobal), dwSize);
 						// 加载资源管理器
-						CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+						CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 					}
 				}
 				::FreeResource(hResource);

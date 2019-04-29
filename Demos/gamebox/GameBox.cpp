@@ -336,7 +336,7 @@ public:
 			return 0;
 		}
 		BOOL bZoomed = ::IsZoomed(*this);
-		LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+		LRESULT lRes = CWindowUI::HandleMessage(uMsg, wParam, lParam);
 		if( ::IsZoomed(*this) != bZoomed ) {
 			if( !bZoomed ) {
 				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));
@@ -405,7 +405,7 @@ void InitResource()
 			strResourcePath += _T("skin\\gamebox\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_RESOURCE:
@@ -413,7 +413,7 @@ void InitResource()
 			strResourcePath += _T("skin\\gamebox\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
+			CResourceManagerUI::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
 			break;
 		}
 	case UILIB_ZIP:
@@ -422,7 +422,7 @@ void InitResource()
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			CPaintManagerUI::SetResourceZip(_T("gamebox.zip"), true);
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_ZIPRESOURCE:
@@ -439,7 +439,7 @@ void InitResource()
 					if( dwSize > 0 ) {
 						CPaintManagerUI::SetResourceZip((LPBYTE)::LockResource(hGlobal), dwSize);
 						// 加载资源管理器
-						CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+						CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 					}
 				}
 				::FreeResource(hResource);

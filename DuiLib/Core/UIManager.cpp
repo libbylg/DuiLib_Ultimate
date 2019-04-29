@@ -579,7 +579,7 @@ namespace DuiLib {
 
 	BOOL CPaintManagerUI::LoadPlugin(LPCTSTR pstrModuleName)
 	{
-		ASSERT( !::IsBadStringPtr(pstrModuleName,-1) || pstrModuleName == NULL );
+		ASSERT( !::IsBadStringPtr(pstrModuleName,-1) || (pstrModuleName == NULL));
 		if( pstrModuleName == NULL ) return false;
 		HMODULE hModule = ::LoadLibrary(pstrModuleName);
 		if( hModule != NULL ) {
@@ -1198,8 +1198,8 @@ namespace DuiLib {
 						RECT rcWnd = { 0 };
 						::GetWindowRect(m_hWndPaint, &rcWnd);
 						if(!m_diLayered.sDrawString.IsEmpty()) {
-							DWORD dwWidth = rcClient.right - rcClient.left;
-							DWORD dwHeight = rcClient.bottom - rcClient.top;
+							DWORD dwWidtht = rcClient.right - rcClient.left;
+							DWORD dwHeightt = rcClient.bottom - rcClient.top;
 							RECT rcLayeredClient = rcClient;
 							rcLayeredClient.left += m_rcLayeredInset.left;
 							rcLayeredClient.top += m_rcLayeredInset.top;
@@ -1215,23 +1215,23 @@ namespace DuiLib {
 							if (!m_diLayered.sDrawString.IsEmpty()) {
 								if( m_hbmpBackground == NULL) {
 									m_hDcBackground = ::CreateCompatibleDC(m_hDcPaint);
-									m_hbmpBackground = CRenderEngine::CreateARGB32Bitmap(m_hDcPaint, dwWidth, dwHeight, (BYTE**)&m_pBackgroundBits); 
-									::ZeroMemory(m_pBackgroundBits, dwWidth * dwHeight * 4);
+									m_hbmpBackground = CRenderEngine::CreateARGB32Bitmap(m_hDcPaint, dwWidtht, dwHeightt, (BYTE**)&m_pBackgroundBits); 
+									::ZeroMemory(m_pBackgroundBits, dwWidtht * dwHeightt * 4);
 									::SelectObject(m_hDcBackground, m_hbmpBackground);
 									CRenderClip clip;
 									CRenderClip::GenerateClip(m_hDcBackground, rcLayeredClient, clip);
 									CRenderEngine::DrawImageInfo(m_hDcBackground, this, rcLayeredClient, rcLayeredClient, &m_diLayered);
 								}
 								else if( m_bLayeredChanged ) {
-									::ZeroMemory(m_pBackgroundBits, dwWidth * dwHeight * 4);
+									::ZeroMemory(m_pBackgroundBits, dwWidtht * dwHeightt * 4);
 									CRenderClip clip;
 									CRenderClip::GenerateClip(m_hDcBackground, rcLayeredClient, clip);
 									CRenderEngine::DrawImageInfo(m_hDcBackground, this, rcLayeredClient, rcLayeredClient, &m_diLayered);
 								}
 								for( LONG y = rcClient.bottom - rcPaint.bottom; y < rcClient.bottom - rcPaint.top; ++y ) {
 									for( LONG x = rcPaint.left; x < rcPaint.right; ++x ) {
-										pOffscreenBits = (COLORREF*)(m_pOffscreenBits + y * dwWidth + x);
-										pBackgroundBits = m_pBackgroundBits + y * dwWidth + x;
+										pOffscreenBits = (COLORREF*)(m_pOffscreenBits + y * dwWidtht + x);
+										pBackgroundBits = m_pBackgroundBits + y * dwWidtht + x;
 										A = (BYTE)((*pBackgroundBits) >> 24);
 										R = (BYTE)((*pOffscreenBits) >> 16) * A / 255;
 										G = (BYTE)((*pOffscreenBits) >> 8) * A / 255;

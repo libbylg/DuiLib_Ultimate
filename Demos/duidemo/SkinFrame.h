@@ -2,7 +2,7 @@
 
 #include "SkinManager.h"
 
-class CSkinFrame : public CWindowWnd, public INotifyUI
+class CSkinFrame : public CWindowUI, public INotifyUI
 {
 public:
 	CSkinFrame(HWND hParent, CControlUI *pControl) {
@@ -135,7 +135,7 @@ public:
 		}
 		if( bHandled ) return lRes;
 		if( m_pm.MessageHandler(uMsg, wParam, lParam, lRes) ) return lRes;
-		return CWindowWnd::HandleMessage(uMsg, wParam, lParam);
+		return CWindowUI::HandleMessage(uMsg, wParam, lParam);
 	}
 
 	LRESULT OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)

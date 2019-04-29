@@ -72,8 +72,8 @@ void CMainWnd::InitWindow()
 {
 	SetIcon(IDR_MAINFRAME);
 	// 多语言接口
-	CResourceManager::GetInstance()->SetTextQueryInterface(this);
-	CResourceManager::GetInstance()->LoadLanguage(_T("lan_cn.xml"));
+	CResourceManagerUI::GetInstance()->SetTextQueryInterface(this);
+	CResourceManagerUI::GetInstance()->LoadLanguage(_T("lan_cn.xml"));
 	// 皮肤接口
 	CSkinManager::GetSkinManager()->AddReceiver(this);
 
@@ -286,7 +286,7 @@ void CMainWnd::OnFinalMessage(HWND hWnd)
 
 LPCTSTR CMainWnd::QueryControlText(LPCTSTR lpstrId, LPCTSTR lpstrType)
 {
-	CDuiString sLanguage = CResourceManager::GetInstance()->GetLanguage();
+	CDuiString sLanguage = CResourceManagerUI::GetInstance()->GetLanguage();
 	if(sLanguage == _T("en")){
 		if(lstrcmpi(lpstrId, _T("titletext")) == 0) {
 			return _T("Duilib Demo v1.1");
@@ -579,15 +579,15 @@ LRESULT CMainWnd::HandleCustomMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, B
 			{
 				static bool bEn = false;
 				if(!bEn) {
-					CResourceManager::GetInstance()->SetLanguage(_T("en"));
-					CResourceManager::GetInstance()->LoadLanguage(_T("lan_en.xml"));
+					CResourceManagerUI::GetInstance()->SetLanguage(_T("en"));
+					CResourceManagerUI::GetInstance()->LoadLanguage(_T("lan_en.xml"));
 				}
 				else {
-					CResourceManager::GetInstance()->SetLanguage(_T("cn_zh"));
-					CResourceManager::GetInstance()->LoadLanguage(_T("lan_cn.xml"));
+					CResourceManagerUI::GetInstance()->SetLanguage(_T("cn_zh"));
+					CResourceManagerUI::GetInstance()->LoadLanguage(_T("lan_cn.xml"));
 				}
 				bEn = !bEn;
-				CResourceManager::GetInstance()->ReloadText();
+				CResourceManagerUI::GetInstance()->ReloadText();
 				InvalidateRect(m_hWnd, NULL, TRUE);
 				m_pm.NeedUpdate();
 			}

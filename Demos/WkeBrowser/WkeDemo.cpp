@@ -23,7 +23,7 @@ void InitResource()
 			strResourcePath += _T("Skin\\WkeBrowser\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_RESOURCE:
@@ -31,7 +31,7 @@ void InitResource()
 			strResourcePath += _T("Skin\\WkeBrowser\\");
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
+			CResourceManagerUI::GetInstance()->LoadResource(_T("IDR_RES"), _T("xml"));
 			break;
 		}
 	case UILIB_ZIP:
@@ -40,7 +40,7 @@ void InitResource()
 			CPaintManagerUI::SetResourcePath(strResourcePath.GetData());
 			CPaintManagerUI::SetResourceZip(_T("WkeBrowser.zip"), true);
 			// 加载资源管理器
-			CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+			CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 			break;
 		}
 	case UILIB_ZIPRESOURCE:
@@ -57,7 +57,7 @@ void InitResource()
 					if( dwSize > 0 ) {
 						CPaintManagerUI::SetResourceZip((LPBYTE)::LockResource(hGlobal), dwSize);
 						// 加载资源管理器
-						CResourceManager::GetInstance()->LoadResource(_T("res.xml"), NULL);
+						CResourceManagerUI::GetInstance()->LoadResource(_T("res.xml"), NULL);
 					}
 				}
 				::FreeResource(hResource);
@@ -90,7 +90,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 	// 启动消息循环
 	CPaintManagerUI::MessageLoop();
 	// 释放资源
-	CResourceManager::GetInstance()->Release();
+	CResourceManagerUI::GetInstance()->Release();
 
 	OleUninitialize();
 	::CoUninitialize();
