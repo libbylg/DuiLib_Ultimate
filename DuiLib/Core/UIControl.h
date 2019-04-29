@@ -1,7 +1,7 @@
 #ifndef __UICONTROL_H__
 #define __UICONTROL_H__
 
-#include "Utils/UIDelegate.h"
+#include "Core/UIDelegate.h"
 #include "Core/UIDefine.h"
 #include "Core/UIManager.h"
 

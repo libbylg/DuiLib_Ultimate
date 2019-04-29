@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 #include "Core/UIManager.h"
 #include "Core/UIDefine.h"
 #include "Core/UIControl.h"
@@ -8,7 +8,7 @@
 
 #include "Utils/unzip.h"
 
-#include "UIlib.h"
+#include "UILIB.h"
 
 namespace DuiLib
 {

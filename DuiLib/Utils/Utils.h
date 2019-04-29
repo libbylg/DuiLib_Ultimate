@@ -1,7 +1,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#include "UIlib.h"
+#include "UILIB.h"
 
 namespace DuiLib
 {

@@ -35,12 +35,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\UIDelegate.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\Utils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -62,20 +56,8 @@
     <ClCompile Include="Core\UIResourceManager.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\DragDropImpl.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\TrayIcon.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\DPI.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\unzip.cpp">
       <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Control\UIScrollBar.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\UIShadow.cpp">
       <Filter>Source Files\Utils</Filter>
@@ -83,24 +65,27 @@
     <ClCompile Include="Core\UIWindow.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Control\UIControlFactory.cpp">
+    <ClCompile Include="UILIB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DUILIB.cpp">
+    <ClCompile Include="Core\UIScrollBar.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DragDropImpl.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\UIDelegate.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\DPI.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\downloadmgr.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Utils\FlashEventHandler.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\UIDelegate.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Utils\Utils.h">
@@ -136,23 +121,11 @@
     <ClInclude Include="Core\UIResourceManager.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\DragDropImpl.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\TrayIcon.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\VersionHelpers.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\DPI.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Utils\unzip.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Control\UIScrollBar.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\UIShadow.h">
       <Filter>Header Files\Utils</Filter>
@@ -160,11 +133,20 @@
     <ClInclude Include="Core\UIWindow.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Control\UIControlFactory.h">
+    <ClInclude Include="UILIB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DUILIB.h">
+    <ClInclude Include="Core\UIScrollBar.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DragDropImpl.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UIDelegate.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\DPI.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

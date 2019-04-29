@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 #include "Core/UIMarkup.h"
 #include "Core/UIManager.h"
 #include "Utils/unzip.h"

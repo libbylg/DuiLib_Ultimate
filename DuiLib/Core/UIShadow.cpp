@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 #include "Core/UIShadow.h"
 #include "Core/UIManager.h"
 #include "Core/UIRender.h"

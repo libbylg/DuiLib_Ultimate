@@ -1,7 +1,7 @@
 #ifndef _UIControlFacoty_H_
 #define _UIControlFacoty_H_
 
-#include "DUILIB.h"
+#include "UILIB.h"
 #include "Utils/Utils.h"
 
 #include <map>

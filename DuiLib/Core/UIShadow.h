@@ -1,7 +1,7 @@
 #ifndef __UISHADOW_H__
 #define __UISHADOW_H__
 
-#include "UIlib.h"
+#include "UILIB.h"
 #include "Utils/Utils.h"
 
 namespace DuiLib

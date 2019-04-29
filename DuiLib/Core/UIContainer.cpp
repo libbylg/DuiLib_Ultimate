@@ -1,11 +1,11 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 #include "Core/UIContainer.h"
 #include "Core/UIDefine.h"
 #include "Core/UIWindow.h"
 #include "Core/UIManager.h"
 #include "Core/UIRender.h"
 
-#include "Control/UIScrollBar.h"
+#include "Core/UIScrollBar.h"
 
 namespace DuiLib
 {

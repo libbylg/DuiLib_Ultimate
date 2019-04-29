@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 #include "Core/UIControl.h"
 #include "Core/UIDefine.h"
 #include "Core/UIResourceManager.h"

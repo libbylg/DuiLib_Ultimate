@@ -1,7 +1,7 @@
 #ifndef __UIMARKUP_H__
 #define __UIMARKUP_H__
 
-#include "UIlib.h"
+#include "UILIB.h"
 #include "Core/UIDefine.h"
 
 namespace DuiLib

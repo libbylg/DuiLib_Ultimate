@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "UILIB.h"
 
 namespace DuiLib {
 

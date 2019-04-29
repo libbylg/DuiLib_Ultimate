@@ -2,7 +2,7 @@
 #define __UIMANAGER_H__
 
 #include "Utils/Utils.h"
-#include "Utils/DragDropImpl.h"
+//#include "Core/DragDropImpl.h"
 #include "Utils/DPI.h"
 
 #include "Core/UIDefine.h"

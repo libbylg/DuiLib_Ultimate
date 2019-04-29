@@ -378,7 +378,7 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -934,31 +934,11 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Control\UIControlFactory.cpp" />
-    <ClCompile Include="Control\UIScrollBar.cpp" />
+    <ClCompile Include="Core\UIScrollBar.cpp" />
     <ClCompile Include="Core\UIResourceManager.cpp" />
-    <ClCompile Include="StdAfx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SDebug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SDebug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SDebugA|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SDebugA|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugA|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugA|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SRelease|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SRelease|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SReleaseA|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SReleaseA|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseA|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseA|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="DUILIB.cpp" />
+    <ClCompile Include="UILIB.cpp" />
     <ClCompile Include="Utils\DPI.cpp" />
-    <ClCompile Include="Utils\DragDropImpl.cpp" />
-    <ClCompile Include="Utils\TrayIcon.cpp" />
+    <ClCompile Include="Core\DragDropImpl.cpp" />
     <ClCompile Include="Core\UIShadow.cpp" />
     <ClCompile Include="Utils\unzip.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -971,7 +951,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='SRelease|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utils\UIDelegate.cpp" />
+    <ClCompile Include="Core\UIDelegate.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
     <ClCompile Include="Core\UIWindow.cpp" />
     <ClCompile Include="Core\UIContainer.cpp" />
@@ -981,19 +961,16 @@
     <ClCompile Include="Core\UIRender.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Control\UIControlFactory.h" />
-    <ClInclude Include="Control\UIScrollBar.h" />
+    <ClInclude Include="Core\UIScrollBar.h" />
     <ClInclude Include="Core\UIResourceManager.h" />
-    <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="DUILIB.h" />
+    <ClInclude Include="UILIB.h" />
     <ClInclude Include="Utils\downloadmgr.h" />
     <ClInclude Include="Utils\DPI.h" />
-    <ClInclude Include="Utils\DragDropImpl.h" />
+    <ClInclude Include="Core\DragDropImpl.h" />
     <ClInclude Include="Utils\FlashEventHandler.h" />
     <ClInclude Include="Utils\observer_impl_base.h" />
     <ClInclude Include="Utils\stb_image.h" />
-    <ClInclude Include="Utils\TrayIcon.h" />
-    <ClInclude Include="Utils\UIDelegate.h" />
+    <ClInclude Include="Core\UIDelegate.h" />
     <ClInclude Include="Core\UIShadow.h" />
     <ClInclude Include="Utils\unzip.h" />
     <ClInclude Include="Utils\Utils.h" />
